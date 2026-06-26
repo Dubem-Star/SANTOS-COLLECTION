@@ -1,0 +1,1557 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ============================================================
+     SANTOS COLLECTION — Luxury Womenswear (Catalogue-first build)
+     Architecture: Hero (compact) → Collections filter → Products
+     (paginated, inventory-aware) → editorial → checkout (Paystack).
+     Backend hooks are flagged with:  >>> BACKEND
+     ============================================================ -->
+
+    <title>Santos Collection — Shop Luxury Womenswear</title>
+    <meta
+      name="description"
+      content="Shop Santos Collection — luxury dresses, sets, jumpsuits and more. In-stock pieces, fast nationwide delivery, secure Paystack checkout. Surulere, Lagos."
+    />
+    <meta name="theme-color" content="#0B080D" />
+    <meta
+      property="og:title"
+      content="Santos Collection — Shop Luxury Womenswear"
+    />
+    <meta
+      property="og:description"
+      content="Timeless luxury fashion for the modern woman."
+    />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Santos" />
+    <meta name="twitter:description" content="Santos Collections" />
+    <meta
+      name="twitter:image"
+      content="https://santos-collection.vercel.app/preview.png"
+    />
+
+    <meta
+      property="og:description"
+      content="A high-end digital portfolio for a professional photographer, curated collection of moments, textures, and stories captured through the lens."
+    />
+    <meta property="og:url" content="https://santos-collection.vercel.app/" />
+    <meta
+      property="og:image"
+      content="https://santos-collection.vercel.app/preview.png"
+    />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind (CDN dev build — install via PostCSS for production) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    /> -->
+
+    <link rel="icon" href="media/favicon.png" />
+    <link href="app.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- =================== LOADER =================== -->
+    <div id="loader" aria-hidden="true">
+      <div class="lw">
+        <div class="mono" id="loadMono"><span>S</span><span>C</span></div>
+        <div class="lname"><b>Santos&nbsp;Collection</b></div>
+        <div class="bar" id="loadBar"></div>
+      </div>
+    </div>
+    <div class="curtain" id="curtain" aria-hidden="true"></div>
+
+    <!-- =================== NAV (cart always visible) =================== -->
+
+    <header id="nav" class="fixed top-0 inset-x-0 z-[90] p-0">
+      <div class="w-full px-4 md:px-10 h-[68px] md:h-[84px] flex items-center">
+        <div class="flex items-center gap-7 flex-1">
+          <button
+            id="openMenu"
+            class="lg:hidden grid place-items-center w-9 h-5 -ml-1"
+            aria-label="Open menu"
+          >
+            <span class="block w-6 h-px mb-1.5"></span>
+            <span class="block w-6 h-px mb-1.5"></span>
+            <span class="block w-6 h-px mb-1.5"></span>
+          </button>
+
+          <nav
+            class="hidden lg:flex items-center gap-8 text-[.72rem] tracking-[.16em] uppercase font-medium"
+          >
+            <a href="#shop" class="link-sweep">Shop</a>
+            <a href="#categories" class="link-sweep">Collections</a>
+            <a href="#lookbook" class="link-sweep">Lookbook</a>
+            <a href="#contact" class="link-sweep">Contact</a>
+          </nav>
+        </div>
+
+        <a
+          href="#top"
+          class="flex-1 flex flex-col items-center justify-center text-center leading-none"
+        >
+          <span
+            class="mark block bg-transparent text-[1.5rem] md:text-[1.95rem] tracking-[.14em]"
+          >
+            SANTOS
+          </span>
+          <span class="block eyebrow text-[.5rem] md:text-[.55rem] mt-0.5">
+            Collection
+          </span>
+        </a>
+
+        <div class="flex items-center gap-4 md:gap-7 flex-1 justify-end">
+          <a
+            class="theme-toggle w-20px h-20px nav-icon"
+            id="themeToggle"
+            aria-label="Toggle theme"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <mask id="moon-mask">
+                <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                <circle class="mask-circle" cx="25" cy="5" r="8" fill="black" />
+              </mask>
+
+              <circle
+                class="sun-center"
+                cx="12"
+                cy="12"
+                r="5"
+                mask="url(#moon-mask)"
+              />
+
+              <g
+                class="sun-rays"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </g>
+            </svg>
+          </a>
+
+          <a
+            href="#"
+            class="w-20px h-20px nav-icon aboy relative block"
+            id="openSearch"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </a>
+
+          <a
+            href="#wishlist"
+            id="wishLink"
+            aria-label="Wishlist"
+            class="w-20px h-20px nav-icon aboy relative hidden sm:block"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              />
+            </svg>
+            <span
+              id="wishCount"
+              class="absolute -top-2 -right-2 text-[.55rem] bg-lilac text-black rounded-full w-4 h-4 grid place-items-center font-semibold hidden"
+            >
+              0
+            </span>
+          </a>
+
+          <a
+            href="#wishlist"
+            id="openCart"
+            aria-label="Wishlist"
+            class="w-20px h-20px nav-icon aboy relative block"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M20.686,7.515c-.251-1.139-1.149-2.033-2.288-2.279-.607-.131-1.215-.243-1.824-.336-.025-.357-.054-.709-.086-1.048-.132-1.39-1.191-2.501-2.576-2.702-1.375-.199-2.447-.199-3.822,0-1.385,.201-2.445,1.312-2.577,2.703-.032,.339-.061,.691-.086,1.048-.609,.094-1.217,.205-1.824,.336-1.14,.246-2.038,1.141-2.288,2.28-.927,4.21-.927,8.304,0,12.515,.25,1.139,1.148,2.034,2.288,2.28,2.123,.458,4.26,.688,6.397,.688s4.275-.229,6.397-.688c1.139-.246,2.037-1.141,2.288-2.28,.927-4.21,.927-8.304,0-12.515Zm-11.182-3.474c.044-.461,.411-.845,.873-.912,1.184-.172,2.064-.172,3.248,0,.462,.067,.829,.451,.873,.912,.019,.2,.037,.407,.053,.617-1.699-.145-3.401-.145-5.1,0,.017-.21,.034-.417,.053-.617Zm9.229,15.559c-.082,.372-.386,.675-.757,.755-3.964,.856-7.986,.856-11.951,0-.371-.08-.675-.383-.757-.754-.863-3.921-.863-7.734,0-11.655,.082-.371,.386-.674,.757-.754,.431-.093,.862-.175,1.293-.248-.037,1.01-.044,1.913-.023,2.483,.021,.552,.471,.98,1.037,.962,.552-.021,.982-.484,.962-1.037-.022-.595-.009-1.591,.037-2.675,.889-.085,1.779-.128,2.67-.128s1.781,.043,2.67,.128c.046,1.084,.059,2.08,.037,2.675-.021,.552,.41,1.016,.962,1.037,.013,0,.025,0,.038,0,.535,0,.979-.424,.998-.963,.021-.57,.014-1.474-.023-2.483,.432,.073,.863,.155,1.294,.248,.371,.08,.675,.383,.757,.754,.863,3.921,.863,7.734,0,11.655Z"
+              />
+            </svg>
+            <span
+              id="cartCount"
+              class="absolute -top-2 -right-2 text-[.55rem] bg-lilac text-black rounded-full w-4 h-4 grid place-items-center font-semibold hidden"
+            >
+              0
+            </span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- =================== SECTION 1 — HERO (compact, ~48vh) =================== -->
+    <section
+      id="top"
+      class="relative min-h-[48vh] md:min-h-[50vh] flex items-center overflow-hidden pt-[var(--nav-h)]"
+    >
+      <div class="absolute inset-0 z-0" data-parallax>
+        <img
+          class="w-full h-[120%] object-cover object-top opacity-50"
+          alt=""
+          loading="eager"
+          fetchpriority="high"
+          src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1600&auto=format&fit=crop"
+          onerror="this.style.display = 'none'"
+        />
+      </div>
+      <div
+        class="absolute inset-0 z-[1] bg-gradient-to-b from-onyx/45 via-onyx/55 to-onyx"
+      ></div>
+      <div
+        class="absolute inset-0 z-[1]"
+        style="
+          background: radial-gradient(
+            120% 90% at 82% 0%,
+            rgba(200, 162, 200, 0.18),
+            transparent 55%
+          );
+        "
+      ></div>
+      <div
+        class="hero-orb absolute z-[1] rounded-full blur-3xl opacity-40"
+        style="
+          width: 30vw;
+          height: 30vw;
+          left: -4vw;
+          top: 18%;
+          background: radial-gradient(
+            circle,
+            rgba(200, 162, 200, 0.5),
+            transparent 70%
+          );
+        "
+      ></div>
+
+      <div
+        class="relative z-[3] max-w-[1500px] mx-auto px-4 md:px-10 w-full py-8 md:py-10"
+      >
+        <p class="eyebrow mb-3 overflow-hidden">
+          <span class="hero-line inline-block">The Spring Atelier · 2026</span>
+        </p>
+        <h1
+          class="display text-pearl text-[2.6rem] sm:text-[3.6rem] lg:text-[5.2rem]"
+        >
+          <span class="block overflow-hidden"
+            ><span class="hero-line inline-block"
+              >Elevate <span class="ital text-orchid">your</span> wardrobe</span
+            ></span
+          >
+        </h1>
+        <p class="hero-line max-w-md mt-4 text-pearl/70 leading-relaxed">
+          Timeless luxury, crafted in limited runs. Shop the new season below.
+        </p>
+        <div class="hero-line mt-6 flex flex-wrap items-center gap-4">
+          <a href="#shop" class="btn btn-fill px-8 py-3.5">Shop now</a>
+          <a href="#categories" class="btn btn-ghost px-8 py-3.5"
+            >Browse collections</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== SECTION 2 + 3 — SHOP (filter + products) =================== -->
+    <section id="shop">
+      <!-- COLLECTIONS NAVIGATION (sticky filter; instant, no refresh) -->
+      <div
+        class="sticky collection-nav-box top-[var(--nav-h) ] z-[70] bg-onyx/92 backdrop-blur border-y border-[var(--line)]"
+      >
+        <div
+          div
+          class="max-w-[1500px] mx-auto px-4 md:px-10 py-3.5 flex items-center gap-4"
+        >
+          <span class="hidden md:block eyebrow shrink-0">Browse:</span>
+          <!-- pills injected by renderFilters(); horizontally scrollable on mobile -->
+          <div
+            id="filterBar"
+            class="filterbar flex items-center gap-2 overflow-x-auto"
+          ></div>
+        </div>
+      </div>
+
+      <!-- FEATURED PRODUCTS (the main focus) -->
+      <div
+        class="max-w-[1500px] mx-auto px-5 md:px-10 pt-10 md:pt-14 pb-20 md:pb-28"
+      >
+        <div class="flex items-end justify-between gap-4 mb-8">
+          <h2 class="display text-[2.2rem] md:text-[3rem]" id="shopHeading">
+            All pieces
+          </h2>
+          <p class="text-pearl/50 text-sm" id="resultCount"></p>
+        </div>
+
+        <!-- Product grid is rendered by renderShop() from the PRODUCTS array.
+         Each card uses the reusable template in productCard() and is wrapped
+         in the PRODUCT CARD comment markers requested by the team. -->
+        <div
+          id="productGrid"
+          class="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-9 md:gap-x-5 md:gap-y-12"
+        ></div>
+
+        <!-- empty state -->
+        <p
+          id="emptyState"
+          class="hidden text-center text-pearl/45 py-20 display text-2xl"
+        >
+          No pieces in this collection yet — check back soon.
+        </p>
+
+        <!-- PAGINATION (elegant, premium) -->
+        <div
+          id="pagination"
+          class="flex items-center justify-center gap-2 mt-14"
+        ></div>
+      </div>
+    </section>
+
+    <!-- =================== MARQUEE (kept) =================== -->
+    <section
+      class="border-y border-[var(--line)] bg-black py-5 md:py-6 overflow-hidden marquee-wrap"
+    >
+      <div class="marquee" style="--dur: 34s"></div>
+    </section>
+
+    <!-- =================== SHOP BY CATEGORY (editorial tiles → set filter) =================== -->
+    <section
+      id="categories"
+      class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-28"
+    >
+      <div
+        class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+        data-reveal
+      >
+        <div>
+          <p class="eyebrow mb-3">The Edit</p>
+          <h2 class="display text-[2.6rem] md:text-[4rem]">
+            Shop by <span class="ital text-orchid">category</span>
+          </h2>
+        </div>
+        <p class="max-w-xs text-pearl/55 leading-relaxed">
+          Tap a world to filter the shop instantly.
+        </p>
+      </div>
+
+      <!-- these buttons call setCategory() and scroll back up to the grid -->
+      <div
+        class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-[clamp(150px,18vw,260px)]"
+      >
+        <button class="tile col-span-2 row-span-2" data-cat="Dress" data-reveal>
+          <img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Dresses"
+            src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=900&auto=format&fit=crop"
+          />
+          <div class="tover">
+            <p class="eyebrow mb-1">Signature</p>
+            <h3 class="display text-3xl md:text-5xl">Dresses</h3>
+            <span
+              class="link-sweep mt-2 text-[.7rem] tracking-[.16em] uppercase w-fit"
+              >Shop now →</span
+            >
+          </div>
+        </button>
+        <button class="tile" data-cat="Two-Piece" data-reveal>
+          <img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Two-Piece"
+            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=700&auto=format&fit=crop"
+          />
+          <div class="tover">
+            <h3 class="display text-2xl md:text-3xl">Two-Piece</h3>
+          </div>
+        </button>
+        <button class="tile" data-cat="Jumpsuit" data-reveal>
+          <img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Jumpsuit"
+            src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=700&auto=format&fit=crop"
+          />
+          <div class="tover">
+            <h3 class="display text-2xl md:text-3xl">Jumpsuit</h3>
+          </div>
+        </button>
+        <button class="tile col-span-2" data-cat="Blazer" data-reveal>
+          <img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Blazers"
+            src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=900&auto=format&fit=crop"
+          />
+          <div class="tover">
+            <h3 class="display text-2xl md:text-4xl">Blazers</h3>
+            <span
+              class="link-sweep mt-1 text-[.66rem] tracking-[.16em] uppercase w-fit"
+              >Shop now →</span
+            >
+          </div>
+        </button>
+        <button class="tile" data-cat="Skirt" data-reveal>
+          <img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Skirts"
+            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop"
+          />
+          <div class="tover">
+            <h3 class="display text-2xl md:text-3xl">Skirts</h3>
+          </div>
+        </button>
+        <button class="tile" data-cat="Bag" data-reveal>
+          <img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Bags"
+            src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=700&auto=format&fit=crop"
+          />
+          <div class="tover">
+            <h3 class="display text-2xl md:text-3xl">Bags</h3>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- =================== WHY SHOP WITH US =================== -->
+    <section class="bg-black border-y border-[var(--line)]">
+      <div class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-24">
+        <p class="eyebrow text-center mb-3" data-reveal>The Santos Promise</p>
+        <h2
+          class="display text-center text-[2.4rem] md:text-[3.4rem] mb-12"
+          data-reveal
+        >
+          Why she shops with <span class="ital text-orchid">us</span>
+        </h2>
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-px bg-[var(--line)]">
+          <div class="bg-onyx p-7 md:p-9 group" data-reveal>
+            <div
+              class="text-lilac mb-4 group-hover:scale-110 transition-transform duration-500 origin-left"
+            >
+              <svg
+                width="28"
+                height="28"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl mb-1">Premium Quality</h3>
+            <p class="text-pearl/55 text-sm leading-relaxed">
+              Considered fabrics, inspected piece by piece.
+            </p>
+          </div>
+          <div class="bg-onyx p-7 md:p-9 group" data-reveal>
+            <div
+              class="text-lilac mb-4 group-hover:scale-110 transition-transform duration-500 origin-left"
+            >
+              <svg
+                width="28"
+                height="28"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 3 3 8v8l9 5 9-5V8l-9-5Z" />
+                <path d="M3 8l9 5 9-5M12 13v8" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl mb-1">Exclusive Drops</h3>
+            <p class="text-pearl/55 text-sm leading-relaxed">
+              Limited runs that rarely return once sold.
+            </p>
+          </div>
+          <div class="bg-onyx p-7 md:p-9 group" data-reveal>
+            <div
+              class="text-lilac mb-4 group-hover:scale-110 transition-transform duration-500 origin-left"
+            >
+              <svg
+                width="28"
+                height="28"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M2 7h13v9H2zM15 10h4l3 3v3h-7z" />
+                <circle cx="6" cy="18" r="2" />
+                <circle cx="18" cy="18" r="2" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl mb-1">Nationwide Delivery</h3>
+            <p class="text-pearl/55 text-sm leading-relaxed">
+              Swift, tracked dispatch to every state.
+            </p>
+          </div>
+          <div class="bg-onyx p-7 md:p-9 group" data-reveal>
+            <div
+              class="text-lilac mb-4 group-hover:scale-110 transition-transform duration-500 origin-left"
+            >
+              <svg
+                width="28"
+                height="28"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+                viewBox="0 0 24 24"
+              >
+                <rect x="3" y="11" width="18" height="10" rx="2" />
+                <path d="M7 11V8a5 5 0 0 1 10 0v3" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl mb-1">Secure Payments</h3>
+            <p class="text-pearl/55 text-sm leading-relaxed">
+              Encrypted Paystack checkout.
+            </p>
+          </div>
+          <div
+            class="bg-onyx p-7 md:p-9 group col-span-2 lg:col-span-1"
+            data-reveal
+          >
+            <div
+              class="text-lilac mb-4 group-hover:scale-110 transition-transform duration-500 origin-left"
+            >
+              <svg
+                width="28"
+                height="28"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-9A8.5 8.5 0 1 1 21 11.5Z"
+                />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl mb-1">Concierge</h3>
+            <p class="text-pearl/55 text-sm leading-relaxed">
+              Styling help whenever you need it.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== LOOKBOOK =================== -->
+    <section
+      id="lookbook"
+      class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-28"
+    >
+      <div class="flex items-end justify-between mb-12" data-reveal>
+        <div>
+          <p class="eyebrow mb-3">The Campaign</p>
+          <h2 class="display text-[2.6rem] md:text-[4rem]">
+            SS26 <span class="ital text-orchid">Lookbook</span>
+          </h2>
+        </div>
+        <span class="hidden md:block eyebrow">Vol. I</span>
+      </div>
+      <div class="grid grid-cols-12 gap-3 md:gap-5 items-center">
+        <figure
+          class="col-span-12 md:col-span-7 relative overflow-hidden"
+          data-reveal
+        >
+          <div data-parallax-soft>
+            <img
+              class="w-full h-[52vh] md:h-[72vh] object-cover"
+              loading="lazy"
+              alt="Editorial look one"
+              src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=1100&auto=format&fit=crop"
+            />
+          </div>
+          <figcaption
+            class="absolute bottom-5 left-5 eyebrow bg-black/40 px-3 py-1 backdrop-blur"
+          >
+            Look 01 — Noir
+          </figcaption>
+        </figure>
+        <div class="col-span-12 md:col-span-5 grid grid-rows-2 gap-3 md:gap-5">
+          <figure
+            class="relative overflow-hidden h-[38vh] md:h-[34.5vh]"
+            data-reveal
+          >
+            <img
+              class="w-full h-full object-cover"
+              loading="lazy"
+              alt="Editorial look two"
+              src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=800&auto=format&fit=crop"
+            />
+            <figcaption
+              class="absolute bottom-5 left-5 eyebrow bg-black/40 px-3 py-1 backdrop-blur"
+            >
+              Look 02 — Orchid
+            </figcaption>
+          </figure>
+          <div
+            class="bg-char border border-[var(--line)] p-7 md:p-9 flex flex-col justify-center"
+            data-reveal
+          >
+            <p class="display text-2xl md:text-3xl leading-snug">
+              "Dress as the woman you intend to
+              <span class="ital text-orchid">become.</span>"
+            </p>
+            <a href="#shop" class="btn btn-ghost px-7 py-3.5 mt-5 w-fit"
+              >Shop the looks</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== TESTIMONIALS =================== -->
+    <section class="bg-black border-y border-[var(--line)]">
+      <div class="max-w-3xl mx-auto px-5 md:px-10 py-20 md:py-28 text-center">
+        <p class="eyebrow mb-8" data-reveal>Loved by the Inner Circle</p>
+        <div
+          id="testiTrack"
+          class="relative min-h-[230px] md:min-h-[190px]"
+        ></div>
+        <div
+          class="flex items-center justify-center gap-3 mt-6"
+          id="testiDots"
+        ></div>
+      </div>
+    </section>
+
+    <!-- =================== INSTAGRAM =================== -->
+    <section class="py-20 md:py-28">
+      <div class="text-center mb-10 px-5" data-reveal>
+        <p class="eyebrow mb-3">Community</p>
+        <h2 class="display text-[2.4rem] md:text-[3.6rem]">
+          As seen on <span class="ital text-orchid">@SantosCollection</span>
+        </h2>
+      </div>
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-1.5 px-1.5">
+        <!-- >>> BACKEND: pull recent posts from the Instagram Graph API -->
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener"
+          class="ig aspect-square"
+          data-reveal
+          ><img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Instagram"
+            src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=500&auto=format&fit=crop" /><span
+            class="igo text-lilac"
+            ><svg
+              width="26"
+              height="26"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              viewBox="0 0 24 24"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+                fill="currentColor"
+              /></svg></span
+        ></a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener"
+          class="ig aspect-square"
+          data-reveal
+          ><img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Instagram"
+            src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=500&auto=format&fit=crop" /><span
+            class="igo text-lilac"
+            ><svg
+              width="26"
+              height="26"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              viewBox="0 0 24 24"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+                fill="currentColor"
+              /></svg></span
+        ></a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener"
+          class="ig aspect-square"
+          data-reveal
+          ><img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Instagram"
+            src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=500&auto=format&fit=crop" /><span
+            class="igo text-lilac"
+            ><svg
+              width="26"
+              height="26"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              viewBox="0 0 24 24"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+                fill="currentColor"
+              /></svg></span
+        ></a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener"
+          class="ig aspect-square"
+          data-reveal
+          ><img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Instagram"
+            src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=500&auto=format&fit=crop" /><span
+            class="igo text-lilac"
+            ><svg
+              width="26"
+              height="26"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              viewBox="0 0 24 24"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+                fill="currentColor"
+              /></svg></span
+        ></a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener"
+          class="ig aspect-square"
+          data-reveal
+          ><img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Instagram"
+            src="https://images.unsplash.com/photo-1542295669297-4d352b042bca?q=80&w=500&auto=format&fit=crop" /><span
+            class="igo text-lilac"
+            ><svg
+              width="26"
+              height="26"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              viewBox="0 0 24 24"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+                fill="currentColor"
+              /></svg></span
+        ></a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener"
+          class="ig aspect-square"
+          data-reveal
+          ><img
+            class="w-full h-full object-cover"
+            loading="lazy"
+            alt="Instagram"
+            src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=500&auto=format&fit=crop" /><span
+            class="igo text-lilac"
+            ><svg
+              width="26"
+              height="26"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              viewBox="0 0 24 24"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+                fill="currentColor"
+              /></svg></span
+        ></a>
+      </div>
+      <div class="text-center mt-9" data-reveal>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-ghost px-9 py-4"
+          >Follow @SantosCollection</a
+        >
+      </div>
+    </section>
+
+    <!-- =================== NEWSLETTER =================== -->
+    <section class="relative overflow-hidden border-y border-[var(--line)]">
+      <div
+        class="absolute inset-0"
+        style="
+          background: radial-gradient(
+            80% 120% at 50% 0%,
+            rgba(200, 162, 200, 0.14),
+            transparent 60%
+          );
+        "
+      ></div>
+      <div
+        class="relative max-w-2xl mx-auto px-5 md:px-10 py-20 md:py-28 text-center"
+      >
+        <p class="eyebrow mb-4" data-reveal>Members only</p>
+        <h2
+          class="display text-[2.6rem] md:text-[3.8rem] leading-tight mb-4"
+          data-reveal
+        >
+          Join the Santos <span class="ital text-orchid">Inner Circle</span>
+        </h2>
+        <p class="text-pearl/55 mb-8 max-w-md mx-auto" data-reveal>
+          Early access to drops, private sale invitations, and styling notes.
+        </p>
+        <!-- >>> BACKEND: POST {name,email} to your ESP (Mailchimp/Klaviyo/etc.) -->
+        <form
+          id="newsForm"
+          class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto"
+          novalidate
+          data-reveal
+        >
+          <input
+            name="name"
+            type="text"
+            required
+            placeholder="First name"
+            class="flex-1 bg-char border border-[var(--line-strong)] px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
+          />
+          <input
+            name="email"
+            type="email"
+            required
+            placeholder="Email address"
+            class="flex-1 bg-char border border-[var(--line-strong)] px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
+          />
+          <button
+            type="submit"
+            class="btn btn-fill px-8 py-4 whitespace-nowrap"
+          >
+            Subscribe
+          </button>
+        </form>
+        <p id="newsMsg" class="text-lilac text-sm mt-4 h-5"></p>
+      </div>
+    </section>
+
+    <!-- =================== CONTACT =================== -->
+    <section
+      id="contact"
+      class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-28"
+    >
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div data-reveal>
+          <p class="eyebrow mb-3">Visit / Contact</p>
+          <h2 class="display text-[2.6rem] md:text-[3.8rem] mb-8">
+            Come say <span class="ital text-orchid">hello</span>
+          </h2>
+          <div class="space-y-6 mb-10">
+            <div class="flex items-start gap-4">
+              <span class="text-lilac mt-1"
+                ><svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M21 16.5v3a2 2 0 0 1-2.2 2A19 19 0 0 1 3 5.2 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.7l.5 2.6a2 2 0 0 1-.6 1.9L8.6 10.6a16 16 0 0 0 4.8 4.8l1.4-1.3a2 2 0 0 1 1.9-.6l2.6.5a2 2 0 0 1 1.7 2Z"
+                  /></svg
+              ></span>
+              <div>
+                <p
+                  class="text-[.65rem] tracking-[.25em] uppercase text-smoke mb-1"
+                >
+                  Phone
+                </p>
+                <a href="tel:08020919409" class="link-sweep text-lg"
+                  >0802 091 9409</a
+                >
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="text-lilac mt-1"
+                ><svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z" />
+                  <circle cx="12" cy="10" r="2.5" /></svg
+              ></span>
+              <div>
+                <p
+                  class="text-[.65rem] tracking-[.25em] uppercase text-smoke mb-1"
+                >
+                  Boutique
+                </p>
+                <p class="text-lg leading-snug">
+                  68 Adeniran Ogunsanya Street,<br />Surulere, Lagos, Nigeria
+                </p>
+              </div>
+            </div>
+          </div>
+          <a
+            href="https://wa.me/2348020919409"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-fill px-8 py-4 inline-flex items-center gap-3 mb-10"
+          >
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5 0-1.2.1-3.7-.9-3.1-1.3-5-4.5-5.2-4.7-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.4 2.6 1.6.3.1.5.1.6-.1l.8-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.2.1.7 0 1Z"
+              />
+            </svg>
+            Chat on WhatsApp
+          </a>
+          <!-- >>> BACKEND: POST this form to your CRM / email endpoint -->
+          <form id="contactForm" class="space-y-4 max-w-md" novalidate>
+            <input
+              name="name"
+              type="text"
+              required
+              placeholder="Your name"
+              class="w-full bg-char border border-[var(--line-strong)] px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
+            />
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="Your email"
+              class="w-full bg-char border border-[var(--line-strong)] px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
+            />
+            <textarea
+              name="message"
+              rows="4"
+              required
+              placeholder="How can we help?"
+              class="w-full bg-char border border-[var(--line-strong)] px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors resize-none"
+            ></textarea>
+            <button
+              type="submit"
+              class="btn btn-ghost px-8 py-4 w-full sm:w-auto"
+            >
+              Send message
+            </button>
+            <p id="contactMsg" class="text-lilac text-sm h-5"></p>
+          </form>
+        </div>
+        <div
+          class="relative h-[360px] lg:h-full min-h-[460px] border border-[var(--line)] overflow-hidden"
+          data-reveal
+        >
+          <!-- >>> BACKEND: swap for a Google Maps <iframe> embed of the address -->
+          <div
+            class="absolute inset-0 grid place-items-center bg-char"
+            style="
+              background-image:
+                linear-gradient(rgba(200, 162, 200, 0.06) 1px, transparent 1px),
+                linear-gradient(
+                  90deg,
+                  rgba(200, 162, 200, 0.06) 1px,
+                  transparent 1px
+                );
+              background-size: 38px 38px;
+            "
+          >
+            <div class="text-center">
+              <span class="text-lilac inline-block mb-3"
+                ><svg
+                  width="34"
+                  height="34"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z" />
+                  <circle cx="12" cy="10" r="2.5" /></svg
+              ></span>
+              <p class="eyebrow">Santos Boutique</p>
+              <p class="text-pearl/55 text-sm mt-2">Surulere · Lagos</p>
+              <a
+                href="https://maps.google.com/?q=68+Adeniran+Ogunsanya+Street+Surulere+Lagos"
+                target="_blank"
+                rel="noopener"
+                class="link-sweep text-[.72rem] tracking-[.16em] uppercase inline-block mt-4"
+                >Open in Maps →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== FOOTER =================== -->
+    <footer class="bg-black border-t border-[var(--line)]">
+      <div class="max-w-[1500px] mx-auto px-5 md:px-10 py-14 md:py-20">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-10 mb-14">
+          <div class="col-span-2 md:col-span-1">
+            <a
+              href="#top"
+              class="mark bg-transparent text-2xl tracking-[.14em] block mb-4"
+              >SANTOS</a
+            >
+            <p class="text-pearl/50 text-sm leading-relaxed max-w-xs">
+              Timeless luxury fashion, designed for the modern woman. Made in
+              limited runs in Lagos.
+            </p>
+          </div>
+          <div>
+            <p class="eyebrow mb-5">Shop</p>
+            <ul class="space-y-3 text-pearl/60 text-sm">
+              <li><a href="#shop" class="link-sweep">New In</a></li>
+              <li><a href="#shop" class="link-sweep">Best Sellers</a></li>
+              <li><a href="#shop" class="link-sweep">Sale</a></li>
+              <li><a href="#shop" class="link-sweep">Gift Cards</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="eyebrow mb-5">Collections</p>
+            <ul class="space-y-3 text-pearl/60 text-sm">
+              <li><a href="#categories" class="link-sweep">Dresses</a></li>
+              <li><a href="#categories" class="link-sweep">Two-Piece</a></li>
+              <li><a href="#categories" class="link-sweep">Jumpsuits</a></li>
+              <li><a href="#categories" class="link-sweep">Accessories</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="eyebrow mb-5">Customer Care</p>
+            <ul class="space-y-3 text-pearl/60 text-sm">
+              <li><a href="#contact" class="link-sweep">Contact</a></li>
+              <li><a href="#" class="link-sweep">Shipping & Returns</a></li>
+              <li><a href="#" class="link-sweep">Size Guide</a></li>
+              <li><a href="#" class="link-sweep">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="eyebrow mb-5">Connect</p>
+            <ul class="space-y-3 text-pearl/60 text-sm">
+              <li>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener"
+                  class="link-sweep"
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/2348020919409"
+                  target="_blank"
+                  rel="noopener"
+                  class="link-sweep"
+                  >WhatsApp</a
+                >
+              </li>
+              <li>
+                <a href="tel:08020919409" class="link-sweep">0802 091 9409</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="hair mb-8" />
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-pearl/40"
+        >
+          <p>
+            © <span id="year"></span> Santos Collection. All rights reserved.
+          </p>
+          <p>Surulere · Lagos · Nigeria</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =================== MOBILE FLOATING CART =================== -->
+    <button
+      id="floatCart"
+      aria-label="Open cart"
+      class="lg:hidden fixed bottom-5 right-5 z-[80] w-14 h-14 rounded-full bg-lilac text-black grid place-items-center shadow-lg shadow-black/40"
+    >
+      <svg
+        width="22"
+        height="22"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        viewBox="0 0 24 24"
+      >
+        <path d="M6 8h12l-1 12H7L6 8Z" />
+        <path d="M9 8a3 3 0 0 1 6 0" />
+      </svg>
+      <span
+        id="cartCountFloat"
+        class="absolute -top-1 -right-1 text-[.6rem] bg-black text-lilac rounded-full w-5 h-5 grid place-items-center font-semibold hidden"
+        >0</span
+      >
+    </button>
+
+    <!-- BACK TO TOP (desktop) -->
+    <button
+      id="toTop"
+      aria-label="Back to top"
+      class="hidden lg:grid fixed bottom-6 right-6 z-[79] w-12 h-12 rounded-full bg-lilac text-black place-items-center opacity-0 translate-y-4 pointer-events-none transition-all duration-500 hover:bg-white"
+    >
+      <svg
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path d="m6 14 6-6 6 6" />
+      </svg>
+    </button>
+
+    <!-- =================== SEARCH OVERLAY =================== -->
+    <div id="searchOverlay" class="fixed inset-0 z-[100] invisible">
+      <div
+        class="scrim absolute inset-0 bg-black/80 opacity-0"
+        data-close-search
+      ></div>
+      <div
+        class="panel relative max-w-3xl mx-auto mt-[18vh] px-5 -translate-y-6 opacity-0"
+      >
+        <label class="eyebrow block mb-4">Search the collection</label>
+        <div
+          class="flex items-center gap-4 border-b border-[var(--line-strong)] pb-4"
+        >
+          <svg
+            width="26"
+            height="26"
+            fill="none"
+            stroke="var(--lilac)"
+            stroke-width="1.3"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-3.2-3.2" />
+          </svg>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Try “slip dress”, “blazer”, “jumpsuit”…"
+            class="w-full bg-transparent text-2xl md:text-4xl font-display text-pearl placeholder:text-smoke/60 outline-none"
+          />
+          <button
+            data-close-search
+            class="text-smoke hover:text-lilac text-sm tracking-widest uppercase"
+          >
+            Esc
+          </button>
+        </div>
+        <div
+          id="searchResults"
+          class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 max-h-[45vh] overflow-y-auto"
+        ></div>
+      </div>
+    </div>
+
+    <!-- =================== MOBILE MENU =================== -->
+    <div id="mobileMenu" class="fixed inset-0 z-[100] invisible lg:hidden">
+      <div
+        class="scrim absolute inset-0 bg-black/70 opacity-0"
+        data-close-menu
+      ></div>
+      <nav
+        class="panel absolute left-0 top-0 h-full w-[82%] max-w-sm bg-onyx border-r border-[var(--line)] -translate-x-full p-8 flex flex-col"
+      >
+        <div class="flex items-center justify-between mb-12">
+          <span class="mark bg-transparent text-xl tracking-[.14em]"
+            >SANTOS</span
+          ><button
+            data-close-menu
+            aria-label="Close menu"
+            class="text-2xl leading-none hover:text-lilac"
+          >
+            ×
+          </button>
+        </div>
+        <ul class="space-y-4 font-display text-4xl">
+          <li>
+            <a
+              href="#shop"
+              data-close-menu
+              class="hover:text-lilac transition-colors"
+              >Shop</a
+            >
+          </li>
+          <li>
+            <div>
+              <a href="#categories" class="hover:text-lilac transition-colors"
+                ><span>Collections</span>
+              </a>
+              <i
+                id="mobileGalleryNav"
+                class="inline-flex items-center justify-center ms-1 toggle-dropdown"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                  />
+                </svg>
+              </i>
+            </div>
+
+            <ul
+              class="dropdown-ul mobile-gallery-dropdown w-3/4 flex flex-col gap-1 overflow-hidden text-center"
+              id="dropdownMobile"
+            >
+              <li><a href="/gallery/all?id=0"> The </a></li>
+              <li><a href="/gallery/unions?id=1">Collections</a></li>
+              <li><a href="/gallery/portaits?id=2">Show</a></li>
+              <li><a href="/gallery/family?id=3">Here!</a></li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="#lookbook"
+              data-close-menu
+              class="hover:text-lilac transition-colors"
+              >Lookbook</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              data-close-menu
+              class="hover:text-lilac transition-colors"
+              >Contact</a
+            >
+          </li>
+        </ul>
+        <div
+          class="mt-auto sidebar-footer pt-8 border-t border-[var(--line)] text-sm text-pearl/55"
+        >
+          <a href="tel:08020919409" class="block mb-2 link-sweep w-fit"
+            >0802 091 9409</a
+          >
+          <p>68 Adeniran Ogunsanya St, Surulere, Lagos</p>
+        </div>
+      </nav>
+    </div>
+
+    <!-- =================== CART DRAWER =================== -->
+    <div id="cartDrawer" class="fixed inset-0 z-[105] invisible">
+      <div
+        class="scrim absolute inset-0 bg-black/70 opacity-0"
+        data-close-cart
+      ></div>
+      <aside
+        class="panel absolute right-0 top-0 h-full w-full sm:w-[440px] bg-onyx border-l border-[var(--line)] translate-x-full flex flex-col"
+      >
+        <div
+          class="flex items-center justify-between p-6 border-b border-[var(--line)]"
+        >
+          <h3 class="font-display text-3xl">Your Bag</h3>
+          <button
+            data-close-cart
+            aria-label="Close cart"
+            class="text-2xl leading-none hover:text-lilac"
+          >
+            ×
+          </button>
+        </div>
+        <div id="cartItems" class="flex-1 overflow-y-auto p-6 space-y-5"></div>
+        <div class="border-t border-[var(--line)] p-6">
+          <div class="flex justify-between items-baseline mb-1">
+            <span class="text-pearl/60 text-sm tracking-widest uppercase"
+              >Subtotal</span
+            ><span id="cartTotal" class="font-display text-3xl">₦0</span>
+          </div>
+          <p class="text-xs text-pearl/40 mb-5">
+            Shipping & taxes calculated at checkout.
+          </p>
+          <button id="goCheckout" class="btn btn-fill w-full py-4">
+            Proceed to checkout
+          </button>
+        </div>
+      </aside>
+    </div>
+
+    <!-- =================== QUICK VIEW MODAL =================== -->
+    <div id="quickView" class="fixed inset-0 z-[106] invisible">
+      <div
+        class="scrim absolute inset-0 bg-black/80 opacity-0"
+        data-close-quick
+      ></div>
+      <div
+        class="panel relative max-w-4xl mx-4 md:mx-auto mt-[8vh] md:mt-[12vh] bg-onyx border border-[var(--line)] scale-95 opacity-0 overflow-hidden"
+      >
+        <button
+          data-close-quick
+          aria-label="Close"
+          class="absolute top-4 right-4 z-10 text-2xl leading-none w-9 h-9 grid place-items-center bg-black/40 hover:text-lilac"
+        >
+          ×
+        </button>
+        <div class="grid md:grid-cols-2">
+          <div class="aspect-[3/4] md:aspect-auto bg-char">
+            <img id="qvImg" class="w-full h-full object-cover" alt="" />
+          </div>
+          <div class="p-7 md:p-10 flex flex-col">
+            <p class="eyebrow mb-2" id="qvCat"></p>
+            <h3 class="font-display text-4xl md:text-5xl mb-2" id="qvName"></h3>
+            <div class="flex items-center gap-3 mb-4">
+              <p class="font-display text-3xl text-lilac" id="qvPrice"></p>
+              <span id="qvStatus" class="text-xs"></span>
+            </div>
+            <p
+              class="text-pearl/55 text-sm leading-relaxed mb-6"
+              id="qvDesc"
+            ></p>
+            <div class="flex gap-2 mb-8" id="qvSizes"></div>
+            <div class="mt-auto flex gap-3">
+              <button id="qvAdd" class="btn btn-fill flex-1 py-4">
+                Add to cart
+              </button>
+              <button
+                id="qvWish"
+                aria-label="Wishlist"
+                class="btn btn-ghost px-5 py-4"
+              >
+                ♡
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================== CHECKOUT OVERLAY (Paystack) =================== -->
+    <div id="checkout" class="fixed inset-0 z-[107] invisible">
+      <div
+        class="scrim absolute inset-0 bg-black/85 opacity-0"
+        data-close-checkout
+      ></div>
+      <div
+        class="panel relative max-w-xl mx-4 md:mx-auto mt-[6vh] md:mt-[9vh] bg-onyx border border-[var(--line)] scale-95 opacity-0 overflow-hidden max-h-[88vh] flex flex-col"
+      >
+        <div
+          class="flex items-center justify-between p-6 border-b border-[var(--line)] shrink-0"
+        >
+          <h3 class="font-display text-3xl" id="checkoutTitle">Checkout</h3>
+          <button
+            data-close-checkout
+            aria-label="Close"
+            class="text-2xl leading-none hover:text-lilac"
+          >
+            ×
+          </button>
+        </div>
+
+        <!-- STEP: review + details -->
+        <div id="checkoutForm" class="overflow-y-auto p-6 space-y-6">
+          <div>
+            <p class="eyebrow mb-3">Order review</p>
+            <div id="checkoutItems" class="space-y-3"></div>
+            <div
+              class="flex justify-between items-baseline pt-4 mt-4 border-t border-[var(--line)]"
+            >
+              <span class="text-pearl/60 text-sm tracking-widest uppercase"
+                >Total</span
+              >
+              <span id="checkoutTotal" class="font-display text-3xl">₦0</span>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow mb-3">Delivery details</p>
+            <!-- >>> BACKEND: these fields are passed to Paystack + your order API -->
+            <form id="payForm" class="space-y-3" novalidate>
+              <input
+                name="name"
+                type="text"
+                required
+                placeholder="Full name"
+                class="w-full bg-char border border-[var(--line-strong)] px-5 py-3.5 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
+              />
+              <input
+                name="email"
+                type="email"
+                required
+                placeholder="Email (receipt sent here)"
+                class="w-full bg-char border border-[var(--line-strong)] px-5 py-3.5 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
+              />
+              <input
+                name="phone"
+                type="tel"
+                required
+                placeholder="Phone number"
+                class="w-full bg-char border border-[var(--line-strong)] px-5 py-3.5 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
+              />
+              <textarea
+                name="address"
+                rows="2"
+                required
+                placeholder="Delivery address"
+                class="w-full bg-char border border-[var(--line-strong)] px-5 py-3.5 text-pearl placeholder:text-smoke focus:border-lilac transition-colors resize-none"
+              ></textarea>
+              <button
+                type="submit"
+                id="payBtn"
+                class="btn btn-fill w-full py-4 flex items-center justify-center gap-2"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="11" width="18" height="10" rx="2" />
+                  <path d="M7 11V8a5 5 0 0 1 10 0v3" />
+                </svg>
+                Pay with Paystack
+              </button>
+              <p
+                id="payMsg"
+                class="text-sm h-5 text-center"
+                style="color: #e8a0a0"
+              ></p>
+            </form>
+          </div>
+        </div>
+
+        <!-- STEP: confirmation -->
+        <div id="checkoutDone" class="hidden p-10 text-center">
+          <div
+            class="text-lilac inline-grid place-items-center w-16 h-16 rounded-full border border-lilac mb-6"
+          >
+            <svg
+              width="30"
+              height="30"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              viewBox="0 0 24 24"
+            >
+              <path d="m5 13 4 4L19 7" />
+            </svg>
+          </div>
+          <h4 class="display text-4xl mb-2">Order confirmed</h4>
+          <p class="text-pearl/60 mb-1">Thank you for shopping with Santos.</p>
+          <p class="text-pearl/45 text-sm mb-8">
+            Order ref: <span id="orderRef" class="text-lilac"></span> · A
+            receipt is on its way to your email.
+          </p>
+          <button data-close-checkout class="btn btn-ghost px-9 py-4">
+            Continue shopping
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================== LIBRARIES =================== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+    <!-- >>> BACKEND: enable real Paystack by uncommenting the line below
+     <script src="https://js.paystack.co/v1/inline.js"></script> -->
+
+    <script defer src="app.js"></script>
+  </body>
+</html>
