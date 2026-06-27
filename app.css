@@ -79,6 +79,14 @@ body.light {
   color: var(--onyx);
 }
 
+/* body.light .close-search {
+  color: var(--pearl);
+} */
+
+#searchInput {
+  font-size: 19px;
+}
+
 /* Move the mask completely OUT of the way so the circle becomes perfectly round */
 body.light .mask-circle {
   cx: 18px;
@@ -102,6 +110,10 @@ body.light #nav.solid {
 }
 
 body.light #nav.solid .mark {
+  color: var(--onyx) !important;
+}
+
+body.light #mobileMenu .mark {
   color: var(--onyx) !important;
 }
 
@@ -176,11 +188,6 @@ body.light .sidebar-footer {
   border-color: grey;
   margin-top: 8px !important;
 }
-
-/* body.light .page-btn.active{
-  border-color: var(--lilac);
-  color: var(--onyx);
-} */
 
 @media (min-width: 768px) {
   :root {
@@ -603,6 +610,17 @@ textarea:focus-visible,
 .panel {
   transition: transform 0.55s var(--ease);
 }
+
+.panel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.panel {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .scrim {
   transition: opacity 0.45s var(--ease);
 }
