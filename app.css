@@ -40,7 +40,7 @@ body.light .theme-toggle {
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.mask-circle {
+/* .mask-circle {
   cx: var(--mask-cx);
   cy: var(--mask-cy);
   transition:
@@ -56,6 +56,30 @@ body.light .theme-toggle {
 .sun-rays {
   transform: scale(var(--rays-scale));
   opacity: var(--rays-opacity);
+  transition:
+    transform 0.5s ease,
+    opacity 0.3s ease;
+  transform-origin: center;
+} */
+
+.mask-circle {
+  /* Added fallbacks like 25px, 5px */
+  cx: var(--mask-cx, 25px);
+  cy: var(--mask-cy, 5px);
+  transition:
+    cx 0.5s ease,
+    cy 0.5s ease;
+}
+
+.sun-center {
+  /* Added fallback 5px */
+  r: var(--sun-r, 5px);
+  transition: r 0.5s ease;
+}
+
+.sun-rays {
+  transform: scale(var(--rays-scale, 1));
+  opacity: var(--rays-opacity, 1);
   transition:
     transform 0.5s ease,
     opacity 0.3s ease;
