@@ -6,7 +6,15 @@
   height: 20px !important;
 }
 
+/* 1. Define base variables on the button */
 .theme-toggle {
+  --mask-cx: 25px;
+  --mask-cy: 5px;
+  --sun-r: 5px;
+  --rays-scale: 1;
+  --rays-opacity: 1;
+
+  /* Keep your layout styles */
   background: none;
   border: none;
   cursor: pointer;
@@ -18,41 +26,40 @@
   align-items: center;
 }
 
-/* 1. Global SVG rotation transition */
-.theme-toggle svg {
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
+/* 2. Override variables when in light mode */
+body.light .theme-toggle {
+  --mask-cx: 18px;
+  --mask-cy: 6px;
+  --sun-r: 10px;
+  --rays-scale: 0;
+  --rays-opacity: 0;
 }
 
-/* 2. The Sun Center & Rays transitions */
+/* 3. Apply variables to SVG elements */
+.theme-toggle svg {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mask-circle {
+  cx: var(--mask-cx);
+  cy: var(--mask-cy);
+  transition:
+    cx 0.5s ease,
+    cy 0.5s ease;
+}
+
 .sun-center {
-  r: 7px;
+  r: var(--sun-r);
   transition: r 0.5s ease;
-  width: 100%;
 }
 
 .sun-rays {
-  transform: scale(1.05);
-  opacity: 1;
+  transform: scale(var(--rays-scale));
+  opacity: var(--rays-opacity);
   transition:
     transform 0.5s ease,
     opacity 0.3s ease;
   transform-origin: center;
-}
-
-/* 3. The Mask Circle transition (Moving the cookie cutter) */
-.mask-circle {
-  transition:
-    cx 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-    cy 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mask-circle {
-  cx: 25px;
-  cy: 5px;
-  transition:
-    cx 0.5s ease,
-    cy 0.5s ease;
 }
 
 /* .aboy {
@@ -88,21 +95,6 @@ body.light {
 }
 
 /* Move the mask completely OUT of the way so the circle becomes perfectly round */
-body.light .mask-circle {
-  cx: 18px;
-  cy: 6px;
-}
-
-/* Shrink the main center slightly so it matches a standard sun icon size */
-body.light .sun-center {
-  r: 10px;
-}
-
-/* Pop the sunburst rays back into full view! */
-body.light .sun-rays {
-  transform: scale(0);
-  opacity: 0;
-}
 
 body.light #nav.solid {
   background: #f6f3f7db;
