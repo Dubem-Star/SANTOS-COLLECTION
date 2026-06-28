@@ -1,3 +1,18 @@
+:root {
+  --ink: #000;
+  --onyx: #0b080d;
+  --char: #141017;
+  --lilac: #c8a2c8;
+  --orchid: #dcc0e4;
+  --plum: #2a1c30;
+  --pearl: #f6f3f7;
+  --smoke: #8b7e90;
+  --line: rgba(200, 162, 200, 0.16);
+  --line-strong: rgba(200, 162, 200, 0.34);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --nav-h: 68px;
+}
+
 .w-20px {
   width: 20px !important;
 }
@@ -40,50 +55,41 @@ body.light .theme-toggle {
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* .mask-circle {
-  cx: var(--mask-cx);
-  cy: var(--mask-cy);
-  transition:
-    cx 0.5s ease,
-    cy 0.5s ease;
-}
-
-.sun-center {
-  r: var(--sun-r);
-  transition: r 0.5s ease;
-}
-
-.sun-rays {
-  transform: scale(var(--rays-scale));
-  opacity: var(--rays-opacity);
-  transition:
-    transform 0.5s ease,
-    opacity 0.3s ease;
-  transform-origin: center;
-} */
-
+/* 1. Reset/Base state for the SVG elements */
 .mask-circle {
-  /* Added fallbacks like 25px, 5px */
-  cx: var(--mask-cx, 25px);
-  cy: var(--mask-cy, 5px);
-  transition:
-    cx 0.5s ease,
-    cy 0.5s ease;
+  transition: transform 0.5s ease;
+  transform: translate(0px, 0px);
 }
 
 .sun-center {
-  /* Added fallback 5px */
-  r: var(--sun-r, 5px);
-  transition: r 0.5s ease;
+  transition: transform 0.5s ease;
+  transform: scale(0.5); /* Represents your small state */
+  transform-origin: center;
 }
 
 .sun-rays {
-  transform: scale(var(--rays-scale, 1));
-  opacity: var(--rays-opacity, 1);
   transition:
     transform 0.5s ease,
     opacity 0.3s ease;
+  transform: scale(1);
+  opacity: 1;
   transform-origin: center;
+}
+
+/* 2. Light mode overrides */
+body.light .mask-circle {
+  /* This moves the mask equivalent to your cx/cy shift */
+  transform: translate(-7px, 1px);
+}
+
+body.light .sun-center {
+  /* This scales the circle to your '10px' radius equivalent */
+  transform: scale(1);
+}
+
+body.light .sun-rays {
+  transform: scale(0);
+  opacity: 0;
 }
 
 /* .aboy {
@@ -91,20 +97,7 @@ body.light .theme-toggle {
 } */
 
 /* ---------------- TOKENS (palette unchanged) ---------------- */
-:root {
-  --ink: #000;
-  --onyx: #0b080d;
-  --char: #141017;
-  --lilac: #c8a2c8;
-  --orchid: #dcc0e4;
-  --plum: #2a1c30;
-  --pearl: #f6f3f7;
-  --smoke: #8b7e90;
-  --line: rgba(200, 162, 200, 0.16);
-  --line-strong: rgba(200, 162, 200, 0.34);
-  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --nav-h: 68px;
-}
+
 body.light {
   background: var(--pearl);
   color: var(--onyx);
