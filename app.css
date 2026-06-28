@@ -23,18 +23,12 @@
 
 /* 1. Define base variables on the button */
 .theme-toggle {
-  --mask-cx: 25px;
-  --mask-cy: 5px;
-  --sun-r: 5px;
-  --rays-scale: 1;
-  --rays-opacity: 1;
-
   /* Keep your layout styles */
   background: none;
   border: none;
   cursor: pointer;
   color: var(--white);
-  width: 20px;
+  /* width: 20px; */
   aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
@@ -42,24 +36,8 @@
   position: relative;
 }
 
-/* 2. Override variables when in light mode */
-body.light .theme-toggle {
-  --mask-cx: 18px;
-  --mask-cy: 6px;
-  --sun-r: 10px;
-  --rays-scale: 0;
-  --rays-opacity: 0;
-}
-
-/* 3. Apply variables to SVG elements */
-/* .theme-toggle svg {
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-} */
-
 .moon-icon,
 .sun-icon {
-  width: 20px;
-  height: 20px;
   position: absolute; /* both occupy same space */
   transition:
     opacity 0.3s ease,
@@ -78,6 +56,7 @@ body.light .theme-toggle {
 }
 
 /* Light mode — sun visible, moon hidden */
+
 body.light .moon-icon {
   opacity: 1;
   transform: scale(1);
@@ -100,9 +79,38 @@ body.light {
   color: var(--onyx);
 }
 
-/* body.light .close-search {
+body.light .marquee-wrap span {
   color: var(--pearl);
-} */
+}
+
+body.light .why-shop,
+body.light .testimonials {
+  background: white !important;
+}
+
+body.light .why-shop .us {
+  color: var(--lilac) !important;
+}
+
+body.light .why-shop .svg-box {
+  color: var(--lilac) !important;
+}
+
+body.light .why-shop .promise-grid {
+  background: var(--lilac) !important;
+  /* border: 1px solid var(--lilac); */
+}
+
+body.light .why-shop .promise-grid .card {
+  background: var(--pearl) !important;
+  /* border: 1px solid var(--lilac); */
+}
+
+body.light .why-shop .promise-grid .card p,
+body.light .testimonials blockquote,
+.testimonials blockquote figcaption span {
+  color: var(--onyx) !important;
+}
 
 #searchInput {
   font-size: 19px;
@@ -357,6 +365,7 @@ textarea:focus-visible,
 }
 
 /* ---------------- Marquee ---------------- */
+
 .marquee {
   display: flex;
   width: max-content;

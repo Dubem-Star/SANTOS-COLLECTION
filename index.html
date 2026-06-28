@@ -392,7 +392,7 @@
     </section>
 
     <!-- =================== SHOP BY CATEGORY (editorial tiles → set filter) =================== -->
-    <section
+    <!-- <section
       id="categories"
       class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-28"
     >
@@ -411,7 +411,6 @@
         </p>
       </div>
 
-      <!-- these buttons call setCategory() and scroll back up to the grid -->
       <div
         class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-[clamp(150px,18vw,260px)]"
       >
@@ -491,22 +490,24 @@
           </div>
         </button>
       </div>
-    </section>
+    </section> -->
 
     <!-- =================== WHY SHOP WITH US =================== -->
-    <section class="bg-black border-y border-[var(--line)]">
+    <section class="bg-black border-y border-[var(--line)] why-shop">
       <div class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-24">
         <p class="eyebrow text-center mb-3" data-reveal>The Santos Promise</p>
         <h2
           class="display text-center text-[2.4rem] md:text-[3.4rem] mb-12"
           data-reveal
         >
-          Why she shops with <span class="ital text-orchid">us</span>
+          Why she shops with <span class="ital text-orchid us">us</span>
         </h2>
-        <div class="grid grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--line)]">
-          <div class="bg-onyx p-7 md:p-9 group" data-reveal>
+        <div
+          class="grid grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--line)] promise-grid"
+        >
+          <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
-              class="text-lilac mb-4 group-hover:scale-110 transition-transform duration-500 origin-left"
+              class="text-lilac mb-4 svg-box group-hover:scale-110 transition-transform duration-500 origin-left"
             >
               <svg
                 width="28"
@@ -525,9 +526,9 @@
               Considered fabrics, inspected piece by piece.
             </p>
           </div>
-          <div class="bg-onyx p-7 md:p-9 group" data-reveal>
+          <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
-              class="text-lilac mb-4 group-hover:scale-110 transition-transform duration-500 origin-left"
+              class="text-lilac mb-4 svg-box group-hover:scale-110 transition-transform duration-500 origin-left"
             >
               <svg
                 width="28"
@@ -546,9 +547,9 @@
               Limited runs that rarely return once sold.
             </p>
           </div>
-          <div class="bg-onyx p-7 md:p-9 group" data-reveal>
+          <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
-              class="text-lilac mb-4 group-hover:scale-110 transition-transform duration-500 origin-left"
+              class="text-lilac mb-4 svg-box group-hover:scale-110 transition-transform duration-500 origin-left"
             >
               <svg
                 width="28"
@@ -568,9 +569,9 @@
               Swift, tracked dispatch to every state.
             </p>
           </div>
-          <div class="bg-onyx p-7 md:p-9 group" data-reveal>
+          <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
-              class="text-lilac mb-4 group-hover:scale-110 transition-transform duration-500 origin-left"
+              class="text-lilac mb-4 svg-box group-hover:scale-110 transition-transform duration-500 origin-left"
             >
               <svg
                 width="28"
@@ -589,9 +590,9 @@
               Encrypted Paystack checkout.
             </p>
           </div>
-          <div class="bg-onyx p-7 md:p-9 group" data-reveal>
+          <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
-              class="text-lilac mb-4 group-hover:scale-110 transition-transform duration-500 origin-left"
+              class="text-lilac mb-4 svg-box group-hover:scale-110 transition-transform duration-500 origin-left"
             >
               <svg
                 width="28"
@@ -612,9 +613,9 @@
             </p>
           </div>
 
-          <div class="bg-onyx p-7 md:p-9 group" data-reveal>
+          <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
-              class="text-lilac mb-4 group-hover:scale-110 transition-transform duration-500 origin-left"
+              class="text-lilac mb-4 svg-box group-hover:scale-110 transition-transform duration-500 origin-left"
             >
               <svg
                 width="28"
@@ -638,24 +639,6 @@
                   stroke-linejoin="round"
                 />
               </svg>
-
-              <!-- <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="w-7 h-7"
-              >
-                <path
-                  d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-9A8.5 8.5 0 1 1 21 11.5Z"
-                />
-                <path d="M21 11.5h-3m3 0v3" />
-              </svg> -->
             </div>
             <h3 class="font-display text-2xl mb-1">Return Policy</h3>
             <p class="text-pearl/55 text-sm leading-relaxed">
@@ -667,7 +650,7 @@
     </section>
 
     <!-- =================== LOOKBOOK =================== -->
-    <section
+    <!-- <section
       id="lookbook"
       class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-28"
     >
@@ -730,10 +713,10 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- =================== TESTIMONIALS =================== -->
-    <section class="bg-black border-y border-[var(--line)]">
+    <section class="bg-black border-y border-[var(--line) ] testimonials">
       <div class="max-w-3xl mx-auto px-5 md:px-10 py-20 md:py-28 text-center">
         <p class="eyebrow mb-8" data-reveal>Loved by the Inner Circle</p>
         <div
@@ -1387,10 +1370,10 @@
               class="dropdown-ul mobile-gallery-dropdown w-3/4 flex flex-col gap-1 overflow-hidden text-center"
               id="dropdownMobile"
             >
-              <li><a href="/gallery/all?id=0"> The </a></li>
-              <li><a href="/gallery/unions?id=1">Collections</a></li>
-              <li><a href="/gallery/portaits?id=2">Show</a></li>
-              <li><a href="/gallery/family?id=3">Here!</a></li>
+              <li><a href="#"> The </a></li>
+              <li><a href="#">Collections</a></li>
+              <li><a href="#">Show</a></li>
+              <li><a href="#">Here!</a></li>
             </ul>
           </li>
           <li>
