@@ -39,6 +39,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 /* 2. Override variables when in light mode */
@@ -51,45 +52,41 @@ body.light .theme-toggle {
 }
 
 /* 3. Apply variables to SVG elements */
-.theme-toggle svg {
+/* .theme-toggle svg {
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
+} */
 
-/* 1. Reset/Base state for the SVG elements */
-.mask-circle {
-  transition: transform 0.5s ease;
-  transform: translate(0px, 0px);
-}
-
-.sun-center {
-  transition: transform 0.5s ease;
-  transform: scale(0.5); /* Represents your small state */
-  transform-origin: center;
-}
-
-.sun-rays {
+.moon-icon,
+.sun-icon {
+  width: 20px;
+  height: 20px;
+  position: absolute; /* both occupy same space */
   transition:
-    transform 0.5s ease,
-    opacity 0.3s ease;
-  transform: scale(1);
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.sun-icon {
   opacity: 1;
-  transform-origin: center;
-}
-
-/* 2. Light mode overrides */
-body.light .mask-circle {
-  /* This moves the mask equivalent to your cx/cy shift */
-  transform: translate(-7px, 1px);
-}
-
-body.light .sun-center {
-  /* This scales the circle to your '10px' radius equivalent */
   transform: scale(1);
 }
 
-body.light .sun-rays {
-  transform: scale(0);
+.moon-icon {
   opacity: 0;
+  transform: scale(0.5);
+  pointer-events: none;
+}
+
+/* Light mode — sun visible, moon hidden */
+body.light .moon-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+body.light .sun-icon {
+  opacity: 0;
+  transform: scale(0.5);
+  pointer-events: none;
 }
 
 /* .aboy {
