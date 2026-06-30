@@ -56,7 +56,7 @@
     <link href="app.css" rel="stylesheet" />
   </head>
 
-  <body>
+  <body class="group">
     <!-- =================== LOADER =================== -->
     <div id="loader" aria-hidden="true">
       <div class="lw">
@@ -108,48 +108,13 @@
         <!-- =================== NAVBAR ICONS =================== -->
         <div class="flex items-center gap-4 md:gap-7 flex-1 justify-end">
           <a
-            class="theme-toggle w-20px h-20px nav-icon"
+            class="theme-toggle w-20px h-20px nav-icon relative text-center"
             id="themeToggle"
             aria-label="Toggle theme"
           >
-            <!-- <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <mask id="moon-mask">
-                <rect x="0" y="0" width="100%" height="100%" fill="white" />
-                <circle class="mask-circle" cx="25" cy="5" r="9" fill="black" />
-              </mask>
-
-              <circle
-                class="sun-center"
-                cx="12"
-                cy="12"
-                r="8"
-                mask="url(#moon-mask)"
-              />
-
-              <g
-                class="sun-rays"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              >
-                <line x1="12" y1="1" x2="12" y2="3" />
-                <line x1="12" y1="21" x2="12" y2="23" />
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                <line x1="1" y1="12" x2="3" y2="12" />
-                <line x1="21" y1="12" x2="23" y2="12" />
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-              </g>
-            </svg> -->
-
             <!-- Moon icon (default/dark mode) -->
             <svg
-              class="moon-icon"
+              class="moon-icon transition-all duration-300 scale-50 absolute opacity-0 pointer-events-none group-[.light]:opacity-100 group-[.light]:scale-100 group-[.light]:pointer-events-auto"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
@@ -158,7 +123,7 @@
             </svg>
             <!-- Sun icon (light mode) -->
             <svg
-              class="sun-icon"
+              class="sun-icon transition-all duration-300 scale-100 absolute opacity-100 pointer-events-auto group-[.light]:opacity-0 group-[.light]:scale-50 group-[.light]:pointer-events-none"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
@@ -380,7 +345,7 @@
 
     <!-- =================== MARQUEE (kept) =================== -->
     <section
-      class="border-y border-[var(--line)] bg-black py-5 md:py-6 overflow-hidden marquee-wrap"
+      class="border-y border-[var(--line)] bg-black py-5 md:py-6 overflow-hidden marquee-wrap group-[.light]:text-pearl"
     >
       <div class="marquee" style="--dur: 34s"></div>
     </section>
@@ -487,14 +452,17 @@
     </section> -->
 
     <!-- =================== WHY SHOP WITH US =================== -->
-    <section class="bg-black border-y border-[var(--line)] why-shop">
+    <section
+      class="bg-black border-y border-[var(--line)] why-shop group-[.light]:bg-white"
+    >
       <div class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-24">
         <p class="eyebrow text-center mb-3" data-reveal>The Santos Promise</p>
         <h2
           class="display text-center text-[2.4rem] md:text-[3.4rem] mb-12"
           data-reveal
         >
-          Why she shops with <span class="ital text-orchid us">us</span>
+          Why she shops with
+          <span class="ital text-orchid us group-[.light]:text-lilac">us</span>
         </h2>
         <div
           class="grid grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--line)] promise-grid"
@@ -711,13 +679,12 @@
     </section> -->
 
     <!-- =================== TESTIMONIALS =================== -->
-    <section class="bg-black border-y border-[var(--line) ] testimonials">
-      <div class="max-w-3xl mx-auto px-5 md:px-10 py-20 md:py-28 text-center">
+    <section
+      class="bg-black border-y border-[var(--line)] testimonials group-[.light]:bg-white"
+    >
+      <div class="max-w-3xl mx-auto py-20 text-center">
         <p class="eyebrow mb-8" data-reveal>Loved by the Inner Circle</p>
-        <div
-          id="testiTrack"
-          class="relative min-h-[230px] md:min-h-[190px]"
-        ></div>
+        <div id="testiTrack" class="relative min-h-[230px]"></div>
         <div
           class="flex items-center justify-center gap-3 mt-6"
           id="testiDots"
@@ -730,7 +697,10 @@
       <div class="text-center mb-10 px-5" data-reveal>
         <p class="eyebrow mb-3">Community</p>
         <h2 class="display text-[2.4rem] md:text-[3.6rem]">
-          As seen on <span class="ital text-orchid">@SantosCollection</span>
+          As seen on
+          <span class="ital text-orchid group-[.light]:text-lilac"
+            >@SantosCollection</span
+          >
         </h2>
       </div>
       <div class="grid grid-cols-3 md:grid-cols-6 gap-1.5 px-1.5">
@@ -915,7 +885,7 @@
           href="https://instagram.com"
           target="_blank"
           rel="noopener"
-          class="btn btn-ghost px-9 py-4"
+          class="btn btn-ghost px-9 py-4 group-[.light]:text-onyx"
           >Follow @SantosCollection</a
         >
       </div>
@@ -941,7 +911,10 @@
           class="display text-[2.6rem] md:text-[3.8rem] leading-tight mb-4"
           data-reveal
         >
-          Join the Santos <span class="ital text-orchid">Inner Circle</span>
+          Join the Santos
+          <span class="ital text-orchid group-[.light]:text-lilac"
+            >Inner Circle</span
+          >
         </h2>
         <p class="text-pearl/55 mb-8 max-w-md mx-auto" data-reveal>
           Early access to drops, private sale invitations, and styling notes.
@@ -958,14 +931,14 @@
             type="text"
             required
             placeholder="First name"
-            class="flex-1 bg-char border border-[var(--line-strong)] px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
+            class="flex-1 bg-char sm:w-1/2 border border-[var(--line-strong)] group-[.light]:border-[var(--smokey)] group-[.light]:bg-pearly group-[.light]:text-onyx px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
           />
           <input
             name="email"
             type="email"
             required
             placeholder="Email address"
-            class="flex-1 bg-char border border-[var(--line-strong)] px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
+            class="flex-1 bg-char border sm:w-1/2 border-[var(--line-strong)] group-[.light]:border-[var(--smokey)] group-[.light]:bg-pearly group-[.light]:text-onyx px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
           />
           <button
             type="submit"
@@ -987,7 +960,10 @@
         <div data-reveal>
           <p class="eyebrow mb-3">Visit / Contact</p>
           <h2 class="display text-[2.6rem] md:text-[3.8rem] mb-8">
-            Come say <span class="ital text-orchid">hello</span>
+            Come say
+            <span class="ital text-orchid group-[.light]:text-lilac"
+              >hello</span
+            >
           </h2>
           <div class="space-y-6 mb-10">
             <div class="flex items-start gap-4">
@@ -1060,25 +1036,25 @@
               type="text"
               required
               placeholder="Your name"
-              class="w-full bg-char border border-[var(--line-strong)] px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
+              class="w-full bg-char group-[.light]:bg-pearly border border-[var(--line-strong)] group-[.light]:border-[var(--smokey)] px-5 py-4 text-pearl group-[.light]:text-onyx placeholder:text-y focus:border-lilac transition-colors"
             />
             <input
               name="email"
               type="email"
               required
               placeholder="Your email"
-              class="w-full bg-char border border-[var(--line-strong)] px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors"
+              class="w-full bg-char group-[.light]:bg-pearly border border-[var(--line-strong)] group-[.light]:border-[var(--smokey)] px-5 py-4 text-pearl group-[.light]:text-onyx placeholder:text-smoke focus:border-lilac transition-colors"
             />
             <textarea
               name="message"
               rows="4"
               required
               placeholder="How can we help?"
-              class="w-full bg-char border border-[var(--line-strong)] px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors resize-none"
+              class="w-full bg-char group-[.light]:bg-pearly border border-[var(--line-strong)] group-[.light]:border-[var(--smokey)] px-5 py-4 text-pearl placeholder:text-smoke focus:border-lilac transition-colors resize-none"
             ></textarea>
             <button
               type="submit"
-              class="btn btn-ghost px-8 py-4 w-full sm:w-auto"
+              class="btn btn-ghost px-8 py-4 w-full sm:w-auto group-[.light]:text-onyx group-[.light]:border-[var(--smokey)]"
             >
               Send message
             </button>
@@ -1091,7 +1067,7 @@
         >
           <!-- >>> BACKEND: swap for a Google Maps <iframe> embed of the address -->
           <div
-            class="absolute inset-0 grid place-items-center bg-char"
+            class="absolute inset-0 grid place-items-center bg-char group-[.light]:bg-smokey"
             style="
               background-image:
                 linear-gradient(rgba(200, 162, 200, 0.06) 1px, transparent 1px),
@@ -1116,8 +1092,10 @@
                   <path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z" />
                   <circle cx="12" cy="10" r="2.5" /></svg
               ></span>
-              <p class="eyebrow">Santos Boutique</p>
-              <p class="text-pearl/55 text-sm mt-2">Surulere · Lagos</p>
+              <p class="eyebrow group-[.light]:bg-text-onyx">Santos Boutique</p>
+              <p class="text-pearl/55 text-sm mt-2 group-[.light]:bg-text-onyx">
+                Surulere · Lagos
+              </p>
               <a
                 href="https://maps.google.com/?q=68+Adeniran+Ogunsanya+Street+Surulere+Lagos"
                 target="_blank"
@@ -1132,13 +1110,15 @@
     </section>
 
     <!-- =================== FOOTER =================== -->
-    <footer class="bg-black border-t border-[var(--line)]">
+    <footer
+      class="bg-black border-t border-[var(--line)] group-[.light]:bg-white"
+    >
       <div class="max-w-[1500px] mx-auto px-5 md:px-10 py-14 md:py-20">
         <div class="grid grid-cols-2 md:grid-cols-5 gap-10 mb-14">
           <div class="col-span-2 md:col-span-1">
             <a
               href="#top"
-              class="mark bg-transparent text-2xl tracking-[.14em] block mb-4"
+              class="mark bg-transparent text-2xl tracking-[.14em] block mb-4 group-[.light]:text-black"
               >SANTOS</a
             >
             <p class="text-pearl/50 text-sm leading-relaxed max-w-xs">
@@ -1362,14 +1342,9 @@
             </div>
 
             <ul
-              class="dropdown-ul mobile-gallery-dropdown w-3/4 flex flex-col gap-1 overflow-hidden text-center"
-              id="dropdownMobile"
-            >
-              <li><a href="#"> The </a></li>
-              <li><a href="#">Collections</a></li>
-              <li><a href="#">Show</a></li>
-              <li><a href="#">Here!</a></li>
-            </ul>
+              class="dropdown-ul mobile-gallery-dropdown w-4/4 h-40px flex p-2 gap-1 items-center overflow-y-auto flex-wrap"
+              id="sidebarDropdownMenu"
+            ></ul>
           </li>
           <li>
             <a

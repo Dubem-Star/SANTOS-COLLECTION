@@ -3,14 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
     theme: {
       extend: {
         colors: {
-          ink: "#000000",
+          ink: "var(--ink)",
           onyx: "#0B080D",
           char: "#141017",
           lilac: "#C8A2C8",
           orchid: "#DCC0E4",
-          plum: "#2A1C30",
-          pearl: "#F6F3F7",
+          plum: "var(--lum)",
+          pearl: "var(--pearl)",
           smoke: "#8B7E90",
+          grey: "#808080",
+          pearly: "#e8e8e8",
         },
         fontFamily: {
           display: ['"Cormorant Garamond"', "serif"], // headings
@@ -28,11 +30,29 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
   };
-
+  const sidebarDropdownMenu = document.getElementById("sidebarDropdownMenu");
   const mobileGalleryNav = document.getElementById("mobileGalleryNav");
-  const dropdownMobile = document.getElementById("dropdownMobile");
+  const dropdownMobile = document.getElementById("sidebarDropdownMenu");
   mobileGalleryNav.addEventListener("click", () => {
     dropdownMobile.classList.toggle("show");
+    mobileGalleryNav.innerHTML = `
+    
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  fill="currentColor"
+  viewBox="0 0 16 16"
+>
+  <path
+    fill-rule="evenodd"
+
+    ${dropdownMobile.classList.contains("show") ? ' d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"' : ' d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"'}
+
+   
+  />
+</svg>
+    `;
   });
 
   const themeToggle = document.getElementById("themeToggle");
@@ -318,21 +338,20 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Filter categories (order shown in the bar). 'All' first. */
   const CATEGORIES = [
     "All",
-    "Dress",
-    "Two-Piece",
-    "Set",
-    "Jumpsuit",
-    "Playsuit",
-    "Romper",
-    "Body Suit",
+    "Dresses",
+    "Sets",
+    "Jumpsuits",
+    "Rompers",
+    "Bodysuits",
     "Tops",
-    "Blazer",
-    "Skirt",
-    "Pant",
+    "Blazers",
+    "Skirts",
+    "Pants",
     "Leggings",
     "Denim",
     "Shoes",
-    "Bag",
+    "Bags",
+    " Accessories",
   ];
 
   const TESTIMONIALS = [
@@ -567,9 +586,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderFilters() {
     const bar = document.getElementById("filterBar");
+
     bar.innerHTML = CATEGORIES.map(
       (c) =>
         `<button class="pill ${c === shopState.category ? "active" : ""}" data-filter="${c}">${c}</button>`,
+    ).join("");
+
+    sidebarDropdownMenu.innerHTML = CATEGORIES.map(
+      (c) =>
+        `
+            <li  class="pill sidebar  " data-filter="${c}">${c}</li>
+
+            
+            `,
     ).join("");
   }
 
@@ -1068,15 +1097,21 @@ document.addEventListener("DOMContentLoaded", () => {
       dots = document.getElementById("testiDots");
     track.innerHTML = TESTIMONIALS.map(
       (t, i) => `
-    <figure class="tslide absolute inset-0 ${i === 0 ? "" : "opacity-0 pointer-events-none"}" data-slide="${i}">
+    <figure id="trackChild" class="tslide absolute inset-0 ${i === 0 ? "" : "opacity-0 pointer-events-none"}" data-slide="${i}">
       <div class="text-lilac text-lg mb-4 tracking-[.3em]">★★★★★</div>
-      <blockquote class="display text-2xl md:text-[2.2rem] leading-snug mb-5">"${t.quote}"</blockquote>
-      <figcaption class="text-sm"><span class="text-pearl">${t.name}</span><span class="text-smoke"> — ${t.loc}</span></figcaption>
+      <blockquote class="display text-2xl md:text-[2.2rem] leading-snug mb-5 group-[.light]:text-onyx">"${t.quote}"</blockquote>
+      <figcaption class="text-sm">
+      
+      <span class="text-pearl group-[.light]:text-onyx">${t.name}</span>
+      <span class="text-smoke group-[.light]:text-gray"> — ${t.loc}</span
+      
+      ></figcaption>
     </figure>`,
     ).join("");
+
     dots.innerHTML = TESTIMONIALS.map(
       (_, i) =>
-        `<button class="w-2 h-2 rounded-full transition-colors ${i === 0 ? "bg-lilac" : "bg-smoke/40"}" data-dot="${i}" aria-label="Testimonial ${i + 1}"></button>`,
+        `<button class="w-3 h-3 md:w-2 md:h-2 rounded-full transition-colors ${i === 0 ? "bg-lilac" : "bg-smoke/40"}" data-dot="${i}" aria-label="Testimonial ${i + 1}"></button>`,
     ).join("");
     let cur = 0;
     const slides = [...track.children],
@@ -1185,11 +1220,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("openMenu")
     .addEventListener("click", () => openOverlay(mobileMenu, ".panel"));
-  document
-    .querySelectorAll("[data-close-menu]")
-    .forEach((b) =>
-      b.addEventListener("click", () => closeOverlay(mobileMenu, ".panel")),
-    );
+  document.querySelectorAll("[data-close-menu]").forEach((b) =>
+    b.addEventListener("click", () => {
+      closeOverlay(mobileMenu, ".panel");
+      sidebarDropdownMenu.classList.remove("show");
+    }),
+  );
 
   /* quick view close */
   document

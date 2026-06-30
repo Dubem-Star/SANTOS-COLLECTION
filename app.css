@@ -6,7 +6,9 @@
   --orchid: #dcc0e4;
   --plum: #2a1c30;
   --pearl: #f6f3f7;
+  --pearly: #e8e8e8;
   --smoke: #8b7e90;
+  --smokey: #a296a7;
   --line: rgba(200, 162, 200, 0.16);
   --line-strong: rgba(200, 162, 200, 0.34);
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -21,57 +23,6 @@
   height: 20px !important;
 }
 
-/* 1. Define base variables on the button */
-.theme-toggle {
-  /* Keep your layout styles */
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--white);
-  /* width: 20px; */
-  aspect-ratio: 1/1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.moon-icon,
-.sun-icon {
-  position: absolute; /* both occupy same space */
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-
-.sun-icon {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.moon-icon {
-  opacity: 0;
-  transform: scale(0.5);
-  pointer-events: none;
-}
-
-/* Light mode — sun visible, moon hidden */
-
-body.light .moon-icon {
-  opacity: 1;
-  transform: scale(1);
-}
-
-body.light .sun-icon {
-  opacity: 0;
-  transform: scale(0.5);
-  pointer-events: none;
-}
-
-/* .aboy {
-  background-color: aqua;
-} */
-
 /* ---------------- TOKENS (palette unchanged) ---------------- */
 
 body.light {
@@ -79,22 +30,22 @@ body.light {
   color: var(--onyx);
 }
 
-body.light .marquee-wrap span {
+/* body.light .marquee-wrap span {
   color: var(--pearl);
-}
+} */
 
-body.light .why-shop,
+/* body.light .why-shop,
 body.light .testimonials {
   background: white !important;
-}
+} */
 
-body.light .why-shop .us {
+/* body.light .why-shop .us {
   color: var(--lilac) !important;
-}
+} */
 
-body.light .why-shop .svg-box {
+/* body.light .why-shop .svg-box {
   color: var(--lilac) !important;
-}
+} */
 
 body.light .why-shop .promise-grid {
   background: var(--lilac) !important;
@@ -106,17 +57,13 @@ body.light .why-shop .promise-grid .card {
   /* border: 1px solid var(--lilac); */
 }
 
-body.light .why-shop .promise-grid .card p,
-body.light .testimonials blockquote,
-.testimonials blockquote figcaption span {
+body.light .why-shop .promise-grid .card p {
   color: var(--onyx) !important;
 }
 
 #searchInput {
   font-size: 19px;
 }
-
-/* Move the mask completely OUT of the way so the circle becomes perfectly round */
 
 body.light #nav.solid {
   background: #f6f3f7db;
@@ -179,11 +126,11 @@ body.light .sidebar-footer {
 }
 
 .panel .mobile-gallery-dropdown {
-  max-height: 0;
+  height: 0;
   padding: 0;
   border: 1px transparent solid;
   transition:
-    max-height 0.2s ease-in-out,
+    height 0.2s ease-in-out,
     border-color 0.2s ease-in-out,
     padding 0.2s ease-in-out,
     margin-top 0.2s ease-in-out;
@@ -197,8 +144,8 @@ body.light .sidebar-footer {
 }
 
 .panel .mobile-gallery-dropdown.show {
-  max-height: 300px;
-  padding: 10px 0;
+  height: 200px !important;
+  padding: 10px;
   border-color: grey;
   margin-top: 8px !important;
 }
@@ -522,6 +469,13 @@ textarea:focus-visible,
   transition: 0.35s var(--ease);
   background: transparent;
 }
+
+.pill.sidebar {
+  padding: 10px;
+  display: inline-block;
+  line-height: 1;
+}
+
 .pill:hover {
   border-color: var(--lilac);
   color: var(--lilac);
@@ -626,12 +580,14 @@ textarea:focus-visible,
   transition: transform 0.55s var(--ease);
 }
 
-.panel::-webkit-scrollbar {
+.panel::-webkit-scrollbar,
+.dropdown-ul:-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-.panel {
+.panel,
+.dropdown-ul {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
