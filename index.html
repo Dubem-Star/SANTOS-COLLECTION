@@ -56,7 +56,7 @@
     <link href="app.css" rel="stylesheet" />
   </head>
 
-  <body class="group">
+  <body class="group relative">
     <!-- =================== LOADER =================== -->
     <div id="loader" aria-hidden="true">
       <div class="lw">
@@ -66,6 +66,34 @@
       </div>
     </div>
     <div class="curtain" id="curtain" aria-hidden="true"></div>
+
+    <button
+      id="closeGuide"
+      aria-label="Close"
+      class="fixed top-10 right-4 md:right-12 z-10 text-2xl leading-none w-7 h-7 md:w-9 md:h-9 grid place-items-center bg-black/40 hover:text-lilac z-[9999] opacity-0 pointer-events-none transition-opacity duration-300"
+    >
+      ×
+    </button>
+
+    <div
+      class="bg-black/80 backdrop-blur fixed inset-0 z-[9990] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
+      id="overlay"
+    >
+      <!-- <button
+        id="closeGuide"
+        aria-label="Close"
+        class="absolute top-10 right-4 md:right-12 z-10 text-2xl leading-none w-7 h-7 md:w-9 md:h-9 grid place-items-center bg-black/40 hover:text-lilac z-[99999]"
+      >
+        ×
+      </button> -->
+
+      <img
+        src="media/size_guide.png"
+        alt="Size Guide"
+        class="size-guide-image"
+        id="sizeGuideImg"
+      />
+    </div>
 
     <!-- =================== NAV (cart always visible) =================== -->
 
@@ -114,7 +142,7 @@
           >
             <!-- Moon icon (default/dark mode) -->
             <svg
-              class="moon-icon transition-all duration-300 scale-50 absolute opacity-0 pointer-events-none group-[.light]:opacity-100 group-[.light]:scale-100 group-[.light]:pointer-events-auto"
+              class="moon-icon transition-all duration-300 scale-50 absolute opacity-0 pointer-events-none group-[.light]:opacity-100 group-[.light]:scale-100 group-[.light]:pointer-events-auto cursor-pointer"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
@@ -123,7 +151,7 @@
             </svg>
             <!-- Sun icon (light mode) -->
             <svg
-              class="sun-icon transition-all duration-300 scale-100 absolute opacity-100 pointer-events-auto group-[.light]:opacity-0 group-[.light]:scale-50 group-[.light]:pointer-events-none"
+              class="sun-icon transition-all duration-300 scale-100 absolute opacity-100 pointer-events-auto group-[.light]:opacity-0 group-[.light]:scale-50 group-[.light]:pointer-events-none cursor-pointer"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
@@ -277,14 +305,16 @@
             ></span
           >
         </h1>
-        <p class="hero-line max-w-md mt-4 text-pearl/70 leading-relaxed">
+        <p
+          class="hero-line max-w-md mt-4 text-pearl/70 group-[.light]:text-[var(--pearl)] leading-relaxed"
+        >
           Timeless luxury, crafted in limited runs. Shop the new season below.
         </p>
         <div class="hero-line mt-6 flex flex-wrap items-center gap-4">
           <a href="#shop" class="btn btn-fill px-8 py-3.5">Shop now</a>
-          <a href="#categories" class="btn btn-ghost px-8 py-3.5"
+          <!-- <a href="#categories" class="btn btn-ghost px-8 py-3.5"
             >Browse collections</a
-          >
+          > -->
         </div>
       </div>
     </section>
@@ -350,107 +380,6 @@
       <div class="marquee" style="--dur: 34s"></div>
     </section>
 
-    <!-- =================== SHOP BY CATEGORY (editorial tiles → set filter) =================== -->
-    <!-- <section
-      id="categories"
-      class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-28"
-    >
-      <div
-        class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
-        data-reveal
-      >
-        <div>
-          <p class="eyebrow mb-3">The Edit</p>
-          <h2 class="display text-[2.6rem] md:text-[4rem]">
-            Shop by <span class="ital text-orchid">category</span>
-          </h2>
-        </div>
-        <p class="max-w-xs text-pearl/55 leading-relaxed">
-          Tap a world to filter the shop instantly.
-        </p>
-      </div>
-
-      <div
-        class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-[clamp(150px,18vw,260px)]"
-      >
-        <button class="tile col-span-2 row-span-2" data-cat="Dress" data-reveal>
-          <img
-            class="w-full h-full object-cover"
-            loading="lazy"
-            alt="Dresses"
-            src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=900&auto=format&fit=crop"
-          />
-          <div class="tover">
-            <p class="eyebrow mb-1">Signature</p>
-            <h3 class="display text-3xl md:text-5xl">Dresses</h3>
-            <span
-              class="link-sweep mt-2 text-[.7rem] tracking-[.16em] uppercase w-fit"
-              >Shop now →</span
-            >
-          </div>
-        </button>
-        <button class="tile" data-cat="Two-Piece" data-reveal>
-          <img
-            class="w-full h-full object-cover"
-            loading="lazy"
-            alt="Two-Piece"
-            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=700&auto=format&fit=crop"
-          />
-          <div class="tover">
-            <h3 class="display text-2xl md:text-3xl">Two-Piece</h3>
-          </div>
-        </button>
-        <button class="tile" data-cat="Jumpsuit" data-reveal>
-          <img
-            class="w-full h-full object-cover"
-            loading="lazy"
-            alt="Jumpsuit"
-            src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=700&auto=format&fit=crop"
-          />
-          <div class="tover">
-            <h3 class="display text-2xl md:text-3xl">Jumpsuit</h3>
-          </div>
-        </button>
-        <button class="tile col-span-2" data-cat="Blazer" data-reveal>
-          <img
-            class="w-full h-full object-cover"
-            loading="lazy"
-            alt="Blazers"
-            src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=900&auto=format&fit=crop"
-          />
-          <div class="tover">
-            <h3 class="display text-2xl md:text-4xl">Blazers</h3>
-            <span
-              class="link-sweep mt-1 text-[.66rem] tracking-[.16em] uppercase w-fit"
-              >Shop now →</span
-            >
-          </div>
-        </button>
-        <button class="tile" data-cat="Skirt" data-reveal>
-          <img
-            class="w-full h-full object-cover"
-            loading="lazy"
-            alt="Skirts"
-            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop"
-          />
-          <div class="tover">
-            <h3 class="display text-2xl md:text-3xl">Skirts</h3>
-          </div>
-        </button>
-        <button class="tile" data-cat="Bag" data-reveal>
-          <img
-            class="w-full h-full object-cover"
-            loading="lazy"
-            alt="Bags"
-            src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=700&auto=format&fit=crop"
-          />
-          <div class="tover">
-            <h3 class="display text-2xl md:text-3xl">Bags</h3>
-          </div>
-        </button>
-      </div>
-    </section> -->
-
     <!-- =================== WHY SHOP WITH US =================== -->
     <section
       class="bg-black border-y border-[var(--line)] why-shop group-[.light]:bg-white"
@@ -465,7 +394,7 @@
           <span class="ital text-orchid us group-[.light]:text-lilac">us</span>
         </h2>
         <div
-          class="grid grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--line)] promise-grid"
+          class="grid grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--line)] group-[.light]:bg-lilac promise-grid"
         >
           <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
@@ -612,75 +541,9 @@
       </div>
     </section>
 
-    <!-- =================== LOOKBOOK =================== -->
-    <!-- <section
-      id="lookbook"
-      class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-28"
-    >
-      <div class="flex items-end justify-between mb-12" data-reveal>
-        <div>
-          <p class="eyebrow mb-3">The Campaign</p>
-          <h2 class="display text-[2.6rem] md:text-[4rem]">
-            SS26 <span class="ital text-orchid">Lookbook</span>
-          </h2>
-        </div>
-        <span class="hidden md:block eyebrow">Vol. I</span>
-      </div>
-      <div class="grid grid-cols-12 gap-3 md:gap-5 items-center">
-        <figure
-          class="col-span-12 md:col-span-7 relative overflow-hidden"
-          data-reveal
-        >
-          <div data-parallax-soft>
-            <img
-              class="w-full h-[52vh] md:h-[72vh] object-cover"
-              loading="lazy"
-              alt="Editorial look one"
-              src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=1100&auto=format&fit=crop"
-            />
-          </div>
-          <figcaption
-            class="absolute bottom-5 left-5 eyebrow bg-black/40 px-3 py-1 backdrop-blur"
-          >
-            Look 01 — Noir
-          </figcaption>
-        </figure>
-        <div class="col-span-12 md:col-span-5 grid grid-rows-2 gap-3 md:gap-5">
-          <figure
-            class="relative overflow-hidden h-[38vh] md:h-[34.5vh]"
-            data-reveal
-          >
-            <img
-              class="w-full h-full object-cover"
-              loading="lazy"
-              alt="Editorial look two"
-              src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=800&auto=format&fit=crop"
-            />
-            <figcaption
-              class="absolute bottom-5 left-5 eyebrow bg-black/40 px-3 py-1 backdrop-blur"
-            >
-              Look 02 — Orchid
-            </figcaption>
-          </figure>
-          <div
-            class="bg-char border border-[var(--line)] p-7 md:p-9 flex flex-col justify-center"
-            data-reveal
-          >
-            <p class="display text-2xl md:text-3xl leading-snug">
-              "Dress as the woman you intend to
-              <span class="ital text-orchid">become.</span>"
-            </p>
-            <a href="#shop" class="btn btn-ghost px-7 py-3.5 mt-5 w-fit"
-              >Shop the looks</a
-            >
-          </div>
-        </div>
-      </div>
-    </section> -->
-
     <!-- =================== TESTIMONIALS =================== -->
     <section
-      class="bg-black border-y border-[var(--line)] testimonials group-[.light]:bg-white"
+      class="bg-black border-y border-[var(--line)] testimonials group-[.light]:bg-white group-[.light]:border-[var(--ashy)]"
     >
       <div class="max-w-3xl mx-auto py-20 text-center">
         <p class="eyebrow mb-8" data-reveal>Loved by the Inner Circle</p>
@@ -892,9 +755,22 @@
     </section>
 
     <!-- =================== NEWSLETTER =================== -->
-    <section class="relative overflow-hidden border-y border-[var(--line)]">
+    <section
+      class="relative overflow-hidden border-y border-[var(--line)] group-[.light]:border-[var(--ashy)]"
+    >
       <div
-        class="absolute inset-0"
+        class="absolute inset-0 opacity-0 cloud transition-opacity duration-400 group-[.light]:opacity-100"
+        style="
+          background: radial-gradient(
+            80% 120% at 50% 0%,
+            #b8b6badd,
+            transparent 60%
+          );
+        "
+      ></div>
+
+      <div
+        class="absolute inset-0 opacity-100 cloud transition-opacity duration-300 group-[.light]:opacity-0"
         style="
           background: radial-gradient(
             80% 120% at 50% 0%,
@@ -1109,9 +985,122 @@
       </div>
     </section>
 
+    <!-- =================== RETURN & REFUND POLICY =================== -->
+
+    <div
+      class="fixed bg-onyx p-6 z-[9998] [scrollbar-width:none][-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden max-w-[700px] top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 max-h-[90vh] overflow-y-auto w-[90%] h-[90%] opacity-0 pointer-events-none transition-opacity duration-300 group-[.light]:bg-pearly group-[.light]:text-onyx"
+      id="returnAndRefund"
+      data-lenis-prevent
+    >
+      <h2 class="text-2xl text-lilac mb-4">
+        <strong>Refund and Returns Policy</strong>
+      </h2>
+
+      <p class="leading-[1.8]">
+        At SANTOS COLLECTION, we want you to love every purchase. If you're not
+        completely satisfied, we're here to help.
+      </p>
+
+      <p class="mb-5 mt-2 lg:mt-1">
+        Please read our Return & Refund Policy carefully before making a
+        purchase.
+      </p>
+
+      <h2 class="text-xl mb-2 mt-7 text-lilac">
+        <strong> Returns</strong>
+      </h2>
+      <p class="leading-[1.8]">
+        We accept returns within 5 days of receiving your order. <br />
+        To qualify for a return, your item must:
+      </p>
+
+      <ul class="pl-1 md:pl-2 flex flex-col gap-3 mt-4 list-disc space-y-2">
+        <li class="ml-2">Be unworn, unused, and unwashed.</li>
+        <li class="ml-2">Be in its original condition.</li>
+
+        <li class="ml-2">Have all original tags attached.</li>
+        <li class="ml-2">Be returned in its original packaging.</li>
+        <li class="ml-2">
+          Be free from perfume, makeup, deodorant, stains, odours, or any signs
+          of wear.
+        </li>
+        <li class="ml-2">
+          Be accompanied by your order number or proof of purchase.
+        </li>
+
+        <li class="ml-2">
+          Items returned that do not meet these conditions may not be accepted.
+        </li>
+      </ul>
+
+      <h2 class="text-xl mb-2 mt-7 text-lilac">
+        <strong> Exchanges</strong>
+      </h2>
+      <p class="leading-[1.8]">
+        We offer exchanges for eligible items, subject to product availability.
+        <br />
+        If your preferred size, colour, or item is unavailable, you may:
+      </p>
+
+      <ul class="pl-1 md:pl-2 flex flex-col mt-4 gap-2 list-disc space-y-2">
+        <li class="ml-2">Exchange for another item of equal value, or</li>
+        <li class="ml-2">Pay the difference for a higher-priced item.</li>
+      </ul>
+
+      <p class="mt-4 leading-[1.8]">
+        Exchange requests must be made within 48 hours of delivery.
+      </p>
+
+      <h2 class="text-xl mb-2 mt-7 text-lilac">
+        <strong> Incorrect, Damaged or Defective Items</strong>
+      </h2>
+      <p class="leading-[1.8]">
+        We sincerely apologise if your order arrives damaged, defective, or
+        incorrect. <br />
+        Please notify us within 48 hours of delivery by sending:
+      </p>
+
+      <ul class="pl-1 md:pl-2 flex flex-col gap-2 list-disc space-y-2 mt-4">
+        <li class="ml-2">Your order number</li>
+        <li class="ml-2">Clear photos of the item</li>
+
+        <li class="ml-2">A brief description of the issue</li>
+      </ul>
+
+      <p class="leading-[1.8] mt-4">
+        Once verified, we'll arrange a replacement or full refund at no
+        additional cost to you.
+      </p>
+
+      <h2 class="text-xl mb-2 mt-7 text-lilac">
+        <strong>Non-Returnable Items</strong>
+      </h2>
+      <p class="leading-[1.8]">
+        For hygiene and quality assurance reasons, we cannot accept returns or
+        exchanges on:
+      </p>
+
+      <ul class="pl-1 md:pl-2 flex flex-col gap-2 list-disc space-y-2 mt-4">
+        <li class="ml-2">Bodysuits</li>
+        <li class="ml-2">Lingerie</li>
+
+        <li class="ml-2">Earrings and selected accessories</li>
+
+        <li class="ml-2">Sale or clearance items</li>
+
+        <li class="ml-2">Gift cards</li>
+
+        <li class="ml-2">Custom-made or altered items</li>
+      </ul>
+
+      <p class="mt-4 leading-[1.8]">
+        Unless the item is faulty or we made an error with your order.
+      </p>
+    </div>
+
     <!-- =================== FOOTER =================== -->
     <footer
-      class="bg-black border-t border-[var(--line)] group-[.light]:bg-white"
+      class="bg-black border-t border-[var(--line)] group-[.light]:bg-white group-[.light]:border-[var(--ashy)]"
     >
       <div class="max-w-[1500px] mx-auto px-5 md:px-10 py-14 md:py-20">
         <div class="grid grid-cols-2 md:grid-cols-5 gap-10 mb-14">
@@ -1147,10 +1136,19 @@
           <div>
             <p class="eyebrow mb-5">Customer Care</p>
             <ul class="space-y-3 text-pearl/60 text-sm">
-              <li><a href="#contact" class="link-sweep">Contact</a></li>
-              <li><a href="#" class="link-sweep">Shipping & Returns</a></li>
-              <li><a href="#" class="link-sweep">Size Guide</a></li>
-              <li><a href="#" class="link-sweep">FAQ</a></li>
+              <li><a href="#contact" class="link-sweep">Contact Us</a></li>
+              <li>
+                <a href="#" class="link-sweep" id="returnAndRefundBtn">
+                  Return & Refund Policy</a
+                >
+              </li>
+
+              <li>
+                <a href="#" id="sizeGuideFooter" class="link-sweep"
+                  >Size Guide</a
+                >
+              </li>
+              <li><a href="#" class="link-sweep">FAQs</a></li>
             </ul>
           </div>
           <div>
@@ -1298,7 +1296,8 @@
         class="panel absolute left-0 top-0 h-full max-h-[100dvh] min-h-0 w-[82%] max-w-sm bg-onyx border-r border-[var(--line)] -translate-x-full p-8 flex flex-col overflow-y-auto"
       >
         <div class="flex items-center justify-between mb-12">
-          <span class="mark bg-transparent text-xl tracking-[.14em]"
+          <span
+            class="mark bg-transparent text-xl tracking-[.14em] group-[.light]:text-onyx"
             >SANTOS</span
           ><button
             data-close-menu
@@ -1364,27 +1363,19 @@
             >
           </li>
 
-          <li>
+          <!-- <li>
             <a
               href="#contact"
               data-close-menu
               class="hover:text-lilac transition-colors"
               >Contact Us</a
             >
-          </li>
-
-          <li>
-            <a
-              href="#faqs"
-              data-close-menu
-              class="hover:text-lilac transition-colors"
-              >FAQs</a
-            >
-          </li>
+          </li> -->
         </ul>
         <div
           class="mt-auto sidebar-footer pt-8 border-t border-[var(--line)] text-sm text-pearl/55"
         >
+          <p class="mb-3 text-xs text-smoke">Contact us</p>
           <a href="tel:08020919409" class="block mb-2 link-sweep w-fit"
             >0802 091 9409</a
           >
@@ -1440,18 +1431,23 @@
       <div
         class="panel relative max-w-4xl mx-4 md:mx-auto mt-[8vh] md:mt-[12vh] bg-onyx border border-[var(--line)] scale-95 opacity-0 overflow-y-auto max-h-[90dvh]"
         data-lenis-prevent
+        id="quickBox"
       >
-        <button
-          data-close-quick
-          aria-label="Close"
-          class="absolute top-4 right-4 z-10 text-2xl leading-none w-9 h-9 grid place-items-center bg-black/40 hover:text-lilac"
-        >
-          ×
-        </button>
-        <div class="grid md:grid-cols-2" data-lenis-prevent>
-          <div class="aspect-[3/4] md:aspect-auto bg-char">
-            <img id="qvImg" class="w-full h-full object-cover" alt="" />
-          </div>
+        <div class="sticky top-4 w-full z-10 h-0">
+          <button
+            data-close-quick
+            aria-label="Close"
+            class="text-2xl leading-none w-7 ml-auto mr-4 h-7 md:w-9 md:h-9 grid place-items-center bg-black/40 hover:text-lilac"
+          >
+            ×
+          </button>
+        </div>
+
+        <div class="grid md:grid-cols-2 relative" data-lenis-prevent>
+          <div
+            class="aspect-[3/4] bg-char relative overflow-x-hidden overflow-y-hidden static md:sticky top-0 border-r border-[var(--line)]"
+            id="qvImgWrap"
+          ></div>
           <div class="p-7 md:p-10 flex flex-col">
             <p class="eyebrow mb-2" id="qvCat"></p>
             <h3 class="font-display text-4xl md:text-5xl mb-2" id="qvName"></h3>
@@ -1459,11 +1455,60 @@
               <p class="font-display text-3xl text-lilac" id="qvPrice"></p>
               <span id="qvStatus" class="text-xs"></span>
             </div>
-            <p
-              class="text-pearl/55 text-sm leading-relaxed mb-6"
-              id="qvDesc"
-            ></p>
-            <div class="flex gap-2 mb-8" id="qvSizes"></div>
+            <!-- =================== DESCRIPTION -->
+            <div>
+              <p class="eyebrow mb-1 mt-3">Description:</p>
+              <p
+                class="text-pearl/55 text-sm leading-relaxed mb-6"
+                id="qvDesc"
+              ></p>
+            </div>
+
+            <!-- =================== SIZES -->
+            <div class="mb-8">
+              <p class="eyebrow mb-2 mt-1">Sizes:</p>
+              <div class="flex gap-2 mb-1 flex-wrap" id="qvSizes"></div>
+
+              <span
+                class="text-sm text-lilac cursor-pointer hover:text-lilac"
+                id="sizeGuide"
+              >
+                size guide
+              </span>
+            </div>
+
+            <!-- =================== COLOR -->
+            <div class="mb-8">
+              <p class="eyebrow mb-2 mt-1">Color:</p>
+              <div class="flex gap-2 mb-1 flex-wrap" id="qvColors"></div>
+            </div>
+
+            <!-- =================== QUANTITY -->
+            <div class="mb-8">
+              <p class="eyebrow mb-2 mt-1">Quantity:</p>
+              <div class="flex items-center">
+                <button
+                  class="border border-smoke w-9 h-9 flex items-center justify-center hover:border-lilac transition-colors"
+                  id="qtyDecrement"
+                >
+                  -
+                </button>
+                <input
+                  class="w-14 h-9 text-center border-y border-smoke outline-none bg-transparent no-spin"
+                  value="1"
+                  id="qtyInput"
+                  type="number"
+                />
+
+                <button
+                  class="border border-smoke w-9 h-9 flex items-center justify-center hover:border-lilac transition-colors"
+                  id="qtyIncrement"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
             <div class="mt-auto flex gap-3">
               <button id="qvAdd" class="btn btn-fill flex-1 py-4">
                 Add to cart

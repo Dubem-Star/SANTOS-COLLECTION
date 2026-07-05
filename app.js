@@ -62,13 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("clicked");
     document.body.classList.toggle("light");
-
-    //   const appTheme = document.body.dataset.theme;
-    //   if (appTheme === "light") {
-    //     document.body.dataset.theme = "dark";
-    //   } else {
-    //     document.body.dataset.theme = "light";
-    //   }
   });
 
   /* =================================================================
@@ -105,11 +98,28 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Dress",
       price: 48000,
       stock: "in",
-      sizes: ["XS", "S", "M", "L"],
+      sizes: [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL",
+        "7XL",
+        "8XL",
+        "9XL",
+      ],
       desc: "Bias-cut silk-satin with a whisper-fine cowl neckline.",
-      img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["orange", "black", "white"],
+      img: [
+        "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=700&auto=format&fit=crop",
+      ],
+
       tag: "New",
     },
     {
@@ -118,12 +128,14 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Dress",
       price: 44000,
       stock: "low",
-      sizes: ["S", "M", "L"],
+      sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
       desc: "A true-wrap midi in fluid viscose. An everyday heroine.",
-      img: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["skyblue", "black", "green"],
+      img: [
+        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=700&auto=format&fit=crop",
-      tag: "",
+      ],
+      tag: "Sales",
     },
     {
       id: "p03",
@@ -131,12 +143,14 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Dress",
       price: 95000,
       stock: "out",
-      sizes: ["XS", "S", "M"],
+      sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"],
       desc: "Floor-sweeping draped gown in lilac crepe with a sculpted bodice.",
-      img: "https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["blueviolet", "yellow", "white"],
+      img: [
+        "https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=700&auto=format&fit=crop",
-      tag: "",
+      ],
+      tag: "New",
     },
     {
       id: "p04",
@@ -144,11 +158,26 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Two-Piece",
       price: 39000,
       stock: "in",
-      sizes: ["S", "M", "L", "XL"],
+      sizes: [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL",
+        "7XL",
+        "8XL",
+        "9XL",
+      ],
       desc: "Breathable linen set — relaxed shirt and wide-leg trouser.",
-      img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["teal", "black", "red"],
+      img: [
+        "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop",
+      ],
       tag: "",
     },
     {
@@ -157,12 +186,14 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Set",
       price: 62000,
       stock: "in",
-      sizes: ["S", "M", "L"],
+      sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
       desc: "Sharp-shouldered blazer paired with a fluid trouser.",
-      img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["lightcoral", "black", "lawngreen"],
+      img: [
+        "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=700&auto=format&fit=crop",
-      tag: "",
+      ],
+      tag: "Sales",
     },
     {
       id: "p06",
@@ -170,11 +201,27 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Jumpsuit",
       price: 57000,
       stock: "in",
-      sizes: ["XS", "S", "M", "L"],
+      sizes: [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL",
+        "7XL",
+        "8XL",
+        "9XL",
+      ],
       desc: "A column jumpsuit with a plunging neckline and tie waist.",
-      img: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["blue", "black", "violet"],
+      img: [
+        "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=700&auto=format&fit=crop",
+      ],
       tag: "New",
     },
     {
@@ -185,9 +232,11 @@ document.addEventListener("DOMContentLoaded", () => {
       stock: "low",
       sizes: ["S", "M", "L"],
       desc: "A structured playsuit in lilac twill. Effortless to style.",
-      img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["rebeccapurple", "white", "yellow"],
+      img: [
+        "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=700&auto=format&fit=crop",
+      ],
       tag: "",
     },
     {
@@ -196,11 +245,13 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Romper",
       price: 33000,
       stock: "in",
-      sizes: ["XS", "S", "M", "L"],
+      sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
       desc: "A relaxed romper cut from washed linen for warm days.",
-      img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["saddlebrown", "black", "grey"],
+      img: [
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop",
+      ],
       tag: "",
     },
     {
@@ -209,12 +260,14 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Body Suit",
       price: 22000,
       stock: "in",
-      sizes: ["XS", "S", "M", "L"],
+      sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
       desc: "A second-skin bodysuit with a clean scoop neckline.",
-      img: "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["rose", "cyan", "sienna"],
+      img: [
+        "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=700&auto=format&fit=crop",
-      tag: "",
+      ],
+      tag: "New",
     },
     {
       id: "p10",
@@ -222,11 +275,27 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Tops",
       price: 26000,
       stock: "in",
-      sizes: ["XS", "S", "M", "L"],
+      sizes: [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL",
+        "5XL",
+        "6XL",
+        "7XL",
+        "8XL",
+        "9XL",
+      ],
       desc: "A lustrous silk camisole with adjustable straps.",
-      img: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["emerald", "blue", "white"],
+      img: [
+        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=700&auto=format&fit=crop",
+      ],
       tag: "",
     },
     {
@@ -235,12 +304,14 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Tops",
       price: 31000,
       stock: "out",
-      sizes: ["S", "M", "L"],
+      sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
       desc: "A boned bustier with a sculpted sweetheart neckline.",
-      img: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["lilac", "black", "white"],
+      img: [
+        "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=700&auto=format&fit=crop",
-      tag: "",
+      ],
+      tag: "Sales",
     },
     {
       id: "p12",
@@ -248,11 +319,13 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Blazer",
       price: 62000,
       stock: "in",
-      sizes: ["S", "M", "L"],
+      sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL"],
       desc: "A double-breasted wool-blend blazer, fully lined.",
-      img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["fuchsia", "zinc", "white"],
+      img: [
+        "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=700&auto=format&fit=crop",
+      ],
       tag: "",
     },
     {
@@ -261,12 +334,14 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Skirt",
       price: 29000,
       stock: "in",
-      sizes: ["XS", "S", "M", "L"],
+      sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
       desc: "A bias-cut satin midi skirt that catches the light.",
-      img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["gray", "black", "white"],
+      img: [
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=700&auto=format&fit=crop",
-      tag: "",
+      ],
+      tag: "Sales",
     },
     {
       id: "p14",
@@ -274,11 +349,13 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Pant",
       price: 36000,
       stock: "in",
-      sizes: ["S", "M", "L", "XL"],
+      sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
       desc: "High-waisted wide-leg trousers with a pressed crease.",
-      img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["slate", "neutral", "white"],
+      img: [
+        "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=700&auto=format&fit=crop",
+      ],
       tag: "",
     },
     {
@@ -287,11 +364,13 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Leggings",
       price: 24000,
       stock: "low",
-      sizes: ["XS", "S", "M", "L"],
+      sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
       desc: "High-rise sculpting leggings in a buttery matte finish.",
-      img: "https://images.unsplash.com/photo-1542295669297-4d352b042bca?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["red", "black", "amber"],
+      img: [
+        "https://images.unsplash.com/photo-1542295669297-4d352b042bca?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=700&auto=format&fit=crop",
+      ],
       tag: "",
     },
     {
@@ -300,11 +379,13 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Denim",
       price: 52000,
       stock: "in",
-      sizes: ["S", "M", "L"],
+      sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
       desc: "A structured denim jacket and skirt in a deep indigo.",
-      img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["lime", "black", "white"],
+      img: [
+        "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop",
+      ],
       tag: "",
     },
     {
@@ -313,11 +394,13 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Shoes",
       price: 45000,
       stock: "in",
-      sizes: ["37", "38", "39", "40", "41"],
+      sizes: ["37", "38", "39", "40", "41", "42", "43", "44", "45"],
       desc: "A slim-strap heeled sandal with a lacquered finish.",
-      img: "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["green", "black", "white"],
+      img: [
+        "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=700&auto=format&fit=crop",
+      ],
       tag: "New",
     },
     {
@@ -328,9 +411,11 @@ document.addEventListener("DOMContentLoaded", () => {
       stock: "in",
       sizes: ["One size"],
       desc: "A pearl-clasp satin clutch with a detachable chain.",
-      img: "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=700&auto=format&fit=crop",
-      imgAlt:
+      color: ["lilac", "black", "white"],
+      img: [
+        "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=700&auto=format&fit=crop",
+      ],
       tag: "Limited",
     },
   ];
@@ -338,6 +423,8 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Filter categories (order shown in the bar). 'All' first. */
   const CATEGORIES = [
     "All",
+    "New",
+    "Sales",
     "Dresses",
     "Sets",
     "Jumpsuits",
@@ -348,10 +435,11 @@ document.addEventListener("DOMContentLoaded", () => {
     "Skirts",
     "Pants",
     "Leggings",
-    "Denim",
+    "Denims",
     "Shoes",
     "Bags",
-    " Accessories",
+    "Accessories",
+    "Two Piece",
   ];
 
   const TESTIMONIALS = [
@@ -589,7 +677,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     bar.innerHTML = CATEGORIES.map(
       (c) =>
-        `<button class="pill ${c === shopState.category ? "active" : ""}" data-filter="${c}">${c}</button>`,
+        `<button class="pill group-[.light]:border-lilac ${c === shopState.category ? "active" : ""}" data-filter="${c}">${c}</button>`,
     ).join("");
 
     sidebarDropdownMenu.innerHTML = CATEGORIES.map(
@@ -635,8 +723,8 @@ document.addEventListener("DOMContentLoaded", () => {
               />
             </svg>
       </button>
-      <img class="img-front w-full h-full object-cover" loading="lazy" alt="${p.name}" src="${p.img}" onerror="this.style.opacity=0">
-      <img class="img-back w-full h-full object-cover" loading="lazy" alt="" aria-hidden="true" src="${p.imgAlt}" onerror="this.style.display='none'">
+      <img class="img-front w-full h-full object-cover" loading="lazy" data-quick="${p.id}" alt="${p.name}" src="${p.img[0]}" onerror="this.style.opacity=0">
+      <img class="img-back w-full h-full object-cover" loading="lazy" alt="" data-quick="${p.id}" aria-hidden="true" src="${p.img[1]}" onerror="this.style.display='none'">
       <div class="pactions absolute bottom-3 inset-x-3 z-10 flex gap-2">
         <button class="btn btn-fill flex-1 py-3" data-add="${p.id}" ${out ? "disabled" : ""}>${out ? "Sold out" : "Add to cart"}</button>
         <button class="btn btn-ghost px-4 py-3 bg-black/45 backdrop-blur" data-quick="${p.id}" aria-label="Quick view">View</button>
@@ -771,8 +859,52 @@ document.addEventListener("DOMContentLoaded", () => {
   /* -----------------------------------------------------------------
    7) QUICK VIEW
 ----------------------------------------------------------------- */
+
+  /* ------------------------------
+  Size guide display
+------------------------------------*/
+  const overlay = document.getElementById("overlay");
+  const closeGuide = document.getElementById("closeGuide");
+  const sizeGuideFooter = document.getElementById("sizeGuideFooter");
   const quick = document.getElementById("quickView");
+  const sizeGuideImg = document.getElementById("sizeGuideImg");
+  const returnAndRefundBtn = document.getElementById("returnAndRefundBtn");
+  const returnAndRefund = document.getElementById("returnAndRefund");
   let qvCurrent = null;
+
+  function sideGuideShow(sg) {
+    sg.addEventListener("click", (e) => {
+      e.preventDefault();
+      overlay.style.opacity = "1";
+      overlay.style.pointerEvents = "auto";
+      closeGuide.style.opacity = "1";
+      closeGuide.style.pointerEvents = "auto";
+      sizeGuideImg.style.display = "block";
+    });
+  }
+  closeGuide.addEventListener("click", () => {
+    // sizeGuideImg.style.display = "block"
+    overlay.style.opacity = "0";
+    overlay.style.pointerEvents = "none";
+    closeGuide.style.opacity = "0";
+    closeGuide.style.pointerEvents = "none";
+    returnAndRefund.style.opacity = "0";
+    returnAndRefund.style.pointerEvents = "none";
+  });
+
+  sideGuideShow(sizeGuideFooter);
+
+  returnAndRefundBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    sizeGuideImg.style.display = "none";
+    returnAndRefund.style.opacity = "1";
+    returnAndRefund.style.pointerEvents = "auto";
+    closeGuide.style.opacity = "1";
+    closeGuide.style.pointerEvents = "auto";
+    overlay.style.opacity = "1";
+    overlay.style.pointerEvents = "auto";
+  });
+
   function findProduct(id) {
     return PRODUCTS.find((p) => p.id === id);
   }
@@ -782,8 +914,84 @@ document.addEventListener("DOMContentLoaded", () => {
     qvCurrent = p;
     const out = p.stock === "out",
       s = STOCK[p.stock];
-    qvImg.src = p.img;
-    qvImg.alt = p.name;
+
+    const quickBox = document.getElementById("quickBox");
+    if (quickBox) {
+      quickBox.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+
+    qvImgWrap.innerHTML = `<div class="overflow-x-auto overflow-y-hidden flex img-cont-slider  [scrollbar-width:none][-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" id="qvImgSlider">${p.img.map((i) => `<img src="${i}" alt="${p.name}" class="w-full h-full object-cover "  onerror="this.style.opacity=0">`).join("")}   </div> 
+    
+    
+    
+    <button
+              class="absolute top-[50%] translate-y-[-50%] left-3 z-50 w-9 h-9 grid place-items-center bg-black/45 backdrop-blur transition-colors nav-btn"
+           id="qvPrev"
+              >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="17"
+                height="17"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
+            <button
+              class="absolute top-[50%] translate-y-[-50%] right-3 z-50 w-9 h-9 grid place-items-center bg-black/45 backdrop-blur transition-colors nav-btn"
+            id="qvNext"
+              >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="17"
+                height="17"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>`;
+
+    const slider = document.getElementById("qvImgSlider");
+    const prevBtn = document.getElementById("qvPrev");
+    const nextBtn = document.getElementById("qvNext");
+
+    slider.scrollLeft === 0
+      ? (prevBtn.style.opacity = "0.5")
+      : (prevBtn.style.opacity = "1");
+
+    nextBtn.addEventListener("click", () => {
+      if (nextBtn.style.opacity === "0.5") return;
+      slider.scrollBy({ left: slider.clientWidth, behavior: "smooth" });
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (prevBtn.style.opacity === "0.5") return;
+      slider.scrollBy({ left: -slider.clientWidth, behavior: "smooth" });
+    });
+
+    slider.addEventListener("scroll", () => {
+      slider.scrollLeft < 1
+        ? (prevBtn.style.opacity = "0.5")
+        : (prevBtn.style.opacity = "1");
+      slider.scrollWidth - slider.clientWidth - slider.scrollLeft < 1
+        ? (nextBtn.style.opacity = "0.5")
+        : (nextBtn.style.opacity = "1");
+    });
+
     qvCat.textContent = p.category;
     qvName.textContent = p.name;
     qvPrice.textContent = NGN(p.price);
@@ -792,7 +1000,7 @@ document.addEventListener("DOMContentLoaded", () => {
     qvSizes.innerHTML = p.sizes
       .map(
         (sz, i) =>
-          `<button class="qv-size border ${i === 0 ? "border-lilac text-lilac" : "border-[var(--line-strong)] text-pearl/70"} px-4 py-2 text-xs tracking-widest hover:border-lilac transition-colors">${sz}</button>`,
+          `<button class="qv-size border ${i === 0 ? "border-lilac text-lilac" : "border-[var(--line-strong)] text-pearl/70"} px-3 py-1 md:px-4 md:py-2 text-xs tracking-widest hover:border-lilac transition-colors">${sz}</button>`,
       )
       .join("");
     qvSizes.querySelectorAll(".qv-size").forEach((b) =>
@@ -812,6 +1020,19 @@ document.addEventListener("DOMContentLoaded", () => {
         );
       }),
     );
+
+    const qvColors = document.getElementById("qvColors");
+    qvColors.innerHTML = p.color
+      .map(
+        (c, i) =>
+          `<button class="qv-size border    ${i === 0 ? "border-lilac text-lilac" : "border-[var(--line-strong)] text-pearl/70"} px-3 py-1 md:px-4 md:py-2 text-xs tracking-widest hover:border-lilac transition-colors" style="background-color: ${c}"></button>`,
+      )
+      .join("");
+
+    const sizeGuide = document.getElementById("sizeGuide");
+
+    sideGuideShow(sizeGuide);
+
     qvAdd.disabled = out;
     qvAdd.textContent = out ? "Sold out" : "Add to bag";
     openOverlay(quick, ".panel");
@@ -824,6 +1045,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   qvWish.addEventListener("click", () => {
     if (qvCurrent) toggleWish(qvCurrent.id);
+  });
+
+  const qtyDecrement = document.getElementById("qtyDecrement");
+  const qtyIncrement = document.getElementById("qtyIncrement");
+  const qtyInput = document.getElementById("qtyInput");
+
+  qtyDecrement.addEventListener("click", () => {
+    const currentValue = parseInt(qtyInput.value);
+    if (currentValue > 1) {
+      qtyInput.value = currentValue - 1;
+    }
+  });
+
+  qtyIncrement.addEventListener("click", () => {
+    const currentValue = parseInt(qtyInput.value);
+    qtyInput.value = currentValue + 1;
   });
 
   /* -----------------------------------------------------------------
@@ -878,7 +1115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const p = findProduct(l.id);
         return `
     <div class="flex gap-4">
-      <div class="w-20 h-24 bg-char overflow-hidden shrink-0"><img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover" onerror="this.style.opacity=0"></div>
+      <div class="w-20 h-24 bg-char overflow-hidden shrink-0"><img src="${p.img[0]}" alt="${p.name}" class="w-full h-full object-cover" onerror="this.style.opacity=0"></div>
       <div class="flex-1">
         <h4 class="font-display text-lg leading-tight">${p.name}</h4>
         <p class="text-xs text-smoke mb-2">${p.category}</p>
@@ -975,36 +1212,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* -----------------------------------------------------------------
-   9) CHECKOUT + PAYSTACK  (placeholder integration — clearly commented)
-
-   FLOW: Add to cart → Cart review → Checkout → Paystack → Confirmation
-
-   >>> BACKEND / PAYSTACK — to go live:
-     1. Add the inline script in <head>:
-          <script src="https://js.paystack.co/v1/inline.js"><\/script>
-     2. Replace SIMULATION below with the real handler:
-
-        const handler = PaystackPop.setup({
-          key: 'pk_live_XXXXXXXX',              // your PUBLIC key
-          email: form.email.value,
-          amount: cartTotalValue() * 100,        // Paystack uses kobo
-          currency: 'NGN',
-          metadata: { custom_fields: [
-            { display_name:'Name',  variable_name:'name',  value: form.name.value },
-            { display_name:'Phone', variable_name:'phone', value: form.phone.value },
-            { display_name:'Address', variable_name:'address', value: form.address.value },
-          ]},
-          callback: function(response){
-            // response.reference -> verify on YOUR server before fulfilling:
-            // await fetch('/api/verify-payment', {method:'POST', body: JSON.stringify(response)})
-            showConfirmation(response.reference);
-          },
-          onClose: function(){ payMsg.textContent='Payment window closed.'; }
-        });
-        handler.openIframe();
-
-   NOTE: never trust the client callback alone — always verify the
-   transaction reference server-side via the Paystack verify API.
+   
 ----------------------------------------------------------------- */
   const checkout = document.getElementById("checkout");
 
@@ -1263,7 +1471,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .map(
             (p) => `
     <button class="text-left group" data-quick="${p.id}">
-      <div class="aspect-[3/4] overflow-hidden bg-char mb-2"><img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.style.opacity=0"></div>
+      <div class="aspect-[3/4] overflow-hidden bg-char mb-2"><img src="${p.img[0]}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.style.opacity=0"></div>
       <p class="font-display text-base leading-tight">${p.name}</p><p class="text-lilac text-xs">${NGN(p.price)}</p>
     </button>`,
           )
@@ -1293,6 +1501,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  /* FOOTER */
 
   /* simple forms */
   function handleForm(formId, msgId, okText) {
