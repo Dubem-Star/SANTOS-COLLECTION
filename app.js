@@ -870,6 +870,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sizeGuideImg = document.getElementById("sizeGuideImg");
   const returnAndRefundBtn = document.getElementById("returnAndRefundBtn");
   const returnAndRefund = document.getElementById("returnAndRefund");
+  const sizeGuideSidebar = document.getElementById("sizeGuideSidebar");
   let qvCurrent = null;
 
   function sideGuideShow(sg) {
@@ -893,6 +894,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   sideGuideShow(sizeGuideFooter);
+  sideGuideShow(sizeGuideSidebar);
 
   returnAndRefundBtn.addEventListener("click", (e) => {
     e.preventDefault();
