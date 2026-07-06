@@ -166,6 +166,10 @@ body.light .faq-item:first-child {
   border-top: 1px solid rgba(101, 90, 101, 0.16);
 }
 
+.legal-cont {
+  border: 1px solid rgba(200, 162, 200, 0.16);
+}
+
 .accent {
   color: #c8a2c8;
 }
