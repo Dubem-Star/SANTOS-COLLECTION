@@ -70,7 +70,7 @@
     <button
       id="closeGuide"
       aria-label="Close"
-      class="fixed top-10 right-4 md:right-12 z-10 text-2xl leading-none w-7 h-7 md:w-9 md:h-9 grid place-items-center bg-black/40 hover:text-lilac z-[9999] opacity-0 pointer-events-none transition-opacity duration-300"
+      class="fixed top-16 lg:top-10 right-9 lg:right-4 md:right-12 z-10 text-2xl leading-none w-7 h-7 grid place-items-center bg-black/40 hover:text-lilac z-[9999] opacity-0 pointer-events-none transition-opacity duration-300 group-[.light]:text-pearl"
     >
       ×
     </button>
@@ -79,14 +79,6 @@
       class="bg-black/80 backdrop-blur fixed inset-0 z-[9990] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
       id="overlay"
     >
-      <!-- <button
-        id="closeGuide"
-        aria-label="Close"
-        class="absolute top-10 right-4 md:right-12 z-10 text-2xl leading-none w-7 h-7 md:w-9 md:h-9 grid place-items-center bg-black/40 hover:text-lilac z-[99999]"
-      >
-        ×
-      </button> -->
-
       <img
         src="media/size_guide.png"
         alt="Size Guide"
@@ -1098,6 +1090,93 @@
       </p>
     </div>
 
+    <!-- =================== FAQs =================== -->
+
+    <div
+      class="fixed bg-onyx p-0 md:p-6 z-[9998] [scrollbar-width:none][-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden max-w-[700px] top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 max-h-[90vh] overflow-y-auto w-[90%] h-[90%] opacity-0 pointer-events-none transition-opacity duration-300 group-[.light]:bg-pearly group-[.light]:text-onyx"
+      id="faqModel"
+      data-lenis-prevent
+    >
+      <!-- Header -->
+      <div class="max-w-3xl mx-auto px-6 pt-20 pb-4">
+        <p
+          class="text-xs tracking-[0.3em] uppercase accent mb-4 group-[.light]:font-bold"
+        >
+          Customer Care
+        </p>
+        <h1
+          class="font-serif text-4xl md:text-6xl font-light text-[#f6f3f7] leading-tight mb-4 group-[.light]:text-onyx"
+        >
+          Frequently Asked<br /><em>Questions</em>
+        </h1>
+        <p
+          class="text-sm text-[#8b7e90] tracking-wide leading-relaxed max-w-lg group-[.light]:font-semi-bold"
+        >
+          Everything you need to know about shopping with Santos Collection.
+        </p>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div class="max-w-3xl mx-auto px-6 pb-24 mt-8" id="faqContainer"></div>
+
+      <!-- Still Need Help Banner -->
+      <div class="max-w-3xl mx-auto px-6 pb-24">
+        <div
+          class="border border-[rgba(200,162,200,0.2)] group-[.light]:border-[rgba(101,90,101,0.2)] p-8 md:p-10 relative overflow-hidden"
+        >
+          <!-- subtle background glow -->
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-[rgba(200,162,200,0.04)] group-[.light]:from-[rgba(232, 232, 232, 1)] to-transparent pointer-events-none"
+          ></div>
+          <p class="text-xs tracking-[0.3em] uppercase accent mb-3">
+            Still Need Help?
+          </p>
+          <h2
+            class="font-serif text-3xl md:text-4xl font-light text-[#f6f3f7] mb-3 group-[.light]:text-onyx"
+          >
+            We're here for you.
+          </h2>
+          <p class="text-sm text-[#8b7e90] leading-relaxed mb-6 max-w-md">
+            If you can't find the answer you're looking for, our Customer Care
+            team is always happy to assist.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a
+              href="mailto:santosbliss18@gmail.com"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-[#c8a2c8] text-[#0b080d] text-xs font-semibold tracking-[0.15em] uppercase hover:bg-[#dcc0e4] transition-colors duration-200"
+            >
+              Email Us
+            </a>
+            <a
+              href="https://wa.me/2348020919409"
+              class="inline-flex items-center gap-2 px-6 py-3 border border-[rgba(200,162,200,0.34)] text-[#c8a2c8] text-xs font-semibold tracking-[0.15em] uppercase hover:border-[#c8a2c8] transition-colors duration-200"
+            >
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function toggleFaq(item) {
+          const answer = item.querySelector(".faq-answer");
+          const isOpen = item.classList.contains("open");
+
+          // Close all open items
+          document.querySelectorAll(".faq-item.open").forEach((openItem) => {
+            openItem.classList.remove("open");
+            openItem.querySelector(".faq-answer").classList.remove("open");
+          });
+
+          // If it wasn't open, open it
+          if (!isOpen) {
+            item.classList.add("open");
+            answer.classList.add("open");
+          }
+        }
+      </script>
+    </div>
+
     <!-- =================== FOOTER =================== -->
     <footer
       class="bg-black border-t border-[var(--line)] group-[.light]:bg-white group-[.light]:border-[var(--ashy)]"
@@ -1147,7 +1226,9 @@
                   >Size Guide</a
                 >
               </li>
-              <li><a href="#" class="link-sweep">FAQs</a></li>
+              <li>
+                <a href="#" class="link-sweep" id="faqsFooterBtn">FAQs</a>
+              </li>
             </ul>
           </div>
           <div>

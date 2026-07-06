@@ -857,12 +857,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* -----------------------------------------------------------------
-   7) QUICK VIEW
+  -- DUBEM's CODES --
 ----------------------------------------------------------------- */
-
-  /* ------------------------------
-  Size guide display
-------------------------------------*/
   const overlay = document.getElementById("overlay");
   const closeGuide = document.getElementById("closeGuide");
   const sizeGuideFooter = document.getElementById("sizeGuideFooter");
@@ -871,7 +867,59 @@ document.addEventListener("DOMContentLoaded", () => {
   const returnAndRefundBtn = document.getElementById("returnAndRefundBtn");
   const returnAndRefund = document.getElementById("returnAndRefund");
   const sizeGuideSidebar = document.getElementById("sizeGuideSidebar");
+  const faqsFooterBtn = document.getElementById("faqsFooterBtn");
+  const faqContainer = document.getElementById("faqContainer");
+  const faqModel = document.getElementById("faqModel");
   let qvCurrent = null;
+
+  const faqs = [
+    {
+      question: "How long does delivery take?",
+      answer:
+        "Orders within Lagos are typically delivered within 1–3 business days, while deliveries outside Lagos usually take 3–7 business days, depending on your location.",
+    },
+
+    {
+      question: "How can I track my order?",
+      answer:
+        "Once your order has been dispatched, you'll receive a confirmation message with your tracking details (where applicable).",
+    },
+
+    {
+      question: "Can I return or exchange my order?",
+      answer:
+        "Yes. Eligible items can be returned or exchanged within 5 days of delivery, provided they are unworn, unwashed, and in their original condition with all tags attached. Please refer to our Return & Refund Policy for full details. ",
+    },
+
+    {
+      question: "What if I receive the wrong or a damaged item?",
+      answer:
+        "If your order arrives damaged, defective, or incorrect, please contact us within 48 hours of delivery with your order number and clear photos of the item. We'll resolve the issue as quickly as possible.",
+    },
+
+    {
+      question: "Can I cancel my order?",
+      answer:
+        "Orders can only be cancelled before they have been processed or shipped. Once dispatched, orders cannot be cancelled. ",
+    },
+
+    {
+      question: "How do I know my size?",
+      answer:
+        "Please refer to our Size Guide before placing your order. If you're between sizes or need assistance, our Customer Care team will be happy to help. ",
+    },
+
+    {
+      question: "What payment methods do you accept?",
+      answer:
+        "We accept secure payments via debit cards, bank transfers, and other payment options displayed at checkout.",
+    },
+    {
+      question: "Do you restock sold-out items?",
+      answer:
+        "Some of our best-selling styles are restocked, while others are limited editions and may not return. Follow us on social media or subscribe to our newsletter to stay updated on new arrivals and restocks.",
+    },
+  ];
 
   function sideGuideShow(sg) {
     sg.addEventListener("click", (e) => {
@@ -883,29 +931,83 @@ document.addEventListener("DOMContentLoaded", () => {
       sizeGuideImg.style.display = "block";
     });
   }
+  sideGuideShow(sizeGuideFooter);
+  sideGuideShow(sizeGuideSidebar);
+
+  function positionCloseBtn() {
+    const rect = returnAndRefund.getBoundingClientRect();
+    closeGuide.style.top = `${rect.top + 10}px`;
+    closeGuide.style.left = `${rect.right - closeGuide.offsetWidth - 10}px`;
+  }
+
+  function showLegals(e, r, f, element) {
+    e.preventDefault();
+    positionCloseBtn();
+    sizeGuideImg.style.display = "none";
+    element.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    if (r) {
+      element.style.opacity = "1";
+      element.style.pointerEvents = "auto";
+    } else if (f) {
+      element.style.opacity = "1";
+      element.style.pointerEvents = "auto";
+    }
+    closeGuide.style.opacity = "1";
+    closeGuide.style.pointerEvents = "auto";
+    overlay.style.opacity = "1";
+    overlay.style.pointerEvents = "auto";
+  }
+
+  returnAndRefundBtn.addEventListener("click", (e) => {
+    showLegals(e, true, false, returnAndRefund);
+  });
+
+  faqsFooterBtn.addEventListener("click", (e) => {
+    showLegals(e, false, true, faqModel);
+  });
+
   closeGuide.addEventListener("click", () => {
-    // sizeGuideImg.style.display = "block"
     overlay.style.opacity = "0";
     overlay.style.pointerEvents = "none";
     closeGuide.style.opacity = "0";
     closeGuide.style.pointerEvents = "none";
     returnAndRefund.style.opacity = "0";
     returnAndRefund.style.pointerEvents = "none";
+    faqModel.style.opacity = "0";
+    faqModel.style.pointerEvents = "none";
   });
 
-  sideGuideShow(sizeGuideFooter);
-  sideGuideShow(sizeGuideSidebar);
+  faqContainer.innerHTML = faqs
+    .map(
+      ({ question, answer }) => `
+  <div class="faq-item py-6 cursor-pointer" onclick="toggleFaq(this)">
+      <div class="flex items-center justify-between gap-4">
+        <h3 class="text-sm md:text-base font-medium tracking-wide text-[#f6f3f7] group-[.light]:text-onyx leading-snug">
+         ${question}
+        </h3>
+        <span class="faq-icon flex-shrink-0 w-5 h-5 accent text-xl font-light leading-none select-none">+</span>
+      </div>
+      <div class="faq-answer">
+        <p class="text-sm text-[#8b7e90] group-[.light]:text-[#6b636e] leading-relaxed mt-4 pr-8">
+          ${answer}
+        </p>
+      </div>
+    </div>
+  `,
+    )
+    .join("");
 
-  returnAndRefundBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    sizeGuideImg.style.display = "none";
-    returnAndRefund.style.opacity = "1";
-    returnAndRefund.style.pointerEvents = "auto";
-    closeGuide.style.opacity = "1";
-    closeGuide.style.pointerEvents = "auto";
-    overlay.style.opacity = "1";
-    overlay.style.pointerEvents = "auto";
-  });
+  /* -----------------------------------------------------------------
+   7) QUICK VIEW
+----------------------------------------------------------------- */
+
+  /* ------------------------------
+  Size guide display
+------------------------------------*/
 
   function findProduct(id) {
     return PRODUCTS.find((p) => p.id === id);
