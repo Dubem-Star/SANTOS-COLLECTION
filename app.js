@@ -780,10 +780,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Usage:
-  const myElement = document.getElementById("myElement");
-  enableSwipe(myElement, (direction) => {
-    console.log("Swiped " + direction);
-  });
 
   function renderShop() {
     const list = getFiltered();
