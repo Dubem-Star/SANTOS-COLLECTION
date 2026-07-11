@@ -429,6 +429,10 @@ body.light .btn {
   color: var(--pearl);
 }
 
+.slider {
+  touch-action: pan-y; /* This tells the browser: "Only handle vertical scrolling, leave horizontal to the JS" */
+}
+
 .btn::before {
   content: "";
   position: absolute;
