@@ -424,6 +424,11 @@ textarea:focus-visible,
     color 0.5s var(--ease),
     border-color 0.5s var(--ease);
 }
+
+body.light .btn {
+  color: var(--pearl);
+}
+
 .btn::before {
   content: "";
   position: absolute;
@@ -436,6 +441,17 @@ textarea:focus-visible,
 .btn:hover:not(:disabled)::before {
   transform: scaleX(1);
 }
+
+body.light .qv-wishlist:hover,
+body.light .follow-btn {
+  color: var(--pearl) !important;
+}
+
+body.light .btn:hover,
+body.light .btn-fill:hover {
+  color: var(--onyx);
+}
+
 .btn-fill {
   background: var(--lilac);
   color: #000;
@@ -507,10 +523,15 @@ textarea:focus-visible,
   border-color: var(--lilac);
   color: var(--lilac);
 }
+
 .pill.active {
   background: var(--lilac);
   color: #000;
   border-color: var(--lilac);
+}
+
+body.light .pill.active {
+  color: var(--pearl);
 }
 .filterbar::-webkit-scrollbar {
   height: 0;
@@ -537,6 +558,11 @@ textarea:focus-visible,
   color: #000;
   border-color: var(--lilac);
 }
+
+body.light .page-btn.active {
+  color: var(--pearl);
+}
+
 .page-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;

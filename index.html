@@ -107,7 +107,7 @@
           >
             <a href="#shop" class="link-sweep">Shop</a>
             <a href="#categories" class="link-sweep">Collections</a>
-            <a href="#lookbook" class="link-sweep">Lookbook</a>
+            <!-- <a href="#lookbook" class="link-sweep">Lookbook</a> -->
             <a href="#contact" class="link-sweep">Contact</a>
           </nav>
         </div>
@@ -338,7 +338,7 @@
           <h2 class="display text-[2.2rem] md:text-[3rem]" id="shopHeading">
             All pieces
           </h2>
-          <p class="text-pearl/50 text-sm" id="resultCount"></p>
+          <!-- <p class="text-pearl/50 text-sm" id="resultCount"></p> -->
         </div>
 
         <!-- Product grid is rendered by renderShop() from the PRODUCTS array.
@@ -740,7 +740,7 @@
           href="https://instagram.com"
           target="_blank"
           rel="noopener"
-          class="btn btn-ghost px-9 py-4 group-[.light]:text-onyx"
+          class="btn btn-ghost follow-btn px-9 py-4 group-[.light]:text-onyx"
           >Follow @SantosCollection</a
         >
       </div>
@@ -984,7 +984,7 @@
       id="returnAndRefund"
       data-lenis-prevent
     >
-      <h2 class="text-3xl text-lilac mb-4 mt-6">
+      <h2 class="font-serif text-3xl md:text-4xl text-lilac mb-6 mt-6">
         <strong>Refund and Returns Policy</strong>
       </h2>
 
@@ -998,7 +998,7 @@
         purchase.
       </p>
 
-      <h2 class="text-xl mb-2 mt-7 text-lilac">
+      <h2 class="font-serif text-2xl mb-2 mt-7 text-lilac">
         <strong> Returns</strong>
       </h2>
       <p class="leading-[1.8] text-sm">
@@ -1027,7 +1027,7 @@
         </li>
       </ul>
 
-      <h2 class="text-xl mb-2 mt-7 text-lilac">
+      <h2 class="font-serif text-2xl mb-2 mt-7 text-lilac">
         <strong> Exchanges</strong>
       </h2>
       <p class="leading-[1.8] text-sm">
@@ -1049,7 +1049,7 @@
         Exchange requests must be made within 48 hours of delivery.
       </p>
 
-      <h2 class="text-xl mb-2 mt-7 text-lilac">
+      <h2 class="font-serif text-2xl mb-2 mt-7 text-lilac">
         <strong> Incorrect, Damaged or Defective Items</strong>
       </h2>
       <p class="leading-[1.8] text-sm">
@@ -1072,7 +1072,7 @@
         additional cost to you.
       </p>
 
-      <h2 class="text-xl mb-2 mt-7 text-lilac">
+      <h2 class="font-serif text-2xl mb-2 mt-7 text-lilac">
         <strong>Non-Returnable Items</strong>
       </h2>
       <p class="leading-[1.8] text-sm">
@@ -1136,7 +1136,7 @@
         >
           <!-- subtle background glow -->
           <div
-            class="absolute inset-0 bg-gradient-to-br from-[rgba(200,162,200,0.04)] group-[.light]:from-[rgba(232, 232, 232, 1)] to-transparent pointer-events-none"
+            class="absolute inset-0 bg-gradient-to-br from-[rgba(200,162,200,0.04)] group-[.light]:from-[#a296a771] to-transparent pointer-events-none"
           ></div>
           <p class="text-xs tracking-[0.3em] uppercase accent mb-3">
             Still Need Help?
@@ -1284,7 +1284,7 @@
     <button
       id="floatCart"
       aria-label="Open cart"
-      class="lg:hidden fixed bottom-5 right-5 z-[80] w-14 h-14 rounded-full bg-lilac text-black grid place-items-center shadow-lg shadow-black/40"
+      class="lg:hidden fixed bottom-5 right-5 z-[80] w-14 h-14 rounded-full bg-lilac text-black grid place-items-center shadow-lg shadow-black/40 group-[.light]:text-pearl"
     >
       <svg
         viewBox="0 0 24 24"
@@ -1528,7 +1528,7 @@
           <button
             data-close-quick
             aria-label="Close"
-            class="text-2xl leading-none w-7 ml-auto mr-4 h-7 md:w-9 md:h-9 grid place-items-center bg-black/40 hover:text-lilac"
+            class="text-2xl leading-none w-7 ml-auto mr-4 h-7 md:w-9 md:h-9 grid place-items-center bg-black/40 hover:text-lilac group-[.light]:text-white"
           >
             ×
           </button>
@@ -1536,7 +1536,7 @@
 
         <div class="grid md:grid-cols-2 relative" data-lenis-prevent>
           <div
-            class="aspect-[3/4] bg-char relative overflow-x-hidden overflow-y-hidden static md:sticky top-0 border-r border-[var(--line)]"
+            class="aspect-[3/4] bg-char group-[.light]:bg-[#c2c1c1] relative overflow-x-hidden overflow-y-hidden static md:sticky top-0 border-r border-[var(--line)]"
             id="qvImgWrap"
           ></div>
           <div class="p-7 md:p-10 flex flex-col">
@@ -1601,13 +1601,16 @@
             </div>
 
             <div class="mt-auto flex gap-3">
-              <button id="qvAdd" class="btn btn-fill flex-1 py-4">
+              <button
+                id="qvAdd"
+                class="btn btn-fill flex-1 py-4 group-[.light]:text-white"
+              >
                 Add to cart
               </button>
               <button
                 id="qvWish"
                 aria-label="Wishlist"
-                class="btn btn-ghost px-5 py-4"
+                class="btn btn-ghost px-5 py-4 group-[.light]:text-black qv-wishlist"
               >
                 <svg
                   class="w-5 h-5"

@@ -420,7 +420,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  /* Filter categories (order shown in the bar). 'All' first. */
   const CATEGORIES = [
     "All",
     "New",
@@ -480,12 +479,12 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Inventory label helpers (palette-safe: lilac / orchid / smoke only) */
   const STOCK = {
     in: {
-      label: "In Stock",
+      label: "Available",
       cls: "text-pearl/60",
       dot: "background:var(--lilac)",
     },
     low: {
-      label: "Low Stock",
+      label: "Limited pieces left",
       cls: "text-orchid",
       dot: "background:var(--orchid)",
     },
@@ -707,7 +706,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="imgwrap aspect-[3/4] mb-3">
       ${p.tag && !out ? `<span class="absolute top-3 left-3 z-10 eyebrow bg-black/55 backdrop-blur px-2.5 py-1 text-[.55rem]">${p.tag}</span>` : ""}
       ${out ? `<span class="absolute top-3 left-3 z-10 eyebrow bg-black/70 backdrop-blur px-2.5 py-1 text-[.55rem] text-smoke border border-[var(--line)]">Sold Out</span>` : ""}
-      <button class="wish-btn absolute top-3 right-3 z-10 w-9 h-9 grid place-items-center bg-black/45 backdrop-blur transition-colors ${wishlist.has(p.id) ? "text-lilac" : ""}" data-wish="${p.id}" aria-label="Add to wishlist">
+      <button class="wish-btn absolute top-3 right-3 z-10 w-9 h-9 grid place-items-center group-[.light]:text-white bg-black/45 backdrop-blur transition-colors ${wishlist.has(p.id) ? "text-lilac" : ""}" data-wish="${p.id}" aria-label="Add to wishlist" >
       <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -780,6 +779,12 @@ document.addEventListener("DOMContentLoaded", () => {
       arrow(-1, cur === 1, "Previous") + nums + arrow(1, cur === total, "Next");
   }
 
+  // Usage:
+  const myElement = document.getElementById("myElement");
+  enableSwipe(myElement, (direction) => {
+    console.log("Swiped " + direction);
+  });
+
   function renderShop() {
     const list = getFiltered();
     const total = Math.max(1, Math.ceil(list.length / shopState.perPage));
@@ -789,8 +794,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("shopHeading").textContent =
       shopState.category === "All" ? "All pieces" : shopState.category;
-    document.getElementById("resultCount").textContent =
-      `${list.length} ${list.length === 1 ? "style" : "styles"}`;
+    // document.getElementById("resultCount").textContent =
+    //   `${list.length} ${list.length === 1 ? "style" : "styles"}`;
 
     const grid = document.getElementById("productGrid");
     const empty = document.getElementById("emptyState");
@@ -971,6 +976,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   closeGuide.addEventListener("click", () => {
+    document.querySelectorAll(".faq-item.open").forEach((openItem) => {
+      openItem.classList.remove("open");
+      openItem.querySelector(".faq-answer").classList.remove("open");
+    });
+
     overlay.style.opacity = "0";
     overlay.style.pointerEvents = "none";
     closeGuide.style.opacity = "0";
@@ -1032,7 +1042,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     
     <button
-              class="absolute top-[50%] translate-y-[-50%] left-3 z-50 w-9 h-9 grid place-items-center bg-black/45 backdrop-blur transition-colors nav-btn"
+              class="absolute top-[50%] translate-y-[-50%] left-3 z-50 w-9 h-9 grid place-items-center bg-black/45 backdrop-blur transition-colors nav-btn  group-[.light]:text-white"
            id="qvPrev"
               >
               <svg
@@ -1051,7 +1061,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </button>
 
             <button
-              class="absolute top-[50%] translate-y-[-50%] right-3 z-50 w-9 h-9 grid place-items-center bg-black/45 backdrop-blur transition-colors nav-btn"
+              class="absolute top-[50%] translate-y-[-50%] right-3 z-50 w-9 h-9 grid place-items-center bg-black/45 backdrop-blur transition-colors nav-btn group-[.light]:text-white"
             id="qvNext"
               >
               <svg
@@ -1095,6 +1105,40 @@ document.addEventListener("DOMContentLoaded", () => {
         ? (nextBtn.style.opacity = "0.5")
         : (nextBtn.style.opacity = "1");
     });
+
+    function enableSwipe(element) {
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      element.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        },
+        { passive: true },
+      );
+
+      element.addEventListener(
+        "touchend",
+        (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+        },
+        { passive: true },
+      );
+
+      function handleSwipe() {
+        const threshold = 50; // Minimum distance to be considered a swipe
+        if (touchEndX < touchStartX - threshold) {
+          slider.scrollBy({ left: slider.clientWidth, behavior: "smooth" });
+        }
+        if (touchEndX > touchStartX + threshold) {
+          slider.scrollBy({ left: -slider.clientWidth, behavior: "smooth" });
+        }
+      }
+    }
+
+    enableSwipe(slider);
 
     qvCat.textContent = p.category;
     qvName.textContent = p.name;
