@@ -116,13 +116,13 @@ body.light .sidebar-footer {
   margin-top: 8px !important;
 }
 
-.img-cont-slider {
+/* .img-cont-slider {
   pointer-events: none;
-}
+} */
 
-.img-cont-slider .nav-btn {
+/* .img-cont-slider .nav-btn {
   pointer-events: auto;
-}
+} */
 
 .no-spin::-webkit-outer-spin-button,
 .no-spin::-webkit-inner-spin-button {
@@ -427,10 +427,6 @@ textarea:focus-visible,
 
 body.light .btn {
   color: var(--pearl);
-}
-
-.slider {
-  touch-action: pan-y; /* This tells the browser: "Only handle vertical scrolling, leave horizontal to the JS" */
 }
 
 .btn::before {

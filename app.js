@@ -1126,10 +1126,10 @@ document.addEventListener("DOMContentLoaded", () => {
       function handleSwipe() {
         const threshold = 50; // Minimum distance to be considered a swipe
         if (touchEndX < touchStartX - threshold) {
-          slider.scrollBy({ left: slider.clientWidth, behavior: "smooth" });
+          element.scrollBy({ left: element.clientWidth, behavior: "smooth" });
         }
         if (touchEndX > touchStartX + threshold) {
-          slider.scrollBy({ left: -slider.clientWidth, behavior: "smooth" });
+          element.scrollBy({ left: -element.clientWidth, behavior: "smooth" });
         }
       }
     }
