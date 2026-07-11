@@ -1105,11 +1105,17 @@ document.addEventListener("DOMContentLoaded", () => {
     function enableSwipe(element) {
       let touchStartX = 0;
       let touchEndX = 0;
-
+      let isZooming = false;
       element.addEventListener(
         "touchstart",
         (e) => {
-          touchStartX = e.changedTouches[0].screenX;
+          if (e.touches.length > 1) {
+            isZooming = true;
+            return; // Ignore if more than one finger is used (pinch zoom)
+          } else {
+            isZooming = false;
+            touchStartX = e.changedTouches[0].screenX;
+          }
         },
         { passive: true },
       );
@@ -1117,6 +1123,7 @@ document.addEventListener("DOMContentLoaded", () => {
       element.addEventListener(
         "touchend",
         (e) => {
+          if (isZooming) return; // Ignore if pinch zoom was detected
           touchEndX = e.changedTouches[0].screenX;
           handleSwipe();
         },

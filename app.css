@@ -117,7 +117,7 @@ body.light .sidebar-footer {
 }
 
 .img-cont-slider {
-  touch-action: pan-y; /* This tells the browser: "Only handle vertical scrolling, leave horizontal to the JS" */
+  touch-action: pan-y pinch-zoom; /* This tells the browser: "Only handle vertical scrolling, leave horizontal to the JS" */
 }
 
 .img-cont-slider .nav-btn {
