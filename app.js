@@ -1124,7 +1124,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       function handleSwipe() {
-        const threshold = 10; // Minimum distance to be considered a swipe
+        const threshold = 1; // Minimum distance to be considered a swipe
         if (touchEndX < touchStartX - threshold) {
           element.scrollBy({ left: element.clientWidth, behavior: "smooth" });
         }
