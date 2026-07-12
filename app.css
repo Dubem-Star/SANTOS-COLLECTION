@@ -117,6 +117,7 @@ body.light .sidebar-footer {
 }
 
 .img-cont-slider {
+  overflow-x: hidden;
   touch-action: pan-y pinch-zoom; /* This tells the browser: "Only handle vertical scrolling, leave horizontal to the JS" */
 }
 

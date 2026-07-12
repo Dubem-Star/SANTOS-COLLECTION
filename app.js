@@ -1173,12 +1173,49 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     const qvColors = document.getElementById("qvColors");
-    qvColors.innerHTML = p.color
-      .map(
-        (c, i) =>
-          `<button class="qv-size border    ${i === 0 ? "border-lilac text-lilac" : "border-[var(--line-strong)] text-pearl/70"} px-3 py-1 md:px-4 md:py-2 text-xs tracking-widest hover:border-lilac transition-colors" style="background-color: ${c}"></button>`,
-      )
-      .join("");
+    qvColors.innerHTML = ` 
+   <p class="tracking-widest text-xs text-pearl/60 mb-3">
+    COLOR: <span data-color-label class="text-lilac ml-1">${p.color[0].toUpperCase()}</span>
+  </p>
+  <div id="colors" class="flex flex-wrap gap-2">
+  
+  ${p.color
+    .map(
+      (c, i) =>
+        `<button 
+        class="qv-color-btn flex items-center gap-2 ${i === 0 ? "border-lilac text-lilac" : "border-[var(--line-strong)] text-pearl/70"} border px-3 py-1 md:px-4 md:py-2 text-xs tracking-widest hover:border-lilac transition-colors"
+        data-color="${c}"
+        
+      >
+        <span class="inline-block w-3 h-3  rounded-full flex-shrink-0" style="background-color: ${c}"></span>
+        <span class="color-name">${c.toUpperCase()}</span>
+      </button>`,
+    )
+    .join("")}
+  </div>
+
+              `;
+
+    const colorButtons = document.querySelectorAll(".qv-color-btn");
+    const colorLabel = document.querySelector("[data-color-label]");
+
+    for (let btn of colorButtons) {
+      btn.addEventListener("click", () => {
+        const color = btn
+          .querySelector(".color-name")
+          .textContent.toUpperCase();
+        btn
+          .closest("[data-color-section]")
+          .querySelector("[data-color-label]").textContent = color;
+
+        for (let btn of colorButtons) {
+          btn.classList.remove("border-lilac", "text-lilac");
+          btn.classList.add("border-[var(--line-strong)]", "text-pearl/70");
+        }
+
+        btn.classList.add("border-lilac", "text-lilac");
+      });
+    }
 
     const sizeGuide = document.getElementById("sizeGuide");
 

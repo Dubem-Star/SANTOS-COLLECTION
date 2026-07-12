@@ -1548,20 +1548,20 @@
             </div>
             <!-- =================== DESCRIPTION -->
             <div>
-              <p class="eyebrow mb-1 mt-3">Description:</p>
+              <p class="eyebrow mb-1 mt-3 lg:mt-4">Description:</p>
               <p
-                class="text-pearl/55 text-sm leading-relaxed mb-6"
+                class="text-pearl/55 text-sm leading-relaxed mb-6 lg:mb-8"
                 id="qvDesc"
               ></p>
             </div>
 
             <!-- =================== SIZES -->
-            <div class="mb-8">
+            <div class="mb-8 lg:mb-9">
               <p class="eyebrow mb-2 mt-1">Sizes:</p>
               <div class="flex gap-2 mb-1 flex-wrap" id="qvSizes"></div>
 
               <span
-                class="text-sm text-lilac cursor-pointer hover:text-lilac text-underline"
+                class="text-sm text-lilac cursor-pointer hover:text-lilac underline"
                 id="sizeGuide"
               >
                 size guide
@@ -1569,13 +1569,10 @@
             </div>
 
             <!-- =================== COLOR -->
-            <div class="mb-8">
-              <p class="eyebrow mb-2 mt-1">Color:</p>
-              <div class="flex gap-2 mb-1 flex-wrap" id="qvColors"></div>
-            </div>
+            <div class="mb-8 lg:mb-9" id="qvColors" data-color-section></div>
 
             <!-- =================== QUANTITY -->
-            <div class="mb-8">
+            <div class="mb-8 lg:mb-9">
               <p class="eyebrow mb-2 mt-1">Quantity:</p>
               <div class="flex items-center">
                 <button
@@ -1600,6 +1597,7 @@
               </div>
             </div>
 
+            <!-- =================== ADD TO CART BTN -->
             <div class="mt-auto flex gap-3">
               <button
                 id="qvAdd"
