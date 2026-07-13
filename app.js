@@ -1011,14 +1011,14 @@ document.addEventListener("DOMContentLoaded", () => {
    7) QUICK VIEW
 ----------------------------------------------------------------- */
 
-  /* ------------------------------
-  Size guide display
-------------------------------------*/
-
   function findProduct(id) {
     return PRODUCTS.find((p) => p.id === id);
   }
   function openQuick(id) {
+    const qtyDecrement = document.getElementById("qtyDecrement");
+    const qtyIncrement = document.getElementById("qtyIncrement");
+    const qtyInput = document.getElementById("qtyInput");
+    const qvWish = document.getElementById("qvWish");
     const p = findProduct(id);
     if (!p) return;
     qvCurrent = p;
@@ -1033,7 +1033,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    qvImgWrap.innerHTML = `<div class="overflow-x-auto overflow-y-hidden flex img-cont-slider  [scrollbar-width:none][-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" id="qvImgSlider">${p.img.map((i) => `<img src="${i}" alt="${p.name}" class="w-full h-full object-cover "  onerror="this.style.opacity=0">`).join("")}   </div> 
+    qtyInput.value = 1;
+
+    function handleSoldOutQtyPill(element, boolean) {
+      if (boolean) {
+        for (e of element) {
+          e.style.pointerEvents = "none";
+          e.style.opacity = "0.5";
+        }
+      }
+    }
+    handleSoldOutQtyPill([qtyDecrement, qtyIncrement, qtyInput, qvWish], out);
+
+    qvImgWrap.innerHTML = `<div class=" overflow-y-hidden flex img-cont-slider  [scrollbar-width:none][-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" id="qvImgSlider">${p.img.map((i) => `<img src="${i}" alt="${p.name}" class="w-full h-full object-cover "  onerror="this.style.opacity=0">`).join("")}   </div> 
     
     
     
@@ -1151,7 +1163,7 @@ document.addEventListener("DOMContentLoaded", () => {
     qvSizes.innerHTML = p.sizes
       .map(
         (sz, i) =>
-          `<button class="qv-size border ${i === 0 ? "border-lilac text-lilac" : "border-[var(--line-strong)] text-pearl/70"} px-3 py-1 md:px-4 md:py-2 text-xs tracking-widest hover:border-lilac transition-colors">${sz}</button>`,
+          `<button  ${out ? "disabled" : ""} class="qv-size border  ${i === 0 && !out ? "border-lilac text-lilac" : "border-[var(--line-strong)] text-pearl/70"} ${out ? "opacity-50 pointer-events-none" : ""} px-3 py-1 md:px-4 md:py-2 text-xs tracking-widest hover:border-lilac transition-colors">${sz}</button>`,
       )
       .join("");
     qvSizes.querySelectorAll(".qv-size").forEach((b) =>
@@ -1174,8 +1186,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const qvColors = document.getElementById("qvColors");
     qvColors.innerHTML = ` 
-   <p class="tracking-widest text-xs text-pearl/60 mb-3">
-    COLOR: <span data-color-label class="text-lilac ml-1">${p.color[0].toUpperCase()}</span>
+   <p class=" mb-3">
+   <span class="eyebrow "> COLOR:</span> <span data-color-label class="text-pearl ml-0 text-xs ">${p.color[0].toUpperCase()}</span>
   </p>
   <div id="colors" class="flex flex-wrap gap-2">
   
@@ -1183,7 +1195,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .map(
       (c, i) =>
         `<button 
-        class="qv-color-btn flex items-center gap-2 ${i === 0 ? "border-lilac text-lilac" : "border-[var(--line-strong)] text-pearl/70"} border px-3 py-1 md:px-4 md:py-2 text-xs tracking-widest hover:border-lilac transition-colors"
+     
+        class="qv-color-btn flex items-center gap-2 ${i === 0 ? "border-lilac text-lilac" : "border-[var(--line-strong)] text-pearl/70"}   border px-3 py-1 md:px-4 md:py-2 text-xs tracking-widest hover:border-lilac transition-colors"
         data-color="${c}"
         
       >
@@ -1218,11 +1231,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const sizeGuide = document.getElementById("sizeGuide");
-
     sideGuideShow(sizeGuide);
 
     qvAdd.disabled = out;
-    qvAdd.textContent = out ? "Sold out" : "Add to bag";
+    qvAdd.textContent = out ? "Sold out" : "Add to cart";
     openOverlay(quick, ".panel");
   }
   qvAdd.addEventListener("click", () => {
@@ -1231,13 +1243,10 @@ document.addEventListener("DOMContentLoaded", () => {
       closeOverlay(quick, ".panel");
     }
   });
+
   qvWish.addEventListener("click", () => {
     if (qvCurrent) toggleWish(qvCurrent.id);
   });
-
-  const qtyDecrement = document.getElementById("qtyDecrement");
-  const qtyIncrement = document.getElementById("qtyIncrement");
-  const qtyInput = document.getElementById("qtyInput");
 
   qtyDecrement.addEventListener("click", () => {
     const currentValue = parseInt(qtyInput.value);

@@ -54,10 +54,6 @@ body.light .collection-nav-box {
   border-color: var(--lilac);
 }
 
-body.light .pill:hover {
-  border: 1px solid var(--lilac);
-}
-
 body.light .page-btn {
   border-color: var(--lilac);
   color: var(--onyx);
@@ -121,9 +117,9 @@ body.light .sidebar-footer {
   touch-action: pan-y pinch-zoom; /* This tells the browser: "Only handle vertical scrolling, leave horizontal to the JS" */
 }
 
-.img-cont-slider .nav-btn {
+/* .img-cont-slider .nav-btn {
   pointer-events: auto;
-}
+} */
 
 .no-spin::-webkit-outer-spin-button,
 .no-spin::-webkit-inner-spin-button {
@@ -224,9 +220,6 @@ html.lenis body {
 ::-webkit-scrollbar-thumb {
   background: #33283a;
   border-radius: 99px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--plum);
 }
 
 a:focus-visible,
@@ -352,9 +345,6 @@ textarea:focus-visible,
     transform: translateX(-50%);
   }
 }
-.marquee-wrap:hover .marquee {
-  animation-play-state: paused;
-}
 
 /* ---------------- Product card ---------------- */
 .pcard .imgwrap {
@@ -378,13 +368,7 @@ textarea:focus-visible,
   z-index: 2;
   opacity: 0;
 }
-.pcard:not(.is-out):hover .img-front {
-  transform: scale(1.06);
-}
-.pcard:not(.is-out):hover .img-back {
-  opacity: 1;
-  transform: scale(1.06);
-}
+
 .pcard .pactions {
   transform: translateY(12px);
   opacity: 0;
@@ -395,10 +379,6 @@ textarea:focus-visible,
   font-size: clamp(9px, 1.5vw, 12px);
 }
 
-.pcard:hover .pactions {
-  transform: none;
-  opacity: 1;
-}
 @media (hover: none) {
   .pcard .pactions {
     transform: none;
@@ -439,19 +419,6 @@ body.light .btn {
   transform-origin: left;
   transition: transform 0.5s var(--ease);
 }
-.btn:hover:not(:disabled)::before {
-  transform: scaleX(1);
-}
-
-body.light .qv-wishlist:hover,
-body.light .follow-btn {
-  color: var(--pearl) !important;
-}
-
-body.light .btn:hover,
-body.light .btn-fill:hover {
-  color: var(--onyx);
-}
 
 .btn-fill {
   background: var(--lilac);
@@ -469,10 +436,7 @@ body.light .btn-fill:hover {
 .btn-ghost::before {
   background: var(--lilac);
 }
-.btn-ghost:hover:not(:disabled) {
-  color: #000;
-  border-color: var(--lilac);
-}
+
 .btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
@@ -494,10 +458,6 @@ body.light .btn-fill:hover {
   transform-origin: right;
   transition: transform 0.45s var(--ease);
 }
-.link-sweep:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
 
 /* ---------------- Filter pills ---------------- */
 .pill {
@@ -518,11 +478,6 @@ body.light .btn-fill:hover {
   padding: 10px;
   display: inline-block;
   line-height: 1;
-}
-
-.pill:hover {
-  border-color: var(--lilac);
-  color: var(--lilac);
 }
 
 .pill.active {
@@ -549,10 +504,6 @@ body.light .pill.active {
   border: 1px solid var(--line-strong);
   color: var(--pearl);
   transition: 0.3s var(--ease);
-}
-.page-btn:hover:not(:disabled) {
-  border-color: var(--lilac);
-  color: var(--lilac);
 }
 .page-btn.active {
   background: var(--lilac);
@@ -593,10 +544,6 @@ body.light .page-btn.active {
     transform 1.2s var(--ease),
     filter 1.2s var(--ease);
   filter: grayscale(0.25) brightness(0.78);
-}
-.tile:hover img {
-  transform: scale(1.07);
-  filter: grayscale(0) brightness(0.92);
 }
 .tile .tover {
   position: absolute;
@@ -688,10 +635,6 @@ body.light .page-btn.active {
     filter 1s var(--ease);
   filter: grayscale(0.15);
 }
-.ig:hover img {
-  transform: scale(1.1);
-  filter: grayscale(0);
-}
 .ig .igo {
   position: absolute;
   inset: 0;
@@ -702,8 +645,81 @@ body.light .page-btn.active {
   opacity: 0;
   transition: opacity 0.4s var(--ease);
 }
-.ig:hover .igo {
-  opacity: 1;
+
+@media (hover: hover) and (pointer: fine) {
+  body.light .pill:hover {
+    border: 1px solid var(--lilac);
+  }
+
+  .btn:hover:not(:disabled)::before {
+    transform: scaleX(1);
+  }
+
+  body.light .qv-wishlist:hover,
+  body.light .follow-btn {
+    color: var(--pearl) !important;
+  }
+
+  body.light .btn:hover,
+  body.light .btn-fill:hover {
+    color: var(--onyx);
+  }
+
+  .btn-ghost:hover:not(:disabled) {
+    color: #000;
+    border-color: var(--lilac);
+  }
+
+  .link-sweep:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .pill:hover {
+    border-color: var(--lilac);
+    color: var(--lilac);
+  }
+
+  .page-btn:hover:not(:disabled) {
+    border-color: var(--lilac);
+    color: var(--lilac);
+  }
+
+  .tile:hover img {
+    transform: scale(1.07);
+    filter: grayscale(0) brightness(0.92);
+  }
+
+  .ig:hover img {
+    transform: scale(1.1);
+    filter: grayscale(0);
+  }
+
+  .ig:hover .igo {
+    opacity: 1;
+  }
+
+  .pcard:not(.is-out):hover .img-back {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+
+  .pcard:hover .pactions {
+    transform: none;
+    opacity: 1;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--plum);
+  }
+
+  .marquee-wrap:hover .marquee {
+    animation-play-state: paused;
+  }
+
+  .pcard:not(.is-out):hover .img-front {
+    transform: scale(1.06);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
