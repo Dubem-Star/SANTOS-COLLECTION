@@ -1041,6 +1041,11 @@ document.addEventListener("DOMContentLoaded", () => {
           e.style.pointerEvents = "none";
           e.style.opacity = "0.5";
         }
+      } else {
+        for (e of element) {
+          e.style.pointerEvents = "auto";
+          e.style.opacity = "1";
+        }
       }
     }
     handleSoldOutQtyPill([qtyDecrement, qtyIncrement, qtyInput, qvWish], out);
