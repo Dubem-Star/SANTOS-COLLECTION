@@ -106,8 +106,8 @@
             class="hidden lg:flex items-center gap-8 text-[.72rem] tracking-[.16em] uppercase font-medium"
           >
             <a href="#shop" class="link-sweep">Shop</a>
-            <a href="#categories" class="link-sweep">Collections</a>
-            <!-- <a href="#lookbook" class="link-sweep">Lookbook</a> -->
+            <a href="#thePromise" class="link-sweep">The Promise</a>
+            <a href="#community" class="link-sweep">Community</a>
             <a href="#contact" class="link-sweep">Contact</a>
           </nav>
         </div>
@@ -333,6 +333,7 @@
       <!-- FEATURED PRODUCTS (the main focus) -->
       <div
         class="max-w-[1500px] mx-auto px-5 md:px-10 pt-10 md:pt-14 pb-20 md:pb-28"
+        id="shopSection"
       >
         <div class="flex items-end justify-between gap-4 mb-8">
           <h2 class="display text-[2.2rem] md:text-[3rem]" id="shopHeading">
@@ -346,7 +347,7 @@
          in the PRODUCT CARD comment markers requested by the team. -->
         <div
           id="productGrid"
-          class="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-9 md:gap-x-5 md:gap-y-12"
+          class="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-14 md:gap-x-5 md:gap-y-18"
         ></div>
 
         <!-- empty state -->
@@ -375,6 +376,7 @@
     <!-- =================== WHY SHOP WITH US =================== -->
     <section
       class="bg-black border-y border-[var(--line)] why-shop group-[.light]:bg-white"
+      id="thePromise"
     >
       <div class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-24">
         <p class="eyebrow text-center mb-3" data-reveal>The Santos Promise</p>
@@ -386,7 +388,7 @@
           <span class="ital text-orchid us group-[.light]:text-lilac">us</span>
         </h2>
         <div
-          class="grid grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--line)] group-[.light]:bg-lilac promise-grid"
+          class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--line)] group-[.light]:bg-lilac promise-grid"
         >
           <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
@@ -409,7 +411,8 @@
               Considered fabrics, inspected piece by piece.
             </p>
           </div>
-          <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
+
+          <!-- <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
               class="text-lilac mb-4 svg-box group-hover:scale-110 transition-transform duration-500 origin-left"
             >
@@ -425,11 +428,13 @@
                 <path d="M3 8l9 5 9-5M12 13v8" />
               </svg>
             </div>
+
             <h3 class="font-display text-2xl mb-1">Exclusive Drops</h3>
             <p class="text-pearl/55 text-sm leading-relaxed">
               Limited runs that rarely return once sold.
             </p>
-          </div>
+          </div> -->
+
           <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
               class="text-lilac mb-4 svg-box group-hover:scale-110 transition-transform duration-500 origin-left"
@@ -473,7 +478,8 @@
               Encrypted Paystack checkout.
             </p>
           </div>
-          <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
+
+          <!-- <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
               class="text-lilac mb-4 svg-box group-hover:scale-110 transition-transform duration-500 origin-left"
             >
@@ -494,7 +500,7 @@
             <p class="text-pearl/55 text-sm leading-relaxed">
               Styling help whenever you need it.
             </p>
-          </div>
+          </div> -->
 
           <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
@@ -548,7 +554,7 @@
     </section>
 
     <!-- =================== INSTAGRAM =================== -->
-    <section class="py-20 md:py-28">
+    <section class="py-20 md:py-28" id="community">
       <div class="text-center mb-10 px-5" data-reveal>
         <p class="eyebrow mb-3">Community</p>
         <h2 class="display text-[2.4rem] md:text-[3.6rem]">
@@ -740,7 +746,7 @@
           href="https://instagram.com"
           target="_blank"
           rel="noopener"
-          class="btn btn-ghost follow-btn px-9 py-4 group-[.light]:text-onyx"
+          class="btn btn-ghost follow-btn px-9 py-4 group-[.light]:text-onyx group-[.light]:border-[var(--smokey)]"
           >Follow @SantosCollection</a
         >
       </div>
@@ -989,8 +995,8 @@
       </h2>
 
       <p class="leading-[1.8] text-sm">
-        At SANTOS COLLECTION, we want you to love every purchase. If you're not
-        completely satisfied, we're here to help.
+        At <span class="font-bold">SANTOS COLLECTION</span>, we want you to love
+        every purchase. If you're not completely satisfied, we're here to help.
       </p>
 
       <p class="mb-5 mt-2 lg:mt-1 text-sm">
@@ -1002,7 +1008,8 @@
         <strong> Returns</strong>
       </h2>
       <p class="leading-[1.8] text-sm">
-        We accept returns within 5 days of receiving your order. <br />
+        We accept returns within <span class="font-bold">5 days</span> of
+        receiving your order. <br />
         To qualify for a return, your item must:
       </p>
 
@@ -1046,7 +1053,8 @@
       </ul>
 
       <p class="mt-4 leading-[1.8] text-sm">
-        Exchange requests must be made within 48 hours of delivery.
+        Exchange requests must be made within
+        <span class="font-bold">48 hours</span> of delivery.
       </p>
 
       <h2 class="font-serif text-2xl mb-2 mt-7 text-lilac">
@@ -1055,7 +1063,8 @@
       <p class="leading-[1.8] text-sm">
         We sincerely apologise if your order arrives damaged, defective, or
         incorrect. <br />
-        Please notify us within 48 hours of delivery by sending:
+        Please notify us within <span class="font-bold">48 hours</span> of
+        delivery by sending:
       </p>
 
       <ul
@@ -1453,15 +1462,6 @@
               >Size Guide</a
             >
           </li>
-
-          <!-- <li>
-            <a
-              href="#contact"
-              data-close-menu
-              class="hover:text-lilac transition-colors"
-              >Contact Us</a
-            >
-          </li> -->
         </ul>
         <div
           class="mt-auto sidebar-footer pt-8 border-t border-[var(--line)] text-sm text-pearl/55"
@@ -1576,20 +1576,20 @@
               <p class="eyebrow mb-2 mt-1">Quantity:</p>
               <div class="flex items-center" id="qvQty">
                 <button
-                  class="border border-smoke w-9 h-9 flex items-center justify-center hover:border-lilac transition-colors"
+                  class="border border-lilac w-9 h-9 flex items-center justify-center hover:border-lilac transition-colors"
                   id="qtyDecrement"
                 >
                   -
                 </button>
                 <input
-                  class="w-14 h-9 text-center border-y border-smoke outline-none bg-transparent no-spin appearance-none rounded-none"
+                  class="w-14 h-9 text-center border-y border-lilac outline-none bg-transparent no-spin appearance-none rounded-none"
                   value="1"
                   id="qtyInput"
                   type="number"
                 />
 
                 <button
-                  class="border border-smoke w-9 h-9 flex items-center justify-center hover:border-lilac transition-colors"
+                  class="border border-lilac w-9 h-9 flex items-center justify-center hover:border-lilac transition-colors"
                   id="qtyIncrement"
                 >
                   +

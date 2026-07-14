@@ -646,17 +646,17 @@ body.light .page-btn.active {
   transition: opacity 0.4s var(--ease);
 }
 
+.btn:hover:not(:disabled)::before {
+  transform: scaleX(1);
+}
+
 @media (hover: hover) and (pointer: fine) {
   body.light .pill:hover {
     border: 1px solid var(--lilac);
   }
 
-  .btn:hover:not(:disabled)::before {
-    transform: scaleX(1);
-  }
-
   body.light .qv-wishlist:hover,
-  body.light .follow-btn {
+  body.light .follow-btn:hover {
     color: var(--pearl) !important;
   }
 
@@ -678,6 +678,14 @@ body.light .page-btn.active {
   .pill:hover {
     border-color: var(--lilac);
     color: var(--lilac);
+  }
+
+  .pill.active:hover {
+    color: var(--onyx);
+  }
+
+  body.light .pill.active:hover {
+    color: var(--pearl);
   }
 
   .page-btn:hover:not(:disabled) {

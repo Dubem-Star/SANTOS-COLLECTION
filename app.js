@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=700&auto=format&fit=crop",
       ],
 
-      tag: "New",
+      tag: "News",
     },
     {
       id: "p02",
@@ -136,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=700&auto=format&fit=crop",
       ],
       tag: "Sales",
+      discount: 35,
     },
     {
       id: "p03",
@@ -150,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=700&auto=format&fit=crop",
       ],
-      tag: "New",
+      tag: "News",
     },
     {
       id: "p04",
@@ -222,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=700&auto=format&fit=crop",
       ],
-      tag: "New",
+      tag: "News",
     },
     {
       id: "p07",
@@ -252,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop",
       ],
-      tag: "",
+      tag: "Sales",
     },
     {
       id: "p09",
@@ -267,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=700&auto=format&fit=crop",
       ],
-      tag: "New",
+      tag: "News",
     },
     {
       id: "p10",
@@ -401,7 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=700&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=700&auto=format&fit=crop",
       ],
-      tag: "New",
+      tag: "News",
     },
     {
       id: "p18",
@@ -422,7 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const CATEGORIES = [
     "All",
-    "New",
+    "News",
     "Sales",
     "Dresses",
     "Sets",
@@ -682,7 +683,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebarDropdownMenu.innerHTML = CATEGORIES.map(
       (c) =>
         `
-            <li  class="pill sidebar  " data-filter="${c}">${c}</li>
+            <li  class="pill sidebar cursor-pointer " data-filter="${c}">${c}</li>
 
             
             `,
@@ -692,19 +693,26 @@ document.addEventListener("DOMContentLoaded", () => {
   function getFiltered() {
     return shopState.category === "All"
       ? PRODUCTS
-      : PRODUCTS.filter((p) => p.category === shopState.category);
+      : PRODUCTS.filter(
+          (p) =>
+            p.category === shopState.category || p.tag === shopState.category,
+        );
   }
 
   /* Reusable product card template (the team requested explicit markers). */
   function productCard(p) {
     const s = STOCK[p.stock];
     const out = p.stock === "out";
+    const sale = p.tag === "Sales";
+    const discount = p.price - p.price * 0.35;
+
+    if (out) p.tag = "";
     return `
   <!-- PRODUCT CARD START (id: ${p.id}) -->
   <article class="pcard group ${out ? "is-out" : ""}" data-id="${p.id}">
     <!-- PRODUCT IMAGE -->
     <div class="imgwrap aspect-[3/4] mb-3">
-      ${p.tag && !out ? `<span class="absolute top-3 left-3 z-10 eyebrow bg-black/55 backdrop-blur px-2.5 py-1 text-[.55rem]">${p.tag}</span>` : ""}
+      ${p.tag && !out ? `<span class="absolute top-3 left-3 z-10 eyebrow text-pearl bg-black/55 backdrop-blur px-2.5 py-1 text-[.55rem]">${p.tag.slice(0, -1)}</span>` : ""}
       ${out ? `<span class="absolute top-3 left-3 z-10 eyebrow bg-black/70 backdrop-blur px-2.5 py-1 text-[.55rem] text-smoke border border-[var(--line)]">Sold Out</span>` : ""}
       <button class="wish-btn absolute top-3 right-3 z-10 w-9 h-9 grid place-items-center group-[.light]:text-white bg-black/45 backdrop-blur transition-colors ${wishlist.has(p.id) ? "text-lilac" : ""}" data-wish="${p.id}" aria-label="Add to wishlist" >
       <svg
@@ -729,20 +737,31 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="btn btn-ghost px-4 py-3 bg-black/45 backdrop-blur" data-quick="${p.id}" aria-label="Quick view">View</button>
       </div>
     </div>
-    <div class="flex items-start justify-between gap-2">
+    <div class="flex items-start justify-between gap-2 relative">
       <div>
         <p class="text-[.6rem] tracking-[.2em] uppercase text-smoke mb-0.5">${p.category}</p>
-        <!-- PRODUCT NAME --><h3 class="font-display text-xl leading-tight">${p.name}</h3>
+        <!-- PRODUCT NAME --><h3 class="font-display text-base md:text-xl  leading-tight">${p.name}</h3>
         <!-- PRODUCT INVENTORY STATUS -->
-        <p class="flex items-center gap-1.5 mt-1 text-[.7rem] ${s.cls}"><span class="inline-block w-1.5 h-1.5 rounded-full" style="${s.dot}"></span>${s.label}</p>
+
       </div>
-      <!-- PRODUCT PRICE --><p class="font-display text-xl text-lilac whitespace-nowrap">${NGN(p.price)}</p>
+      <!-- PRODUCT PRICE --><p class="font-display text-xl text-lilac whitespace-nowrap  group-[.light]:font-bold ">${NGN(p.price)}</p>
+    ${
+      sale
+        ? `
+  <p class="m-0 line-through text-smoke absolute right-0 top-7 text-xs tracking-wide">${NGN(discount)}</p>
+  <p class="m-0 absolute right-0 top-12 text-[9px] tracking-widest uppercase bg-[rgba(200,162,200,0.12)] group-[.light]:bg-[#c8a2c8d3] group-[.light]:text-pearl group-[.light]:border-lilac  text-lilac border border-[rgba(200,162,200,0.3)] px-[4px] md:px-[5px]  py-[2px]">35% off</p>
+`
+        : ""
+    }
+
+
+          
     </div>
   </article>
   <!-- PRODUCT CARD END (id: ${p.id}) -->`;
   }
 
-  /* Build a pagination model with ellipses: e.g. [1,'…',4,5,6,'…',12] */
+  /* Build a pagination model with ellipses: e.g. [1,'…om',4,5,6,'…',12] */
   function pageModel(total, cur) {
     if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
     const set = new Set([1, 2, total - 1, total, cur - 1, cur, cur + 1]);
@@ -836,9 +855,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* filter + pagination + category-tile clicks (delegated) */
   document.addEventListener("click", (e) => {
+    const shopSection = document.getElementById("filterBar");
     const f = e.target.closest("[data-filter]");
     if (f) {
       setCategory(f.dataset.filter);
+      closeOverlay(mobileMenu, ".panel");
+      sidebarDropdownMenu.classList.remove("show");
+      shopSection.scrollIntoView({ behavior: "smooth" });
       return;
     }
     const pg = e.target.closest("[data-page]");
@@ -1192,7 +1215,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const qvColors = document.getElementById("qvColors");
     qvColors.innerHTML = ` 
    <p class=" mb-3">
-   <span class="eyebrow "> COLOR:</span> <span data-color-label class="text-pearl ml-0 text-xs ">${p.color[0].toUpperCase()}</span>
+   <span class="eyebrow "> COLOR:</span> <span data-color-label class="text-pearl group-[.light]:text-onyx ml-0 text-xs ">${p.color[0].toUpperCase()}</span>
   </p>
   <div id="colors" class="flex flex-wrap gap-2">
   
@@ -1309,7 +1332,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("cartTotal").textContent = NGN(cartTotalValue());
     const box = document.getElementById("cartItems");
     if (!cart.length) {
-      box.innerHTML = `<p class="text-pearl/45 text-sm text-center mt-10">Your bag is empty.<br>Time to find something beautiful.</p>`;
+      box.innerHTML = `<p class="text-pearl/45 text-sm text-center mt-10">Your cart is empty.<br>Time to find something beautiful.</p>`;
       return;
     }
     box.innerHTML = cart
