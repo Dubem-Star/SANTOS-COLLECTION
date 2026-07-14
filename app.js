@@ -64,20 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("light");
   });
 
-  /* =================================================================
-   SANTOS COLLECTION — main.js  (catalogue-first)
-   1) DATA          (products w/ inventory, testimonials, categories)
-   2) Smooth scroll + ScrollTrigger
-   3) Loader + hero
-   4) Reveal + parallax
-   5) Marquee
-   6) SHOP: filtering + pagination + product cards + inventory states
-   7) Quick view
-   8) Cart + wishlist
-   9) CHECKOUT + Paystack (placeholder, clearly commented)
-   10) Testimonials, nav, search, menu, forms, misc
-   ================================================================= */
-
   const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
@@ -94,149 +80,111 @@ document.addEventListener("DOMContentLoaded", () => {
   const PRODUCTS = [
     {
       id: "p01",
-      name: "Aria Satin Slip Dress",
-      category: "Dress",
+      name: "Zebra print skirt set",
+      category: "Set",
       price: 48000,
       stock: "in",
-      sizes: [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL",
-        "5XL",
-        "6XL",
-        "7XL",
-        "8XL",
-        "9XL",
-      ],
-      desc: "Bias-cut silk-satin with a whisper-fine cowl neckline.",
-      color: ["orange", "black", "white"],
+      sizes: ["L", "XL"],
+      desc: " Zebra print 2piece skirt set with ruched detail.",
+      color: ["black", "white"],
       img: [
-        "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=700&auto=format&fit=crop",
+        "./media/products/zebra_print.jpeg",
+        "./media/products/zebra_print_2.jpeg",
       ],
 
       tag: "News",
     },
     {
       id: "p02",
-      name: "Solène Wrap Midi",
+      name: "Polka Mesh dress",
       category: "Dress",
       price: 44000,
       stock: "low",
-      sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
-      desc: "A true-wrap midi in fluid viscose. An everyday heroine.",
-      color: ["skyblue", "black", "green"],
+      sizes: ["L"],
+      desc: "See-through layered mesh dress. Model is wearing a black underwear.",
+      color: ["black"],
       img: [
-        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=700&auto=format&fit=crop",
+        "./media/products/mesh_dress.jpeg",
+        "./media/products/mesh_dress_2.jpeg",
       ],
       tag: "Sales",
       discount: 35,
     },
     {
       id: "p03",
-      name: "Orchid Cocktail Gown",
+      name: "Emerald Satin dress",
       category: "Dress",
-      price: 95000,
+      price: 55000,
       stock: "out",
       sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"],
-      desc: "Floor-sweeping draped gown in lilac crepe with a sculpted bodice.",
+      desc: "Satin dress with ruffle slit and flare sleeves.",
       color: ["blueviolet", "yellow", "white"],
       img: [
-        "https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=700&auto=format&fit=crop",
+        "./media/products/emerald_dress.jpeg",
+        "./media/products/emerald_dress_2.jpeg",
       ],
       tag: "News",
     },
     {
       id: "p04",
-      name: "Capri Linen Two-Piece",
-      category: "Two-Piece",
+      name: "Mustard Jumpsuit",
+      category: "Jumpsuits",
       price: 39000,
       stock: "in",
-      sizes: [
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL",
-        "5XL",
-        "6XL",
-        "7XL",
-        "8XL",
-        "9XL",
-      ],
-      desc: "Breathable linen set — relaxed shirt and wide-leg trouser.",
+      sizes: ["L"],
+      desc: "Halter neck wide leg Jumpsuit. Non-stretchy.",
       color: ["teal", "black", "red"],
       img: [
-        "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop",
+        "./media/products/mustard_jumpsuit.jpeg",
+        "./media/products/mustard_jumpsuit_2.jpeg",
+        "./media/products/mustard_jumpsuit_3.jpeg",
       ],
       tag: "",
     },
     {
       id: "p05",
-      name: "Noir Tailored Set",
-      category: "Set",
-      price: 62000,
+      name: "Ana Bandage Jumpsuit",
+      category: "Jumpsuits",
+      price: 68000,
       stock: "in",
-      sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
-      desc: "Sharp-shouldered blazer paired with a fluid trouser.",
+      sizes: ["L"],
+      desc: "Bandage jumpsuit. Tall girl friendly. Slight stretch.",
       color: ["lightcoral", "black", "lawngreen"],
       img: [
-        "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=700&auto=format&fit=crop",
+        "./media/products/ana_bandage.jpeg",
+        "./media/products/ana_bandage_2.jpeg",
       ],
       tag: "Sales",
     },
     {
       id: "p06",
-      name: "Vesper Wide-Leg Jumpsuit",
-      category: "Jumpsuit",
-      price: 57000,
+      name: "Promise Satin Maxi Dress-",
+      category: "Dress",
+      price: 70000,
       stock: "in",
-      sizes: [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL",
-        "4XL",
-        "5XL",
-        "6XL",
-        "7XL",
-        "8XL",
-        "9XL",
-      ],
-      desc: "A column jumpsuit with a plunging neckline and tie waist.",
+      sizes: ["S", "L"],
+      desc: "Multi-colored satin sleeveless dress. Non-stretchy",
       color: ["blue", "black", "violet"],
       img: [
-        "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=700&auto=format&fit=crop",
+        "./media/products/promise_satin.jpeg",
+        "./media/products/promise_satin_2.jpeg",
+        "./media/products/promise_satin_3.jpeg",
       ],
       tag: "News",
     },
     {
       id: "p07",
-      name: "Lilac Tailored Playsuit",
+      name: "Balloon bandage dress- mini",
       category: "Playsuit",
-      price: 41000,
+      price: 65000,
       stock: "low",
-      sizes: ["S", "M", "L"],
-      desc: "A structured playsuit in lilac twill. Effortless to style.",
-      color: ["rebeccapurple", "white", "yellow"],
+      sizes: ["L", "XL"],
+      desc: "Low back bandage dress. Slight stretch, with corset detail.",
+      color: ["red"],
       img: [
-        "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=700&auto=format&fit=crop",
+        "./media/products/ballon_bandage.jpeg",
+        "./media/products/ballon_bandage_2.jpeg",
+        "./media/products/ballon_bandage_3.jpeg",
       ],
       tag: "",
     },
@@ -248,10 +196,11 @@ document.addEventListener("DOMContentLoaded", () => {
       stock: "in",
       sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
       desc: "A relaxed romper cut from washed linen for warm days.",
-      color: ["saddlebrown", "black", "grey"],
+      color: ["skyblue"],
       img: [
-        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop",
+        "./media/products/aqua_jumpsuit.jpeg",
+        "./media/products/aqua_jumpsuit_2.jpeg",
+        "./media/products/aqua_jumpsuit_3.jpeg",
       ],
       tag: "Sales",
     },
@@ -423,7 +372,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const CATEGORIES = [
     "All",
-    "News",
+    "New",
     "Sales",
     "Dresses",
     "Sets",
@@ -714,7 +663,28 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="imgwrap aspect-[3/4] mb-3">
       ${p.tag && !out ? `<span class="absolute top-3 left-3 z-10 eyebrow text-pearl bg-black/55 backdrop-blur px-2.5 py-1 text-[.55rem]">${p.tag.slice(0, -1)}</span>` : ""}
       ${out ? `<span class="absolute top-3 left-3 z-10 eyebrow bg-black/70 backdrop-blur px-2.5 py-1 text-[.55rem] text-smoke border border-[var(--line)]">Sold Out</span>` : ""}
-      <button class="wish-btn absolute top-3 right-3 z-10 w-9 h-9 grid place-items-center group-[.light]:text-white bg-black/45 backdrop-blur transition-colors ${wishlist.has(p.id) ? "text-lilac" : ""}" data-wish="${p.id}" aria-label="Add to wishlist" >
+   
+      <div class="absolute pactions top-3 right-3 z-10 flex flex-col items-center justify-center bg-black/45 backdrop-blur gap-2">
+                  <button class="wish-btn w-7 h-6 md:w-9 md:h-7 grid place-items-center group-[.light]:text-white transition-colors"  data-add="${p.id}" ${out ? "disabled" : ""} title="Add to cart" >
+                    <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      class="w-[16px] h-[16px] md:w-[17px] md:h-[17px]" 
+      >
+        <path
+          d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+               
+        />
+      </svg>
+                  </button>
+            <button class="wish-btn w-7 h-6 md:w-9 md:h-7 grid place-items-center group-[.light]:text-white  transition-colors ${wishlist.has(p.id) ? "text-lilac" : ""}" ${out ? "disabled" : ""} data-wish="${p.id}" aria-label="Add to wishlist" title="Add to wishlist">
+      
+
       <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -723,18 +693,19 @@ document.addEventListener("DOMContentLoaded", () => {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-               width="17" height="17"  
+               class="w-[16px] h-[16px] md:w-[17px] md:h-[17px]"
             >
               <path
                 d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
               />
             </svg>
       </button>
+      </div>
       <img class="img-front w-full h-full object-cover" loading="lazy" data-quick="${p.id}" alt="${p.name}" src="${p.img[0]}" onerror="this.style.opacity=0">
       <img class="img-back w-full h-full object-cover" loading="lazy" alt="" data-quick="${p.id}" aria-hidden="true" src="${p.img[1]}" onerror="this.style.display='none'">
-      <div class="pactions absolute bottom-3 inset-x-3 z-10 flex gap-2">
-        <button class="btn btn-fill flex-1 py-3" data-add="${p.id}" ${out ? "disabled" : ""}>${out ? "Sold out" : "Add to cart"}</button>
-        <button class="btn btn-ghost px-4 py-3 bg-black/45 backdrop-blur" data-quick="${p.id}" aria-label="Quick view">View</button>
+      <div class="pactions absolute bottom-3 inset-x-3 z-10 flex gap-2 justify-center ">
+        <button class="btn btn-fill  py-3 w-1/2 hidden lg:block" data-quick="${p.id}">View</button>
+       
       </div>
     </div>
     <div class="flex items-start justify-between gap-2 relative">

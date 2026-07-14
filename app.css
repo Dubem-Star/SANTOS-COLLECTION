@@ -3,6 +3,7 @@
   --onyx: #0b080d;
   --char: #141017;
   --lilac: #c8a2c8;
+  --lilac: #c8a2c8d3;
   --orchid: #dcc0e4;
   --plum: #2a1c30;
   --pearl: #f6f3f7;
@@ -352,6 +353,11 @@ textarea:focus-visible,
   overflow: hidden;
   background: linear-gradient(150deg, #1d1422, #0c0810 70%);
 }
+
+body.light .pcard .imgwrap {
+  background: var(--pearl);
+}
+
 .pcard .imgwrap img {
   transition:
     transform 1.1s var(--ease),
