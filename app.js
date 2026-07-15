@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cloudinaryUrl("promise_satin", "_3"),
       ],
       backView: cloudinaryUrl("promise_satin", "_3"),
-      tag: "News",
+      tag: "New",
     },
 
     {
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cloudinaryUrl("emerald_dress", "_2"),
       ],
       backView: cloudinaryUrl("emerald_dress", "_2"),
-      tag: "News",
+      tag: "New",
     },
 
     {
@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cloudinaryUrl("lilac_halter", "_3"),
       ],
       backView: cloudinaryUrl("lilac_halter", "_3"),
-      tag: "",
+      tag: "Sale",
     },
 
     {
@@ -181,13 +181,13 @@ document.addEventListener("DOMContentLoaded", () => {
       img: [cloudinaryUrl("zebra_print"), cloudinaryUrl("zebra_print", "_2")],
       backView: cloudinaryUrl("zebra_print", "_2"),
 
-      tag: "News",
+      tag: "New",
     },
 
     {
       id: "p07",
       name: "Ana Bandage Jumpsuit",
-      category: "Jumpsuits",
+      category: "Jumpsuit",
       price: 68000,
       stock: "in",
       sizes: ["L"],
@@ -195,13 +195,13 @@ document.addEventListener("DOMContentLoaded", () => {
       color: ["black", "white"],
       img: [cloudinaryUrl("ana_bandage"), cloudinaryUrl("ana_bandage", "_2")],
       backView: cloudinaryUrl("ana_bandage", "_2"),
-      tag: "Sales",
+      tag: "Sale",
     },
 
     {
       id: "p08",
       name: "Aqua Jumpsuit",
-      category: "Jumpsuits",
+      category: "Jumpsuit",
       price: 65000,
       stock: "in",
       sizes: ["L", "XL"],
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cloudinaryUrl("aqua_jumpsuit", "_3"),
       ],
       backView: cloudinaryUrl("aqua_jumpsuit", "_3"),
-      tag: "Sales",
+      tag: "Sale",
     },
     {
       id: "p09",
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
       color: ["black"],
       img: [cloudinaryUrl("mesh_dress"), cloudinaryUrl("mesh_dress", "_2")],
       backView: cloudinaryUrl("mesh_dress", "_2"),
-      tag: "News",
+      tag: "New",
     },
     {
       id: "p10",
@@ -258,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: "p11",
       name: "Green Knitted midi dress",
-      category: "Tops",
+      category: "Top",
       price: 31000,
       stock: "out",
       sizes: ["M", "L", "XL"],
@@ -270,23 +270,8 @@ document.addEventListener("DOMContentLoaded", () => {
         cloudinaryUrl("green_knitted", "_3"),
       ],
       backView: cloudinaryUrl("green_knitted", "_3"),
-      tag: "Sales",
+      tag: "Sale",
     },
-
-    // {
-    //   id: "p12",
-    //   name: "Polka Mesh dress",
-    //   category: "Dress",
-    //   price: 44000,
-    //   stock: "low",
-    //   sizes: ["L"],
-    //   desc: "See-through layered mesh dress. Model is wearing a black underwear.",
-    //   color: ["black"],
-    //   img: [cloudinaryUrl("mesh_dress"), cloudinaryUrl("mesh_dress", "_2")],
-    //   backView: cloudinaryUrl("mesh_dress", "_2"),
-    //   tag: "Sales",
-    //   discount: 35,
-    // },
 
     {
       id: "p13",
@@ -303,13 +288,13 @@ document.addEventListener("DOMContentLoaded", () => {
         cloudinaryUrl("sky_knitted", "_3"),
       ],
       backView: cloudinaryUrl("sky_knitted", "_3"),
-      tag: "Sales",
+      tag: "Sale",
     },
 
     {
       id: "p14",
       name: "Mustard Jumpsuit",
-      category: "Jumpsuits",
+      category: "Jumpsuit",
       price: 39000,
       stock: "in",
       sizes: ["L"],
@@ -324,19 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
       tag: "",
     },
 
-    // {
-    //   id: "p15",
-    //   name: "Sculpt Legging",
-    //   category: "Leggings",
-    //   price: 24000,
-    //   stock: "low",
-    //   sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
-    //   desc: "High-rise sculpting leggings in a buttery matte finish.",
-    //   color: ["red", "black", "amber"],
-    //   img: [cloudinaryUrl("olive_stoned"), cloudinaryUrl("olive_stoned", "_2")],
-    //   backView: cloudinaryUrl("olive_stoned", "_2"),
-    //   tag: "",
-    // },
     {
       id: "p16",
       name: "Rigid Denim Two-Piece",
@@ -357,7 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: "p17",
       name: "Strappy Heeled Sandal",
-      category: "Shoes",
+      category: "Shoe",
       price: 45000,
       stock: "in",
       sizes: ["37", "38", "39", "40", "41", "42", "43", "44", "45"],
@@ -369,7 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cloudinaryUrl("navi_knitted", "_3"),
       ],
       backView: cloudinaryUrl("navi_knitted", "_2"),
-      tag: "News",
+      tag: "New",
     },
     {
       id: "p18",
@@ -393,7 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const CATEGORIES = [
     "All",
     "New",
-    "Sales",
+    "Sale",
     "Dresses",
     "Sets",
     "Jumpsuits",
@@ -408,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Shoes",
     "Bags",
     "Accessories",
-    "Two Piece",
+    "Two Pieces",
   ];
 
   const TESTIMONIALS = [
@@ -646,13 +618,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     bar.innerHTML = CATEGORIES.map(
       (c) =>
-        `<button class="pill group-[.light]:border-lilac ${c === shopState.category ? "active" : ""}" data-filter="${c}">${c}</button>`,
+        `<button class="pill group-[.light]:border-lilac ${c === shopState.category ? "active" : ""}" data-filter="${c}">${c === "Sale" ? "Sales" : c}</button>`,
     ).join("");
 
     sidebarDropdownMenu.innerHTML = CATEGORIES.map(
       (c) =>
         `
-            <li  class="pill sidebar cursor-pointer " data-filter="${c}">${c}</li>
+            <li  class="pill sidebar cursor-pointer " data-filter="${c}">${c === "Sale" ? "Sales" : c}</li>
 
             
             `,
@@ -664,7 +636,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ? PRODUCTS
       : PRODUCTS.filter(
           (p) =>
-            p.category === shopState.category || p.tag === shopState.category,
+            p.category.slice(0, 3) === shopState.category.slice(0, 3) ||
+            p.tag === shopState.category,
         );
   }
 
@@ -681,7 +654,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <article class="pcard group ${out ? "is-out" : ""}" data-id="${p.id}">
     <!-- PRODUCT IMAGE -->
     <div class="imgwrap aspect-[3/4] mb-3">
-      ${p.tag && !out ? `<span class="absolute top-3 left-3 z-10 eyebrow tag text-pearl bg-black/55 backdrop-blur px-2.5 py-1 text-[.55rem]">${p.tag.slice(0, -1)}</span>` : ""}
+      ${p.tag && !out ? `<span class="absolute top-3 left-3 z-10 eyebrow tag text-pearl bg-black/55 backdrop-blur px-2.5 py-1 text-[.55rem]">${p.tag}</span>` : ""}
       ${out ? `<span class="absolute top-3 left-3 z-10 eyebrow tag text-pearl bg-black/70 backdrop-blur px-2.5 py-1 text-[.55rem] text-smoke border border-[var(--line)]">Sold Out</span>` : ""}
    
       <div class="absolute  pactions top-3 right-3 z-10 flex flex-col items-center justify-center bg-black/45 backdrop-blur gap-2 ${out ? "is-out" : ""}">
