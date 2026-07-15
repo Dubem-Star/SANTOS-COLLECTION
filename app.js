@@ -68,6 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "(prefers-reduced-motion: reduce)",
   ).matches;
   const NGN = (n) => "₦" + Number(n).toLocaleString("en-NG");
+  const cloudinaryUrl = (fileName, suffix = "") =>
+    `https://res.cloudinary.com/dirijnb2k/image/upload/${fileName}${suffix}.jpg`;
 
   /* -----------------------------------------------------------------
    1) DATA
@@ -80,36 +82,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const PRODUCTS = [
     {
       id: "p01",
-      name: "Zebra print skirt set",
-      category: "Set",
-      price: 48000,
+      name: "Promise Satin Maxi Dress",
+      category: "Dress",
+      price: 70000,
       stock: "in",
-      sizes: ["L", "XL"],
-      desc: " Zebra print 2piece skirt set with ruched detail.",
-      color: ["black", "white"],
+      sizes: ["S", "L"],
+      desc: "Multi-colored satin sleeveless dress. Non-stretchy",
+      color: ["blue", "black", "violet"],
       img: [
-        "./media/products/zebra_print.jpeg",
-        "./media/products/zebra_print_2.jpeg",
+        cloudinaryUrl("promise_satin"),
+        cloudinaryUrl("promise_satin", "_2"),
+        cloudinaryUrl("promise_satin", "_3"),
       ],
-
+      backView: cloudinaryUrl("promise_satin", "_3"),
       tag: "News",
     },
+
     {
       id: "p02",
-      name: "Polka Mesh dress",
+      name: "Balloon bandage dress- mini",
       category: "Dress",
-      price: 44000,
+      price: 65000,
       stock: "low",
-      sizes: ["L"],
-      desc: "See-through layered mesh dress. Model is wearing a black underwear.",
-      color: ["black"],
+      sizes: ["L", "XL"],
+      desc: "Low back bandage dress. Slight stretch, with corset detail.",
+      color: ["red"],
       img: [
-        "./media/products/mesh_dress.jpeg",
-        "./media/products/mesh_dress_2.jpeg",
+        cloudinaryUrl("ballon_bandage"),
+        cloudinaryUrl("ballon_bandage", "_2"),
+        cloudinaryUrl("ballon_bandage", "_3"),
       ],
-      tag: "Sales",
-      discount: 35,
+      backView: cloudinaryUrl("ballon_bandage", "_3"),
+      tag: "",
     },
+
     {
       id: "p03",
       name: "Emerald Satin dress",
@@ -120,110 +126,113 @@ document.addEventListener("DOMContentLoaded", () => {
       desc: "Satin dress with ruffle slit and flare sleeves.",
       color: ["blueviolet", "yellow", "white"],
       img: [
-        "./media/products/emerald_dress.jpeg",
-        "./media/products/emerald_dress_2.jpeg",
+        cloudinaryUrl("emerald_dress"),
+        cloudinaryUrl("emerald_dress", "_2"),
       ],
+      backView: cloudinaryUrl("emerald_dress", "_2"),
       tag: "News",
     },
+
     {
       id: "p04",
-      name: "Mustard Jumpsuit",
-      category: "Jumpsuits",
-      price: 39000,
+      name: "Lilac Halter Maxi dress ",
+      category: "Dress",
+      price: 60000,
       stock: "in",
       sizes: ["L"],
-      desc: "Halter neck wide leg Jumpsuit. Non-stretchy.",
-      color: ["teal", "black", "red"],
+      desc: " Full length Maxi dress. Slightly stretchy.",
+      color: ["lilac"],
       img: [
-        "./media/products/mustard_jumpsuit.jpeg",
-        "./media/products/mustard_jumpsuit_2.jpeg",
-        "./media/products/mustard_jumpsuit_3.jpeg",
+        cloudinaryUrl("lilac_halter"),
+        cloudinaryUrl("lilac_halter", "_2"),
+        cloudinaryUrl("lilac_halter", "_3"),
       ],
+      backView: cloudinaryUrl("lilac_halter", "_3"),
       tag: "",
     },
+
     {
       id: "p05",
+      name: "Navy Knitted dress",
+      category: "Dress",
+      price: 62000,
+      stock: "in",
+      sizes: ["M", "L"],
+      desc: "Mini knitted long-sleeve dress with flower detail. Slightly stretchy.",
+      color: ["blue"],
+      img: [
+        cloudinaryUrl("navi_knitted"),
+        cloudinaryUrl("navi_knitted", "_2"),
+        cloudinaryUrl("navi_knitted", "_3"),
+      ],
+      backView: cloudinaryUrl("navi_knitted", "_3"),
+      tag: "",
+    },
+
+    {
+      id: "p06",
+      name: "Zebra print skirt set",
+      category: "Set",
+      price: 48000,
+      stock: "in",
+      sizes: ["L", "XL"],
+      desc: " Zebra print 2piece skirt set with ruched detail.",
+      color: ["black", "white"],
+      img: [cloudinaryUrl("zebra_print"), cloudinaryUrl("zebra_print", "_2")],
+      backView: cloudinaryUrl("zebra_print", "_2"),
+
+      tag: "News",
+    },
+
+    {
+      id: "p07",
       name: "Ana Bandage Jumpsuit",
       category: "Jumpsuits",
       price: 68000,
       stock: "in",
       sizes: ["L"],
       desc: "Bandage jumpsuit. Tall girl friendly. Slight stretch.",
-      color: ["lightcoral", "black", "lawngreen"],
-      img: [
-        "./media/products/ana_bandage.jpeg",
-        "./media/products/ana_bandage_2.jpeg",
-      ],
+      color: ["black", "white"],
+      img: [cloudinaryUrl("ana_bandage"), cloudinaryUrl("ana_bandage", "_2")],
+      backView: cloudinaryUrl("ana_bandage", "_2"),
       tag: "Sales",
     },
-    {
-      id: "p06",
-      name: "Promise Satin Maxi Dress-",
-      category: "Dress",
-      price: 70000,
-      stock: "in",
-      sizes: ["S", "L"],
-      desc: "Multi-colored satin sleeveless dress. Non-stretchy",
-      color: ["blue", "black", "violet"],
-      img: [
-        "./media/products/promise_satin.jpeg",
-        "./media/products/promise_satin_2.jpeg",
-        "./media/products/promise_satin_3.jpeg",
-      ],
-      tag: "News",
-    },
-    {
-      id: "p07",
-      name: "Balloon bandage dress- mini",
-      category: "Playsuit",
-      price: 65000,
-      stock: "low",
-      sizes: ["L", "XL"],
-      desc: "Low back bandage dress. Slight stretch, with corset detail.",
-      color: ["red"],
-      img: [
-        "./media/products/ballon_bandage.jpeg",
-        "./media/products/ballon_bandage_2.jpeg",
-        "./media/products/ballon_bandage_3.jpeg",
-      ],
-      tag: "",
-    },
+
     {
       id: "p08",
-      name: "Soft Linen Romper",
-      category: "Romper",
-      price: 33000,
+      name: "Aqua Jumpsuit",
+      category: "Jumpsuits",
+      price: 65000,
       stock: "in",
-      sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
-      desc: "A relaxed romper cut from washed linen for warm days.",
+      sizes: ["L", "XL"],
+      desc: "Aqua blue halter/cowl neck flare jumpsuit. Stretchy.",
       color: ["skyblue"],
       img: [
-        "./media/products/aqua_jumpsuit.jpeg",
-        "./media/products/aqua_jumpsuit_2.jpeg",
-        "./media/products/aqua_jumpsuit_3.jpeg",
+        cloudinaryUrl("aqua_jumpsuit"),
+        cloudinaryUrl("aqua_jumpsuit", "_2"),
+        cloudinaryUrl("aqua_jumpsuit", "_3"),
       ],
+      backView: cloudinaryUrl("aqua_jumpsuit", "_3"),
       tag: "Sales",
     },
     {
       id: "p09",
-      name: "Seamless Body Suit",
-      category: "Body Suit",
+      name: "Polka Mesh dress",
+      category: "Dress",
       price: 22000,
       stock: "in",
-      sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
-      desc: "A second-skin bodysuit with a clean scoop neckline.",
-      color: ["rose", "cyan", "sienna"],
-      img: [
-        "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=700&auto=format&fit=crop",
-      ],
+      sizes: ["L"],
+      desc: "See-through layered mesh dress. Model is wearing a black underwear.",
+      color: ["black"],
+      img: [cloudinaryUrl("mesh_dress"), cloudinaryUrl("mesh_dress", "_2")],
+      backView: cloudinaryUrl("mesh_dress", "_2"),
       tag: "News",
     },
     {
       id: "p10",
-      name: "Silk Camisole Top",
-      category: "Tops",
-      price: 26000,
+      name: "Olive Stoned Maxi dress",
+      category: "Dress",
+      price: 75000,
       stock: "in",
       sizes: [
         "XS",
@@ -242,87 +251,92 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       desc: "A lustrous silk camisole with adjustable straps.",
       color: ["emerald", "blue", "white"],
-      img: [
-        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=700&auto=format&fit=crop",
-      ],
+      img: [cloudinaryUrl("olive_stoned"), cloudinaryUrl("olive_stoned", "_2")],
+      backView: cloudinaryUrl("olive_stoned", "_2"),
       tag: "",
     },
     {
       id: "p11",
-      name: "Corset Bustier Top",
+      name: "Green Knitted midi dress",
       category: "Tops",
       price: 31000,
       stock: "out",
-      sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
-      desc: "A boned bustier with a sculpted sweetheart neckline.",
+      sizes: ["M", "L", "XL"],
+      desc: "Midi knitted short-sleeve dress. Stretchy.",
       color: ["lilac", "black", "white"],
       img: [
-        "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=700&auto=format&fit=crop",
+        cloudinaryUrl("green_knitted"),
+        cloudinaryUrl("green_knitted", "_2"),
+        cloudinaryUrl("green_knitted", "_3"),
       ],
+      backView: cloudinaryUrl("green_knitted", "_3"),
       tag: "Sales",
     },
-    {
-      id: "p12",
-      name: "Noir Tailored Blazer",
-      category: "Blazer",
-      price: 62000,
-      stock: "in",
-      sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL"],
-      desc: "A double-breasted wool-blend blazer, fully lined.",
-      color: ["fuchsia", "zinc", "white"],
-      img: [
-        "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=700&auto=format&fit=crop",
-      ],
-      tag: "",
-    },
+
+    // {
+    //   id: "p12",
+    //   name: "Polka Mesh dress",
+    //   category: "Dress",
+    //   price: 44000,
+    //   stock: "low",
+    //   sizes: ["L"],
+    //   desc: "See-through layered mesh dress. Model is wearing a black underwear.",
+    //   color: ["black"],
+    //   img: [cloudinaryUrl("mesh_dress"), cloudinaryUrl("mesh_dress", "_2")],
+    //   backView: cloudinaryUrl("mesh_dress", "_2"),
+    //   tag: "Sales",
+    //   discount: 35,
+    // },
+
     {
       id: "p13",
-      name: "Satin Slip Skirt",
+      name: "Skye Knitted dress",
       category: "Skirt",
       price: 29000,
       stock: "in",
-      sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
-      desc: "A bias-cut satin midi skirt that catches the light.",
-      color: ["gray", "black", "white"],
+      sizes: ["M", "L"],
+      desc: "Mini knitted dress with beaded and ruffle details. Stretchy",
+      color: ["skyblue"],
       img: [
-        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=700&auto=format&fit=crop",
+        cloudinaryUrl("sky_knitted"),
+        cloudinaryUrl("sky_knitted", "_2"),
+        cloudinaryUrl("sky_knitted", "_3"),
       ],
+      backView: cloudinaryUrl("sky_knitted", "_3"),
       tag: "Sales",
     },
+
     {
       id: "p14",
-      name: "Tailored Wide Pant",
-      category: "Pant",
-      price: 36000,
+      name: "Mustard Jumpsuit",
+      category: "Jumpsuits",
+      price: 39000,
       stock: "in",
-      sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
-      desc: "High-waisted wide-leg trousers with a pressed crease.",
-      color: ["slate", "neutral", "white"],
+      sizes: ["L"],
+      desc: "Halter neck wide leg Jumpsuit. Non-stretchy.",
+      color: ["teal", "black", "red"],
       img: [
-        "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=700&auto=format&fit=crop",
+        cloudinaryUrl("mustard_jumpsuit"),
+        cloudinaryUrl("mustard_jumpsuit", "_2"),
+        cloudinaryUrl("mustard_jumpsuit", "_3"),
       ],
+      backView: cloudinaryUrl("mustard_jumpsuit", "_3"),
       tag: "",
     },
-    {
-      id: "p15",
-      name: "Sculpt Legging",
-      category: "Leggings",
-      price: 24000,
-      stock: "low",
-      sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
-      desc: "High-rise sculpting leggings in a buttery matte finish.",
-      color: ["red", "black", "amber"],
-      img: [
-        "https://images.unsplash.com/photo-1542295669297-4d352b042bca?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=700&auto=format&fit=crop",
-      ],
-      tag: "",
-    },
+
+    // {
+    //   id: "p15",
+    //   name: "Sculpt Legging",
+    //   category: "Leggings",
+    //   price: 24000,
+    //   stock: "low",
+    //   sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
+    //   desc: "High-rise sculpting leggings in a buttery matte finish.",
+    //   color: ["red", "black", "amber"],
+    //   img: [cloudinaryUrl("olive_stoned"), cloudinaryUrl("olive_stoned", "_2")],
+    //   backView: cloudinaryUrl("olive_stoned", "_2"),
+    //   tag: "",
+    // },
     {
       id: "p16",
       name: "Rigid Denim Two-Piece",
@@ -333,9 +347,11 @@ document.addEventListener("DOMContentLoaded", () => {
       desc: "A structured denim jacket and skirt in a deep indigo.",
       color: ["lime", "black", "white"],
       img: [
-        "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=700&auto=format&fit=crop",
+        cloudinaryUrl("green_knitted"),
+        cloudinaryUrl("green_knitted", "_2"),
+        cloudinaryUrl("green_knitted", "_3"),
       ],
+      backView: cloudinaryUrl("green_knitted", "_3"),
       tag: "",
     },
     {
@@ -348,9 +364,11 @@ document.addEventListener("DOMContentLoaded", () => {
       desc: "A slim-strap heeled sandal with a lacquered finish.",
       color: ["green", "black", "white"],
       img: [
-        "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=700&auto=format&fit=crop",
+        cloudinaryUrl("navi_knitted"),
+        cloudinaryUrl("navi_knitted", "_2"),
+        cloudinaryUrl("navi_knitted", "_3"),
       ],
+      backView: cloudinaryUrl("navi_knitted", "_2"),
       tag: "News",
     },
     {
@@ -363,9 +381,11 @@ document.addEventListener("DOMContentLoaded", () => {
       desc: "A pearl-clasp satin clutch with a detachable chain.",
       color: ["lilac", "black", "white"],
       img: [
-        "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=700&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=700&auto=format&fit=crop",
+        cloudinaryUrl("sky_knitted"),
+        cloudinaryUrl("sky_knitted", "_2"),
+        cloudinaryUrl("sky_knitted", "_3"),
       ],
+      backView: cloudinaryUrl("sky_knitted", "_2"),
       tag: "Limited",
     },
   ];
@@ -661,11 +681,11 @@ document.addEventListener("DOMContentLoaded", () => {
   <article class="pcard group ${out ? "is-out" : ""}" data-id="${p.id}">
     <!-- PRODUCT IMAGE -->
     <div class="imgwrap aspect-[3/4] mb-3">
-      ${p.tag && !out ? `<span class="absolute top-3 left-3 z-10 eyebrow text-pearl bg-black/55 backdrop-blur px-2.5 py-1 text-[.55rem]">${p.tag.slice(0, -1)}</span>` : ""}
-      ${out ? `<span class="absolute top-3 left-3 z-10 eyebrow bg-black/70 backdrop-blur px-2.5 py-1 text-[.55rem] text-smoke border border-[var(--line)]">Sold Out</span>` : ""}
+      ${p.tag && !out ? `<span class="absolute top-3 left-3 z-10 eyebrow tag text-pearl bg-black/55 backdrop-blur px-2.5 py-1 text-[.55rem]">${p.tag.slice(0, -1)}</span>` : ""}
+      ${out ? `<span class="absolute top-3 left-3 z-10 eyebrow tag text-pearl bg-black/70 backdrop-blur px-2.5 py-1 text-[.55rem] text-smoke border border-[var(--line)]">Sold Out</span>` : ""}
    
-      <div class="absolute pactions top-3 right-3 z-10 flex flex-col items-center justify-center bg-black/45 backdrop-blur gap-2">
-                  <button class="wish-btn w-7 h-6 md:w-9 md:h-7 grid place-items-center group-[.light]:text-white transition-colors"  data-add="${p.id}" ${out ? "disabled" : ""} title="Add to cart" >
+      <div class="absolute  pactions top-3 right-3 z-10 flex flex-col items-center justify-center bg-black/45 backdrop-blur gap-2 ${out ? "is-out" : ""}">
+                  <button class="wish-btn w-7 h-6 md:w-9 md:h-7 grid place-items-center group-[.light]:text-white transition-colors hover:text-lilac cursor-pointer ${out ? "pointer-events-none" : ""}"  data-add="${p.id}" ${out ? "disabled" : ""} title="Add to cart" >
                     <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -682,7 +702,7 @@ document.addEventListener("DOMContentLoaded", () => {
         />
       </svg>
                   </button>
-            <button class="wish-btn w-7 h-6 md:w-9 md:h-7 grid place-items-center group-[.light]:text-white  transition-colors ${wishlist.has(p.id) ? "text-lilac" : ""}" ${out ? "disabled" : ""} data-wish="${p.id}" aria-label="Add to wishlist" title="Add to wishlist">
+            <button class="wish-btn w-7 h-6 md:w-9 md:h-7 grid place-items-center group-[.light]:text-white  transition-colors ${wishlist.has(p.id) ? "text-lilac" : ""} hover:text-lilac cursor-pointer ${out ? "pointer-events-none" : ""}"" ${out ? "disabled" : ""} data-wish="${p.id}" aria-label="Add to wishlist" title="Add to wishlist">
       
 
       <svg
@@ -702,11 +722,8 @@ document.addEventListener("DOMContentLoaded", () => {
       </button>
       </div>
       <img class="img-front w-full h-full object-cover" loading="lazy" data-quick="${p.id}" alt="${p.name}" src="${p.img[0]}" onerror="this.style.opacity=0">
-      <img class="img-back w-full h-full object-cover" loading="lazy" alt="" data-quick="${p.id}" aria-hidden="true" src="${p.img[1]}" onerror="this.style.display='none'">
-      <div class="pactions absolute bottom-3 inset-x-3 z-10 flex gap-2 justify-center ">
-        <button class="btn btn-fill  py-3 w-1/2 hidden lg:block" data-quick="${p.id}">View</button>
-       
-      </div>
+      <img class="img-back w-full h-full object-cover" loading="lazy" alt="" data-quick="${p.id}" aria-hidden="true" src="${p.backView}" onerror="this.style.display='none'">
+    
     </div>
     <div class="flex items-start justify-between gap-2 relative">
       <div>
@@ -1044,7 +1061,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     handleSoldOutQtyPill([qtyDecrement, qtyIncrement, qtyInput, qvWish], out);
 
-    qvImgWrap.innerHTML = `<div class=" overflow-y-hidden flex img-cont-slider  [scrollbar-width:none][-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" id="qvImgSlider">${p.img.map((i) => `<img src="${i}" alt="${p.name}" class="w-full h-full object-cover "  onerror="this.style.opacity=0">`).join("")}   </div> 
+    qvImgWrap.innerHTML = `<div class=" overflow-y-hidden flex img-cont-slider  [scrollbar-width:none][-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" id="qvImgSlider">${p.img.map((i) => `<img src="${i}" alt="${p.name}" class="w-full h-[${qvImgWrap.offsetHeight}px] object-cover "  onerror="this.style.opacity=0">`).join("")}   </div> 
     
     
     

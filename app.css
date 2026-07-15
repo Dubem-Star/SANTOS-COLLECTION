@@ -242,6 +242,10 @@ textarea:focus-visible,
   text-transform: uppercase;
   color: var(--lilac);
 }
+
+.tag {
+  color: white;
+}
 .display {
   font-family: "Cormorant Garamond";
   font-weight: 600;
@@ -389,6 +393,10 @@ body.light .pcard .imgwrap {
   .pcard .pactions {
     transform: none;
     opacity: 1;
+  }
+
+  .pcard .pactions.is-out {
+    opacity: 0.5;
   }
 }
 /* sold-out treatment: dim image, keep luxury intact */
@@ -721,6 +729,11 @@ body.light .page-btn.active {
   .pcard:hover .pactions {
     transform: none;
     opacity: 1;
+  }
+
+  .pcard.is-out:hover .pactions {
+    opacity: 0.5;
+    transform: none;
   }
 
   ::-webkit-scrollbar-thumb:hover {
