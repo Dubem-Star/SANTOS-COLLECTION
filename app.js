@@ -645,7 +645,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function productCard(p) {
     const s = STOCK[p.stock];
     const out = p.stock === "out";
-    const sale = p.tag === "Sales";
+    const sale = p.tag === "Sale";
     const discount = p.price - p.price * 0.35;
 
     if (out) p.tag = "";
