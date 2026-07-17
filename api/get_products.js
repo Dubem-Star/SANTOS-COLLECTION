@@ -3,6 +3,8 @@ const setCors = require("./cors");
 const connectDB = require("./db");
 
 module.exports = async (req, res) => {
+  connectDB();
+  setCors(res);
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
