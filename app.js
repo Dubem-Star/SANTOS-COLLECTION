@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 ----------------------------------------------------------------- */
   async function fetchBackend() {
     const response = await fetch(
-      "https://santos-collection.vercel.app/api/get_product",
+      "https://santos-collection.vercel.app/api/get_products",
       {
         method: "post",
         headers: {
