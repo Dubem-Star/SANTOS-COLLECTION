@@ -79,6 +79,24 @@ document.addEventListener("DOMContentLoaded", () => {
      stock: 'in' | 'low' | 'out',     // inventory state
      sizes: [..], desc, img, imgAlt (hover), tag (optional ribbon)
 ----------------------------------------------------------------- */
+  async function fetchBackend() {
+    const response = await fetch(
+      "https://santos-collection.vercel.app/api/get_product",
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: "backend successful" }),
+      },
+    );
+
+    const res = await response.json();
+    console.log(res.response);
+  }
+
+  fetchBackend();
+
   const PRODUCTS = [
     {
       id: "p01",
@@ -386,7 +404,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const TESTIMONIALS = [
     {
       quote:
-        "The fit is impeccable and the fabric feels expensive in the hand. I get stopped every time I wear the Orchid gown.",
+        "The fit is impeccable and the fabric feels expensive in the hand. I get stopped every time I wear the skye dress.",
       name: "Adaeze O.",
       loc: "Lekki, Lagos",
     },
@@ -411,11 +429,12 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const MARQUEE_WORDS = [
-    "New Arrivals",
-    "Premium Fashion",
-    "Exclusive Collection",
-    "Luxury Womenswear",
     "Santos Collection",
+    "Premium Fashion",
+    "Timeless Style",
+    "New Arrivals",
+
+    "Luxury Wears",
   ];
 
   /* Inventory label helpers (palette-safe: lilac / orchid / smoke only) */
@@ -705,12 +724,12 @@ document.addEventListener("DOMContentLoaded", () => {
         <!-- PRODUCT INVENTORY STATUS -->
 
       </div>
-      <!-- PRODUCT PRICE --><p class="font-display text-xl text-lilac whitespace-nowrap  group-[.light]:font-bold ">${NGN(p.price)}</p>
+      <!-- PRODUCT PRICE --><p class="font-display text-xl text-lilac whitespace-nowrap  group-[.light]:font-[900] ">${NGN(p.price)}</p>
     ${
       sale
         ? `
   <p class="m-0 line-through text-smoke absolute right-0 top-7 text-xs tracking-wide">${NGN(discount)}</p>
-  <p class="m-0 absolute right-0 top-12 text-[9px] tracking-widest uppercase bg-[rgba(200,162,200,0.12)] group-[.light]:bg-[#c8a2c8d3] group-[.light]:text-pearl group-[.light]:border-lilac  text-lilac border border-[rgba(200,162,200,0.3)] px-[4px] md:px-[5px]  py-[2px]">35% off</p>
+  <p class="m-0 absolute right-0 top-12 text-[9px] tracking-widest uppercase bg-[rgba(200,162,200,0.12)] group-[.light]:bg-lilac group-[.light]:text-pearl group-[.light]:border-lilac  text-lilac border border-[rgba(200,162,200,0.3)] px-[4px] md:px-[5px]  py-[2px]">35% off</p>
 `
         : ""
     }
@@ -1190,7 +1209,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
       >
         <span class="inline-block w-3 h-3  rounded-full flex-shrink-0" style="background-color: ${c}"></span>
-        <span class="color-name">${c.toUpperCase()}</span>
+        <span class="color-name ">${c.toUpperCase()}</span>
       </button>`,
     )
     .join("")}

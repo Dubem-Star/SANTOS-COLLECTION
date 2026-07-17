@@ -121,7 +121,9 @@
           >
             SANTOS
           </span>
-          <span class="block eyebrow text-[.5rem] md:text-[.55rem] mt-0.5">
+          <span
+            class="block eyebrow text-[.5rem] md:text-[.55rem] mt-0.5 group-[.light]:font-[700]"
+          >
             Collection
           </span>
         </a>
@@ -246,11 +248,11 @@
     >
       <div class="absolute inset-0 z-0" data-parallax>
         <img
-          class="w-full h-[120%] object-cover object-top opacity-50"
+          class="object-cover object-[25%_top] sm:object-top w-full h-full sm:h-[120%] object-top opacity-90 group-[.light]:opacity-100"
           alt=""
           loading="eager"
           fetchpriority="high"
-          src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1600&auto=format&fit=crop"
+          src="./media/hero.png"
           onerror="this.style.display = 'none'"
         />
       </div>
@@ -285,22 +287,20 @@
       <div
         class="relative z-[3] max-w-[1500px] mx-auto px-4 md:px-10 w-full py-8 md:py-10"
       >
-        <p class="eyebrow mb-3 overflow-hidden">
-          <span class="hero-line inline-block">The Spring Atelier · 2026</span>
-        </p>
         <h1
           class="display text-pearl text-[2.6rem] sm:text-[3.6rem] lg:text-[5.2rem]"
         >
           <span class="block overflow-hidden"
             ><span class="hero-line inline-block"
-              >Elevate <span class="ital text-orchid">your</span> wardrobe</span
+              >Curated
+              <span class="ital text-orchid">for</span> Confidence</span
             ></span
           >
         </h1>
         <p
           class="hero-line max-w-md mt-4 text-pearl/70 group-[.light]:text-[var(--pearl)] leading-relaxed"
         >
-          Timeless luxury, crafted in limited runs. Shop the new season below.
+          Modern silhouettes, timeless style, and effortless sophistication.
         </p>
         <div class="hero-line mt-6 flex flex-wrap items-center gap-4">
           <a href="#shop" class="btn btn-fill px-8 py-3.5">Shop now</a>
@@ -379,13 +379,21 @@
       id="thePromise"
     >
       <div class="max-w-[1500px] mx-auto px-5 md:px-10 py-20 md:py-24">
-        <p class="eyebrow text-center mb-3" data-reveal>The Santos Promise</p>
+        <p
+          class="eyebrow text-center mb-3 group-[.light]:font-[900]"
+          data-reveal
+        >
+          The Santos Promise
+        </p>
         <h2
           class="display text-center text-[2.4rem] md:text-[3.4rem] mb-12"
           data-reveal
         >
           Why she shops with
-          <span class="ital text-orchid us group-[.light]:text-lilac">us</span>
+          <span
+            class="ital text-orchid us group-[.light]:text-lilac group-[.light]:font-[900]"
+            >us</span
+          >
         </h2>
         <div
           class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--line)] group-[.light]:bg-lilac promise-grid"
@@ -408,11 +416,11 @@
             </div>
             <h3 class="font-display text-2xl mb-1">Premium Quality</h3>
             <p class="text-pearl/55 text-sm leading-relaxed">
-              Considered fabrics, inspected piece by piece.
+              Crafted to impress. Luxury you can feel.
             </p>
           </div>
 
-          <!-- <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
+          <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
               class="text-lilac mb-4 svg-box group-hover:scale-110 transition-transform duration-500 origin-left"
             >
@@ -431,9 +439,9 @@
 
             <h3 class="font-display text-2xl mb-1">Exclusive Drops</h3>
             <p class="text-pearl/55 text-sm leading-relaxed">
-              Limited runs that rarely return once sold.
+              Limited. Coveted. Yours.
             </p>
-          </div> -->
+          </div>
 
           <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
@@ -454,7 +462,7 @@
             </div>
             <h3 class="font-display text-2xl mb-1">Nationwide Delivery</h3>
             <p class="text-pearl/55 text-sm leading-relaxed">
-              Swift, tracked dispatch to every state.
+              Swift dispatch. From us to your door.
             </p>
           </div>
           <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
@@ -502,7 +510,7 @@
             </p>
           </div> -->
 
-          <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
+          <!-- <div class="bg-onyx card p-7 md:p-9 group" data-reveal>
             <div
               class="text-lilac mb-4 svg-box group-hover:scale-110 transition-transform duration-500 origin-left"
             >
@@ -534,7 +542,7 @@
               We accept returns on unworn items in their original packaging
               within 30 days of delivery.
             </p>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -544,7 +552,9 @@
       class="bg-black border-y border-[var(--line)] testimonials group-[.light]:bg-white group-[.light]:border-[var(--ashy)]"
     >
       <div class="max-w-3xl mx-auto py-20 text-center">
-        <p class="eyebrow mb-8" data-reveal>Loved by the Inner Circle</p>
+        <p class="eyebrow mb-8 group-[.light]:font-[900]" data-reveal>
+          Loved by the Inner Circle
+        </p>
         <div id="testiTrack" class="relative min-h-[230px]"></div>
         <div
           class="flex items-center justify-center gap-3 mt-6"
@@ -556,7 +566,7 @@
     <!-- =================== INSTAGRAM =================== -->
     <section class="py-20 md:py-28" id="community">
       <div class="text-center mb-10 px-5" data-reveal>
-        <p class="eyebrow mb-3">Community</p>
+        <p class="eyebrow mb-3 group-[.light]:font-[900]">Community</p>
         <h2 class="display text-[2.4rem] md:text-[3.6rem]">
           As seen on
           <span class="ital text-orchid group-[.light]:text-lilac"
@@ -780,7 +790,9 @@
       <div
         class="relative max-w-2xl mx-auto px-5 md:px-10 py-20 md:py-28 text-center"
       >
-        <p class="eyebrow mb-4" data-reveal>Members only</p>
+        <p class="eyebrow mb-4 group-[.light]:font-[900]" data-reveal>
+          Members only
+        </p>
         <h2
           class="display text-[2.6rem] md:text-[3.8rem] leading-tight mb-4"
           data-reveal
@@ -832,7 +844,7 @@
     >
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         <div data-reveal>
-          <p class="eyebrow mb-3">Visit / Contact</p>
+          <p class="eyebrow mb-3 group-[.light]:font-[900]">Visit / Contact</p>
           <h2 class="display text-[2.6rem] md:text-[3.8rem] mb-8">
             Come say
             <span class="ital text-orchid group-[.light]:text-lilac"
@@ -1550,15 +1562,20 @@
             id="qvImgWrap"
           ></div>
           <div class="p-7 md:p-10 flex flex-col">
-            <p class="eyebrow mb-2" id="qvCat"></p>
+            <p class="eyebrow mb-2 group-[.light]:font-[700]" id="qvCat"></p>
             <h3 class="font-display text-4xl md:text-5xl mb-2" id="qvName"></h3>
             <div class="flex items-center gap-3 mb-4">
-              <p class="font-display text-3xl text-lilac" id="qvPrice"></p>
-              <span id="qvStatus" class="text-xs"></span>
+              <p
+                class="font-display text-3xl text-lilac group-[.light]:font-[900]"
+                id="qvPrice"
+              ></p>
+              <span id="qvStatus" class="text-xs hidden"></span>
             </div>
             <!-- =================== DESCRIPTION -->
             <div>
-              <p class="eyebrow mb-1 mt-3 lg:mt-4">Description:</p>
+              <p class="eyebrow mb-1 mt-3 lg:mt-4 group-[.light]:font-[900]">
+                Description:
+              </p>
               <p
                 class="text-pearl/55 text-sm leading-relaxed mb-6 lg:mb-8"
                 id="qvDesc"
@@ -1567,7 +1584,7 @@
 
             <!-- =================== SIZES -->
             <div class="mb-8 lg:mb-9">
-              <p class="eyebrow mb-2 mt-1">Sizes:</p>
+              <p class="eyebrow mb-2 mt-1 group-[.light]:font-[900]">Sizes:</p>
               <div class="flex gap-2 mb-1 flex-wrap" id="qvSizes"></div>
 
               <span
@@ -1583,7 +1600,9 @@
 
             <!-- =================== QUANTITY -->
             <div class="mb-8 lg:mb-9">
-              <p class="eyebrow mb-2 mt-1">Quantity:</p>
+              <p class="eyebrow mb-2 mt-1 group-[.light]:font-[900]">
+                Quantity:
+              </p>
               <div class="flex items-center" id="qvQty">
                 <button
                   class="border border-lilac w-9 h-9 flex items-center justify-center hover:border-lilac transition-colors"
