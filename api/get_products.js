@@ -13,9 +13,10 @@ module.exports = async (req, res) => {
     await connectDB();
 
     console.log(req.body.message);
-    res.json({ response: true });
+    const products = await Product.find({});
+    res.status(200).json({ status: true, data: products });
   } catch (e) {
     console.log("Error: ", e);
-    res.json({ response: e });
+    res.status(400).json({ status: false, data: e });
   }
 };
