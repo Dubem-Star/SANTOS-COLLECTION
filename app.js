@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   tailwind.config = {
     theme: {
       extend: {
@@ -30,7 +30,40 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     },
   };
+
+  let PRODUCTS;
+  async function fetchBackend() {
+    try {
+      const response = await fetch(
+        "https://santos-collection.vercel.app/api/get_products",
+        {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: "backend successful" }),
+        },
+      );
+
+      const res = await response.json();
+      if (res.status) {
+        console.log("bug");
+        PRODUCTS = res.data;
+        console.log(PRODUCTS[0].name);
+      } else {
+        alert("error fetching products");
+        console.log(res.data);
+      }
+
+      console.log("...");
+    } catch (e) {
+      console.log("error");
+    }
+  }
+  // await fetchBackend();
+
   const sidebarDropdownMenu = document.getElementById("sidebarDropdownMenu");
+  console.log(sidebarDropdownMenu);
   const mobileGalleryNav = document.getElementById("mobileGalleryNav");
   const dropdownMobile = document.getElementById("sidebarDropdownMenu");
   mobileGalleryNav.addEventListener("click", () => {
@@ -79,312 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
      stock: 'in' | 'low' | 'out',     // inventory state
      sizes: [..], desc, img, imgAlt (hover), tag (optional ribbon)
 ----------------------------------------------------------------- */
-  let PRODUCTS;
-  async function fetchBackend() {
-    const response = await fetch(
-      "https://santos-collection.vercel.app/api/get_products",
-      {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: "backend successful" }),
-      },
-    );
-
-    const res = await response.json();
-    if (res.staus) {
-      PRODUCTS = res.data;
-    } else {
-      alert("error fetching products");
-      console.log(res.data);
-    }
-  }
-
-  fetchBackend();
-
-  // const PRODUCTS = [
-  //   {
-  //     id: "p01",
-  //     name: "Promise Satin Maxi Dress",
-  //     category: "Dress",
-  //     price: 70000,
-  //     stock: "in",
-  //     sizes: ["S", "L"],
-  //     desc: "Multi-colored satin sleeveless dress. Non-stretchy",
-  //     color: ["blue", "black", "violet"],
-  //     img: [
-  //       cloudinaryUrl("promise_satin"),
-  //       cloudinaryUrl("promise_satin", "_2"),
-  //       cloudinaryUrl("promise_satin", "_3"),
-  //     ],
-  //     backView: cloudinaryUrl("promise_satin", "_3"),
-  //     tag: "New",
-  //   },
-
-  //   {
-  //     id: "p02",
-  //     name: "Balloon bandage dress- mini",
-  //     category: "Dress",
-  //     price: 65000,
-  //     stock: "low",
-  //     sizes: ["L", "XL"],
-  //     desc: "Low back bandage dress. Slight stretch, with corset detail.",
-  //     color: ["red"],
-  //     img: [
-  //       cloudinaryUrl("ballon_bandage"),
-  //       cloudinaryUrl("ballon_bandage", "_2"),
-  //       cloudinaryUrl("ballon_bandage", "_3"),
-  //     ],
-  //     backView: cloudinaryUrl("ballon_bandage", "_3"),
-  //     tag: "",
-  //   },
-
-  //   {
-  //     id: "p03",
-  //     name: "Emerald Satin dress",
-  //     category: "Dress",
-  //     price: 55000,
-  //     stock: "out",
-  //     sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"],
-  //     desc: "Satin dress with ruffle slit and flare sleeves.",
-  //     color: ["blueviolet", "yellow", "white"],
-  //     img: [
-  //       cloudinaryUrl("emerald_dress"),
-  //       cloudinaryUrl("emerald_dress", "_2"),
-  //     ],
-  //     backView: cloudinaryUrl("emerald_dress", "_2"),
-  //     tag: "New",
-  //   },
-
-  //   {
-  //     id: "p04",
-  //     name: "Lilac Halter Maxi dress ",
-  //     category: "Dress",
-  //     price: 60000,
-  //     stock: "in",
-  //     sizes: ["L"],
-  //     desc: " Full length Maxi dress. Slightly stretchy.",
-  //     color: ["lilac"],
-  //     img: [
-  //       cloudinaryUrl("lilac_halter"),
-  //       cloudinaryUrl("lilac_halter", "_2"),
-  //       cloudinaryUrl("lilac_halter", "_3"),
-  //     ],
-  //     backView: cloudinaryUrl("lilac_halter", "_3"),
-  //     tag: "Sale",
-  //   },
-
-  //   {
-  //     id: "p05",
-  //     name: "Navy Knitted dress",
-  //     category: "Dress",
-  //     price: 62000,
-  //     stock: "in",
-  //     sizes: ["M", "L"],
-  //     desc: "Mini knitted long-sleeve dress with flower detail. Slightly stretchy.",
-  //     color: ["blue"],
-  //     img: [
-  //       cloudinaryUrl("navi_knitted"),
-  //       cloudinaryUrl("navi_knitted", "_2"),
-  //       cloudinaryUrl("navi_knitted", "_3"),
-  //     ],
-  //     backView: cloudinaryUrl("navi_knitted", "_3"),
-  //     tag: "",
-  //   },
-
-  //   {
-  //     id: "p06",
-  //     name: "Zebra print skirt set",
-  //     category: "Set",
-  //     price: 48000,
-  //     stock: "in",
-  //     sizes: ["L", "XL"],
-  //     desc: " Zebra print 2piece skirt set with ruched detail.",
-  //     color: ["black", "white"],
-  //     img: [cloudinaryUrl("zebra_print"), cloudinaryUrl("zebra_print", "_2")],
-  //     backView: cloudinaryUrl("zebra_print", "_2"),
-
-  //     tag: "New",
-  //   },
-
-  //   {
-  //     id: "p07",
-  //     name: "Ana Bandage Jumpsuit",
-  //     category: "Jumpsuit",
-  //     price: 68000,
-  //     stock: "in",
-  //     sizes: ["L"],
-  //     desc: "Bandage jumpsuit. Tall girl friendly. Slight stretch.",
-  //     color: ["black", "white"],
-  //     img: [cloudinaryUrl("ana_bandage"), cloudinaryUrl("ana_bandage", "_2")],
-  //     backView: cloudinaryUrl("ana_bandage", "_2"),
-  //     tag: "Sale",
-  //   },
-
-  //   {
-  //     id: "p08",
-  //     name: "Aqua Jumpsuit",
-  //     category: "Jumpsuit",
-  //     price: 65000,
-  //     stock: "in",
-  //     sizes: ["L", "XL"],
-  //     desc: "Aqua blue halter/cowl neck flare jumpsuit. Stretchy.",
-  //     color: ["skyblue"],
-  //     img: [
-  //       cloudinaryUrl("aqua_jumpsuit"),
-  //       cloudinaryUrl("aqua_jumpsuit", "_2"),
-  //       cloudinaryUrl("aqua_jumpsuit", "_3"),
-  //     ],
-  //     backView: cloudinaryUrl("aqua_jumpsuit", "_3"),
-  //     tag: "Sale",
-  //   },
-  //   {
-  //     id: "p09",
-  //     name: "Polka Mesh dress",
-  //     category: "Dress",
-  //     price: 22000,
-  //     stock: "in",
-  //     sizes: ["L"],
-  //     desc: "See-through layered mesh dress. Model is wearing a black underwear.",
-  //     color: ["black"],
-  //     img: [cloudinaryUrl("mesh_dress"), cloudinaryUrl("mesh_dress", "_2")],
-  //     backView: cloudinaryUrl("mesh_dress", "_2"),
-  //     tag: "New",
-  //   },
-  //   {
-  //     id: "p10",
-  //     name: "Olive Stoned Maxi dress",
-  //     category: "Dress",
-  //     price: 75000,
-  //     stock: "in",
-  //     sizes: [
-  //       "XS",
-  //       "S",
-  //       "M",
-  //       "L",
-  //       "XL",
-  //       "2XL",
-  //       "3XL",
-  //       "4XL",
-  //       "5XL",
-  //       "6XL",
-  //       "7XL",
-  //       "8XL",
-  //       "9XL",
-  //     ],
-  //     desc: "A lustrous silk camisole with adjustable straps.",
-  //     color: ["emerald", "blue", "white"],
-  //     img: [cloudinaryUrl("olive_stoned"), cloudinaryUrl("olive_stoned", "_2")],
-  //     backView: cloudinaryUrl("olive_stoned", "_2"),
-  //     tag: "",
-  //   },
-  //   {
-  //     id: "p11",
-  //     name: "Green Knitted midi dress",
-  //     category: "Top",
-  //     price: 31000,
-  //     stock: "out",
-  //     sizes: ["M", "L", "XL"],
-  //     desc: "Midi knitted short-sleeve dress. Stretchy.",
-  //     color: ["lilac", "black", "white"],
-  //     img: [
-  //       cloudinaryUrl("green_knitted"),
-  //       cloudinaryUrl("green_knitted", "_2"),
-  //       cloudinaryUrl("green_knitted", "_3"),
-  //     ],
-  //     backView: cloudinaryUrl("green_knitted", "_3"),
-  //     tag: "Sale",
-  //   },
-
-  //   {
-  //     id: "p13",
-  //     name: "Skye Knitted dress",
-  //     category: "Skirt",
-  //     price: 29000,
-  //     stock: "in",
-  //     sizes: ["M", "L"],
-  //     desc: "Mini knitted dress with beaded and ruffle details. Stretchy",
-  //     color: ["skyblue"],
-  //     img: [
-  //       cloudinaryUrl("sky_knitted"),
-  //       cloudinaryUrl("sky_knitted", "_2"),
-  //       cloudinaryUrl("sky_knitted", "_3"),
-  //     ],
-  //     backView: cloudinaryUrl("sky_knitted", "_3"),
-  //     tag: "Sale",
-  //   },
-
-  //   {
-  //     id: "p14",
-  //     name: "Mustard Jumpsuit",
-  //     category: "Jumpsuit",
-  //     price: 39000,
-  //     stock: "in",
-  //     sizes: ["L"],
-  //     desc: "Halter neck wide leg Jumpsuit. Non-stretchy.",
-  //     color: ["teal", "black", "red"],
-  //     img: [
-  //       cloudinaryUrl("mustard_jumpsuit"),
-  //       cloudinaryUrl("mustard_jumpsuit", "_2"),
-  //       cloudinaryUrl("mustard_jumpsuit", "_3"),
-  //     ],
-  //     backView: cloudinaryUrl("mustard_jumpsuit", "_3"),
-  //     tag: "",
-  //   },
-
-  //   {
-  //     id: "p16",
-  //     name: "Rigid Denim Two-Piece",
-  //     category: "Denim",
-  //     price: 52000,
-  //     stock: "in",
-  //     sizes: ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL"],
-  //     desc: "A structured denim jacket and skirt in a deep indigo.",
-  //     color: ["lime", "black", "white"],
-  //     img: [
-  //       cloudinaryUrl("green_knitted"),
-  //       cloudinaryUrl("green_knitted", "_2"),
-  //       cloudinaryUrl("green_knitted", "_3"),
-  //     ],
-  //     backView: cloudinaryUrl("green_knitted", "_3"),
-  //     tag: "",
-  //   },
-  //   {
-  //     id: "p17",
-  //     name: "Strappy Heeled Sandal",
-  //     category: "Shoe",
-  //     price: 45000,
-  //     stock: "in",
-  //     sizes: ["37", "38", "39", "40", "41", "42", "43", "44", "45"],
-  //     desc: "A slim-strap heeled sandal with a lacquered finish.",
-  //     color: ["green", "black", "white"],
-  //     img: [
-  //       cloudinaryUrl("navi_knitted"),
-  //       cloudinaryUrl("navi_knitted", "_2"),
-  //       cloudinaryUrl("navi_knitted", "_3"),
-  //     ],
-  //     backView: cloudinaryUrl("navi_knitted", "_2"),
-  //     tag: "New",
-  //   },
-  //   {
-  //     id: "p18",
-  //     name: "Vesper Pearl Clutch",
-  //     category: "Bag",
-  //     price: 27000,
-  //     stock: "in",
-  //     sizes: ["One size"],
-  //     desc: "A pearl-clasp satin clutch with a detachable chain.",
-  //     color: ["lilac", "black", "white"],
-  //     img: [
-  //       cloudinaryUrl("sky_knitted"),
-  //       cloudinaryUrl("sky_knitted", "_2"),
-  //       cloudinaryUrl("sky_knitted", "_3"),
-  //     ],
-  //     backView: cloudinaryUrl("sky_knitted", "_2"),
-  //     tag: "Limited",
-  //   },
-  // ];
 
   const CATEGORIES = [
     "All",
@@ -439,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "Premium Fashion",
     "Timeless Style",
     "New Arrivals",
-
     "Luxury Wears",
   ];
 
@@ -656,7 +382,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ).join("");
   }
 
-  function getFiltered() {
+  async function getFiltered() {
+    await fetchBackend();
     return shopState.category === "All"
       ? PRODUCTS
       : PRODUCTS.filter(
@@ -786,8 +513,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Usage:
 
-  function renderShop() {
-    const list = getFiltered();
+  async function renderShop() {
+    const list = await getFiltered();
     const total = Math.max(1, Math.ceil(list.length / shopState.perPage));
     if (shopState.page > total) shopState.page = total;
     const start = (shopState.page - 1) * shopState.perPage;
@@ -934,6 +661,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function sideGuideShow(sg) {
     sg.addEventListener("click", (e) => {
       e.preventDefault();
+      e.stopImmediatePropagation();
       overlay.style.opacity = "1";
       overlay.style.pointerEvents = "auto";
       closeGuide.style.opacity = "1";
@@ -1028,6 +756,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const qtyIncrement = document.getElementById("qtyIncrement");
     const qtyInput = document.getElementById("qtyInput");
     const qvWish = document.getElementById("qvWish");
+    const sizesText = document.getElementById("sizesText");
     const p = findProduct(id);
     if (!p) return;
     qvCurrent = p;
@@ -1174,6 +903,8 @@ document.addEventListener("DOMContentLoaded", () => {
     qvPrice.textContent = NGN(p.price);
     qvStatus.innerHTML = `<span class="flex items-center gap-1.5 ${s.cls}"><span class="inline-block w-1.5 h-1.5 rounded-full" style="${s.dot}"></span>${s.label}</span>`;
     qvDesc.textContent = p.desc;
+
+    sizesText.innerHTML = p.sizes.length < 2 ? "Size:" : "Sizes:";
     qvSizes.innerHTML = p.sizes
       .map(
         (sz, i) =>
@@ -1743,14 +1474,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("year").textContent = new Date().getFullYear();
 
   /* -------------------------- INIT -------------------------- */
-  window.addEventListener("DOMContentLoaded", () => {
-    renderFilters();
-    renderShop(); // products visible almost immediately
-    buildMarquee();
-    buildTestimonials();
-    updateCart();
-    initReveal();
-    if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
-  });
-  window.addEventListener("load", runLoader);
+
+  renderFilters();
+  renderShop(); // products visible almost immediately
+  buildMarquee();
+  buildTestimonials();
+  updateCart();
+  initReveal();
+  if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+  runLoader();
 });
