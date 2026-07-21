@@ -347,8 +347,18 @@
          in the PRODUCT CARD comment markers requested by the team. -->
         <div
           id="productGrid"
-          class="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-14 md:gap-x-5 md:gap-y-18"
-        ></div>
+          class="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-14 md:gap-x-5 md:gap-y-18 relative"
+        >
+          <div
+            class="flex items-center justify-center mb-7 absolute left-[50%] top-[20px] mx-auto"
+          >
+            <div
+              class="animate-spin h-8 w-8 border-2 rounded-full border-lilac border-t-transparent"
+            ></div>
+          </div>
+
+          <div class="opacity-0 h-[100px]">block</div>
+        </div>
 
         <!-- empty state -->
         <p
@@ -1298,14 +1308,14 @@
           </p>
           <div class="flex flex-col gap-1">
             <p>Surulere · Lagos · Nigeria</p>
-            <span class="text-[11px] self-center md:self-end">
+            <!-- <span class="text-[11px] self-center md:self-end">
               Developed by
               <a
                 href="https://dubem-portfolio-beryl.vercel.app/"
-                class="text-lilac font-serif"
+                class="text-lilac font-serif group-[.light]:font-[700]"
                 >Dubem</a
               >
-            </span>
+            </span> -->
           </div>
         </div>
       </div>
@@ -1616,7 +1626,7 @@
                   -
                 </button>
                 <input
-                  class="w-14 h-9 text-center border-y border-lilac outline-none bg-transparent no-spin appearance-none rounded-none"
+                  class="w-14 h-9 text-center pointer-events-none border-y border-lilac outline-none bg-transparent no-spin appearance-none rounded-none"
                   value="1"
                   id="qtyInput"
                   type="number"

@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     },
   };
 
-  let PRODUCTS;
+  let PRODUCTS = false;
   async function fetchBackend() {
     try {
       const response = await fetch(
@@ -383,7 +383,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   async function getFiltered() {
-    await fetchBackend();
+    if (!PRODUCTS) {
+      await fetchBackend();
+    }
+
     return shopState.category === "All"
       ? PRODUCTS
       : PRODUCTS.filter(
@@ -607,6 +610,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const faqsFooterBtn = document.getElementById("faqsFooterBtn");
   const faqContainer = document.getElementById("faqContainer");
   const faqModel = document.getElementById("faqModel");
+  const qtyInput = document.getElementById("qtyInput");
+  let selectedQty;
+  let selectedColor;
+  let selectedSize;
   let qvCurrent = null;
 
   const faqs = [
@@ -744,6 +751,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     )
     .join("");
 
+  // qtyInput.addEventListener("input", () => {
+  //   selectedQty = qtyInput.value;
+  //   console.log(selectedQty);
+  // });
+
   /* -----------------------------------------------------------------
    7) QUICK VIEW
 ----------------------------------------------------------------- */
@@ -754,7 +766,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   function openQuick(id) {
     const qtyDecrement = document.getElementById("qtyDecrement");
     const qtyIncrement = document.getElementById("qtyIncrement");
-    const qtyInput = document.getElementById("qtyInput");
     const qvWish = document.getElementById("qvWish");
     const sizesText = document.getElementById("sizesText");
     const p = findProduct(id);
@@ -773,8 +784,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     qtyInput.value = 1;
 
-    function handleSoldOutQtyPill(element, boolean) {
+    function handleSoldOutQtyPill(element, qI, boolean) {
       if (boolean) {
+        qI.style.opacity = "0.5";
         for (e of element) {
           e.style.pointerEvents = "none";
           e.style.opacity = "0.5";
@@ -784,9 +796,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           e.style.pointerEvents = "auto";
           e.style.opacity = "1";
         }
+        qI.style.opacity = "1";
       }
     }
-    handleSoldOutQtyPill([qtyDecrement, qtyIncrement, qtyInput, qvWish], out);
+    handleSoldOutQtyPill([qtyDecrement, qtyIncrement, qvWish], qtyInput, out);
 
     qvImgWrap.innerHTML = `<div class=" overflow-y-hidden flex img-cont-slider  [scrollbar-width:none][-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" id="qvImgSlider">${p.img.map((i) => `<img src="${i}" alt="${p.name}" class="w-full h-[${qvImgWrap.offsetHeight}px] object-cover "  onerror="this.style.opacity=0">`).join("")}   </div> 
     
@@ -926,6 +939,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           "border-[var(--line-strong)] text-pearl/70",
           "border-lilac text-lilac",
         );
+
+        selectedSize = b.innerHTML;
+        console.log(selectedSize);
       }),
     );
 
@@ -972,6 +988,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         btn.classList.add("border-lilac", "text-lilac");
+        selectedColor =
+          color.charAt(0).toUpperCase() + color.slice(1).toLowerCase();
+        console.log(selectedColor);
       });
     }
 
@@ -997,25 +1016,37 @@ document.addEventListener("DOMContentLoaded", async () => {
     const currentValue = parseInt(qtyInput.value);
     if (currentValue > 1) {
       qtyInput.value = currentValue - 1;
+      selectedQty = qtyInput.value;
+      console.log(selectedQty);
     }
   });
 
   qtyIncrement.addEventListener("click", () => {
     const currentValue = parseInt(qtyInput.value);
     qtyInput.value = currentValue + 1;
+    selectedQty = qtyInput.value;
+    console.log(selectedQty);
   });
 
   /* -----------------------------------------------------------------
    8) CART + WISHLIST  (in-memory; >>> BACKEND: persist to localStorage/API)
 ----------------------------------------------------------------- */
   const cart = [];
+  // const color =
   const wishlist = new Set();
 
   function addToCart(id, fromEl) {
     const p = findProduct(id);
     if (!p || p.stock === "out") return;
     const line = cart.find((l) => l.id === id);
-    line ? line.qty++ : cart.push({ id, qty: 1 });
+    line
+      ? line.qty++
+      : cart.push({
+          id,
+          qty: selectedQty,
+          color: selectedColor,
+          size: selectedSize,
+        });
     updateCart();
     flyToCart(fromEl);
     bump("cartCount");
