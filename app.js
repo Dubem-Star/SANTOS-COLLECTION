@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   ).matches;
   const NGN = (n) => "₦" + Number(n).toLocaleString("en-NG");
   const cloudinaryUrl = (fileName, suffix = "") =>
-    `https://res.cloudinary.com/dirijnb2k/image/upload/${fileName}${suffix}.jpg`;
+    `https://res.cloudinary.com/dirijnb2k/image/upload/q_auto,f_auto/${fileName}${suffix}.jpg`;
 
   /* -----------------------------------------------------------------
    1) DATA
@@ -395,7 +395,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             p.tag === shopState.category,
         );
   }
-
+  let quickAtc = false;
   /* Reusable product card template (the team requested explicit markers). */
   function productCard(p) {
     const s = STOCK[p.stock];
@@ -413,7 +413,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       ${out ? `<span class="absolute top-3 left-3 z-10 eyebrow tag text-pearl bg-black/70 backdrop-blur px-2.5 py-1 text-[.55rem] text-smoke border border-[var(--line)]">Sold Out</span>` : ""}
    
       <div class="absolute  pactions top-3 right-3 z-10 flex flex-col items-center justify-center bg-black/45 backdrop-blur gap-2 ${out ? "is-out" : ""}">
-                  <button class="wish-btn w-7 h-6 md:w-9 md:h-7 grid place-items-center group-[.light]:text-white transition-colors hover:text-lilac cursor-pointer ${out ? "pointer-events-none" : ""}"  data-add="${p.id}" ${out ? "disabled" : ""} title="Add to cart" >
+                  <button class="wish-btn w-7 h-6 md:w-9 md:h-7 grid place-items-center group-[.light]:text-white transition-colors hover:text-lilac cursor-pointer ${out ? "pointer-events-none" : ""}" data-quickAtc="true" = data-add="${p.id}" ${out ? "disabled" : ""} title="Add to cart" >
                     <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -596,9 +596,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  /* -----------------------------------------------------------------
+  /* --------------------------------------------------------------------------------
   -- DUBEM's CODES --
------------------------------------------------------------------ */
+----------------------------------------------------------------- -------------------*/
   const overlay = document.getElementById("overlay");
   const closeGuide = document.getElementById("closeGuide");
   const sizeGuideFooter = document.getElementById("sizeGuideFooter");
@@ -611,7 +611,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const faqContainer = document.getElementById("faqContainer");
   const faqModel = document.getElementById("faqModel");
   const qtyInput = document.getElementById("qtyInput");
-  let selectedQty;
+  const asSeenGrid = document.getElementById("asSeenGrid");
+
+  let selectedQty = 1;
   let selectedColor;
   let selectedSize;
   let qvCurrent = null;
@@ -665,6 +667,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     },
   ];
 
+  // SHOW SIZE GUIDE *************************
   function sideGuideShow(sg) {
     sg.addEventListener("click", (e) => {
       e.preventDefault();
@@ -685,6 +688,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     closeGuide.style.left = `${rect.right - closeGuide.offsetWidth - 10}px`;
   }
 
+  // SHOW POLICT AND FAQ MODAL *******************
   function showLegals(e, r, f, element) {
     e.preventDefault();
     positionCloseBtn();
@@ -731,6 +735,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     faqModel.style.pointerEvents = "none";
   });
 
+  // FAQ CONTENTS **************************
   faqContainer.innerHTML = faqs
     .map(
       ({ question, answer }) => `
@@ -751,10 +756,34 @@ document.addEventListener("DOMContentLoaded", async () => {
     )
     .join("");
 
-  // qtyInput.addEventListener("input", () => {
-  //   selectedQty = qtyInput.value;
-  //   console.log(selectedQty);
-  // });
+  // INSTAGRAM/COMMUNITY CONTENTS **************************
+
+  const asSeenImgs = [
+    cloudinaryUrl("dress_1"),
+    cloudinaryUrl("dress_2"),
+    cloudinaryUrl("dress_3"),
+    cloudinaryUrl("dress_4"),
+    cloudinaryUrl("dress_5"),
+    cloudinaryUrl("dress_6"),
+    // cloudinaryUrl("dress_7"),
+  ];
+  asSeenGrid.innerHTML = asSeenImgs
+    .map((i) => {
+      return `
+      <a
+          href=""
+          target="_blank"
+          rel="noopener"
+          class="ig aspect-square"
+          data-reveal
+          ><img
+            class="w-full h-full object-cover scale-80"
+            loading="lazy"
+            alt="Instagram"
+            src=${i} /></a>
+    `;
+    })
+    .join("");
 
   /* -----------------------------------------------------------------
    7) QUICK VIEW
@@ -1016,7 +1045,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const currentValue = parseInt(qtyInput.value);
     if (currentValue > 1) {
       qtyInput.value = currentValue - 1;
-      selectedQty = qtyInput.value;
+      selectedQty = parseInt(qtyInput.value);
       console.log(selectedQty);
     }
   });
@@ -1024,7 +1053,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   qtyIncrement.addEventListener("click", () => {
     const currentValue = parseInt(qtyInput.value);
     qtyInput.value = currentValue + 1;
-    selectedQty = qtyInput.value;
+    selectedQty = parseInt(qtyInput.value);
     console.log(selectedQty);
   });
 
@@ -1047,6 +1076,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           color: selectedColor,
           size: selectedSize,
         });
+    selectedQty = 1;
     updateCart();
     flyToCart(fromEl);
     bump("cartCount");
@@ -1091,17 +1121,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       <div class="w-20 h-24 bg-char overflow-hidden shrink-0"><img src="${p.img[0]}" alt="${p.name}" class="w-full h-full object-cover" onerror="this.style.opacity=0"></div>
       <div class="flex-1">
         <h4 class="font-display text-lg leading-tight">${p.name}</h4>
-        <p class="text-xs text-smoke mb-2">${p.category}</p>
+        <p class="text-xs text-smoke group-[.light]:font-[500] mb-2">${p.category}</p>
+
+         <div class="flex gap-1.5 flex-wrap mb-2">
+          <span class="text-[10px] group-[.light]:font-[900] tracking-widest uppercase text-lilac border border-[rgba(200,162,200,0.25)] px-2 py-0.5">Size: ${l.size ? l.size : p.sizes[0]}</span>
+          <span class="text-[10px] group-[.light]:font-[900] tracking-widest uppercase text-lilac border border-[rgba(200,162,200,0.25)] px-2 py-0.5 flex items-center gap-1.5"><span class="inline-block w-2 h-2 rounded-full flex-shrink-0" style="background-color:${l.color ? l.color : p.color[0]}"></span>${l.color ? l.color : p.color[0]}</span>
+        </div>
+
         <div class="flex items-center gap-3">
-          <div class="flex items-center border border-[var(--line-strong)]">
-            <button class="px-2.5 py-1 hover:text-lilac" data-qty="${p.id}" data-d="-1" aria-label="Decrease">−</button>
-            <span class="px-2 text-sm">${l.qty}</span>
-            <button class="px-2.5 py-1 hover:text-lilac" data-qty="${p.id}" data-d="1" aria-label="Increase">+</button>
+          <div class="flex items-center border border-[var(--line-strong)] group-[.light]:border-[var(--lilac)]">
+            <button class="px-2.5 py-1 hover:text-lilac group-[.light]:text-smoke" data-qty="${p.id}" data-d="-1" aria-label="Decrease">−</button>
+            <span class="px-2 text-sm group-[.light]:text-smoke">${l.qty}</span>
+            <button class="px-2.5 py-1 hover:text-lilac group-[.light]:text-smoke" data-qty="${p.id}" data-d="1" aria-label="Increase">+</button>
           </div>
-          <button class="text-xs text-smoke hover:text-lilac uppercase tracking-widest" data-rm="${p.id}">Remove</button>
+          <button class=" text-sm text-center text-[white] hover:text-lilac w-5 h-5 flex justify-center items-center bg-black/40 group-[.light]:bg-black/10 group-[.light]:text-black" data-rm="${p.id}"> ×</button>
         </div>
       </div>
-      <p class="font-display text-lg text-lilac whitespace-nowrap">${NGN(p.price * l.qty)}</p>
+      <p class="font-display text-lg text-lilac whitespace-nowrap group-[.light]:font-[900]">${NGN(p.price * l.qty)}</p>
     </div>`;
       })
       .join("");
@@ -1390,11 +1426,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   document
     .getElementById("floatCart")
     .addEventListener("click", () => openOverlay(cartDrawer, ".panel"));
-  document
-    .querySelectorAll("[data-close-cart]")
-    .forEach((b) =>
-      b.addEventListener("click", () => closeOverlay(cartDrawer, ".panel")),
-    );
+  document.querySelectorAll("[data-close-cart]").forEach((b) =>
+    b.addEventListener("click", () => {
+      selectedQty = 1;
+      closeOverlay(cartDrawer, ".panel");
+    }),
+  );
 
   /* mobile menu */
   const mobileMenu = document.getElementById("mobileMenu");
